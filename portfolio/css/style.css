@@ -104,6 +104,7 @@ body {
           flex-direction: column;
   min-height: 100vh;
   margin: 0px auto;
+  color: #ffffff;
 }
 
 .container {
@@ -111,7 +112,7 @@ body {
   margin: 0px auto;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1440px) {
   .container {
     padding: 0 20px;
   }
@@ -124,8 +125,129 @@ body {
   }
 }
 
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.header__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 80px;
+}
+
+.header__logo {
+  margin-right: 20px;
+}
+
+.header__logo-icon {
+  max-width: 50px;
+  max-height: 40px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  fill: #ffffff;
+}
+
+.header__logo-icon:hover {
+  fill: #bdae82;
+}
+
+.header__nav {
+  margin-left: auto;
+}
+
+.header__nav-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.header__nav-list *:not(:first-child) {
+  margin-left: 30px;
+}
+
+.header__nav-link {
+  font-size: 20px;
+  line-height: 2.5;
+  color: #ffffff;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.header__nav-link:hover {
+  color: #bdae82;
+  cursor: pointer;
+}
+
+.header__buttons-lang {
+  margin-left: 30px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.header__buttons-lang span {
+  margin: 0 4px 0 6px;
+}
+
+.header__lang-en {
+  color: inherit;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.header__lang-en:hover {
+  color: #bdae82;
+  cursor: pointer;
+}
+
+.header__lang-ru {
+  color: inherit;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.header__lang-ru:hover {
+  color: #bdae82;
+  cursor: pointer;
+}
+
 .main {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
+}
+
+.hero {
+  position: relative;
+  padding-top: 63.2%;
+}
+
+@media (max-width: 1400px) {
+  .hero {
+    min-height: 100vh;
+  }
+}
+
+.hero__container {
+  max-width: 1440px;
+}
+
+.main-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }

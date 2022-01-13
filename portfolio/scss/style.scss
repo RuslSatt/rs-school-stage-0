@@ -13,13 +13,14 @@ body {
    flex-direction: column;
    min-height: 100vh;
    margin: 0px auto;
+   color: #ffffff;
 }
 
 //------Repeat blocks-------------------------------------//
 .container {
    max-width: 1400px;
    margin: 0px auto;
-   @media (max-width: 1400px) {
+   @media (max-width: 1440px) {
       padding: 0 20px;
    }
    @media (max-width: 768px) {
@@ -30,6 +31,83 @@ body {
 //--------------------------------------------------------//
 
 //=====header=============================================//
+.header {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   z-index: 2;
+   &__container {
+      display: flex;
+      align-items: center;
+      min-height: 80px;
+   }
+
+   &__logo {
+      margin-right: 20px;
+   }
+
+   &__logo-icon {
+      max-width: 50px;
+      max-height: 40px;
+      transition: 0.3s;
+      fill: #ffffff;
+      &:hover {
+         fill: #bdae82;
+      }
+   }
+
+   &__nav {
+      margin-left: auto;
+   }
+
+   &__nav-list {
+      display: flex;
+      flex-wrap: wrap;
+
+      *:not(:first-child) {
+         margin-left: 30px;
+      }
+   }
+
+   &__nav-link {
+      font-size: 20px;
+      line-height: 2.5;
+      color: #ffffff;
+      transition: 0.3s;
+      &:hover {
+         color: #bdae82;
+         cursor: pointer;
+      }
+   }
+
+   &__buttons-lang {
+      margin-left: 30px;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 20px;
+      span{
+         margin: 0 4px 0 6px;
+      }
+   }
+   &__lang-en {
+      color: inherit;
+      transition: 0.3s;
+      &:hover {
+         color: #bdae82;
+         cursor: pointer;
+      }
+   }
+
+   &__lang-ru {
+      color: inherit;
+      transition: 0.3s;
+      &:hover {
+         color: #bdae82;
+         cursor: pointer;
+      }
+   }
+}
 //========================================================//
 
 //=====main===============================================//
@@ -38,7 +116,24 @@ body {
 }
 
 //-----------------section-hero---------------------------//
-
+.hero {
+   position: relative;
+   padding-top: 63.2%;
+   @media (max-width: 1400px) {
+      min-height: 100vh;
+   }
+   &__container {
+      max-width: 1440px;
+   }
+}
+.main-screen {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
 //--------------------------------------------------------//
 
 //-----------------section-skills-------------------------//
