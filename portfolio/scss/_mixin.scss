@@ -1,0 +1,35 @@
+//==============Адаптивное свойство=======================================================//
+$maxWidthAv: 1920; // 1920 / 16 = 120rem
+$maxWidthContainerAv: 1400; // 1440 / 16 = 90rem
+// @include adaptiv-value ("font-size", 3.4375, 2.8125, 1rem);
+@mixin adaptiv-value($property, $startSize, $minSize, $type) {
+   $addSize: $startSize - $minSize;
+   @if $type == 1 {
+      // Меньше контейнера //
+      #{$property}: $startSize + px;
+      @media (max-width: #{$maxWidthContainerAv + px}) {
+         #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 768px) / #{$maxWidthContainerAv - 768}));
+      }
+   } @else if $type==1.1 {
+      // Меньше контейнера - 2//
+      #{$property}: $startSize + px;
+      @media (max-width: #{$maxWidthContainerAv + px}) {
+         #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainerAv - 320}));
+      }
+
+//===============================//
+   } @else if $type==2 {
+      // Больше контейнера //
+      #{$property}: $startSize + rem;
+      @media (min-width: #{$maxWidthContainerAv + rem}) {
+         #{$property}: calc(#{$minSize + rem} + #{$addSize} * ((100vw - 20rem) / #{$maxWidthAv - 20}));
+      }
+   } @else if $type==3rem {
+      // В любом случае //
+      #{$property}: calc(#{$minSize + rem} + #{$addSize} * ((100vw - 20rem) / #{$maxWidthAv - 20}));
+   } @else if $type==3em {
+      // В любом случае //
+      #{$property}: calc(#{$minSize + em} + #{$addSize} * ((100vw - 20em) / #{$maxWidthAv - 20}));
+   }
+}
+//==============Адаптивное свойство=======================================================//
