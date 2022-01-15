@@ -22,19 +22,19 @@
             <nav class="header__nav">
                <ul class="header__nav-list">
                   <li>
-                     <a href="#skills" class="header__nav-link">Skills</a>
+                     <a data-goto=".skills__container" href="#" class="header__nav-link">Skills</a>
                   </li>
                   <li>
-                     <a href="#portfolio" class="header__nav-link">Portfolio</a>
+                     <a data-goto=".portfolio__container" href="#" class="header__nav-link">Portfolio</a>
                   </li>
                   <li>
-                     <a href="#video" class="header__nav-link">Video</a>
+                     <a data-goto=".video__title" href="#" class="header__nav-link">Video</a>
                   </li>
                   <li>
-                     <a href="#price" class="header__nav-link">Price</a>
+                     <a data-goto=".price__container" href="#" class="header__nav-link">Price</a>
                   </li>
                   <li>
-                     <a href="#contacts" class="header__nav-link">Contacts</a>
+                     <a data-goto=".contact__container" href="#" class="header__nav-link">Contacts</a>
                   </li>
                </ul>
             </nav>
@@ -55,7 +55,7 @@
                   Save sincere emotions, romantic feelings and happy moments of life together with professional
                   photographer Alexa Rise
                </p>
-               <a href="#" class="hero__btn-link btn-link">Hire me</a>
+               <button class="hero__btn-link btn-link">Hire me </button>
             </div>
             <div class="hero__main-screen">
                <img src="assets/img/main-screen.jpg" alt="main-screen">
@@ -76,7 +76,7 @@
                            Digital photography
                         </div>
                         <p class="skills__item-subtitle subtitle-card">
-                           High-quality photos in the studio and on the nature 
+                           High-quality photos in the studio and on the nature
                         </p>
                      </div>
                   </div>
@@ -119,7 +119,7 @@
                         </p>
                      </div>
                   </div>
-                  
+
                </div>
             </div>
          </section>
@@ -168,9 +168,152 @@
                </div>
             </div>
          </section>
+         <section class="video">
+            <div class="video__title title-gold">
+               <h2>Video</h2>
+            </div>
+            <div class="video__player">
+               <img src="assets/img/video-player.jpg" alt="">
+               <button class="video__btn-player">
+                  <svg class="video__icon">
+                     <use href="./assets/svg/sprite.svg#Play-video-icon"></use>
+                  </svg>
+               </button>
+            </div>
+         </section>
+         <section class="price">
+            <div class="price__container container">
+               <div class="price__title title-gold">
+                  <h2>Price</h2>
+               </div>
+               <div class="price__row">
+                  <div class="price__column">
+                     <div class="price__item item-price">
+                        <div class="item-price__name">
+                           Standart
+                        </div>
+                        <div class="item-price__price">
+                           500 $
+                        </div>
+                        <ul class="item-price__list">
+                           <li>One location</li>
+                           <li>120 photos in color</li>
+                           <li>12 photos in retouch</li>
+                           <li>Readiness 2-3 weeks</li>
+                           <li>Make up, visage</li>
+                        </ul>
+                        <button class="item-price__btn btn-link">Order shooting</button>
+                     </div>
+                  </div>
+                  <div class="price__column">
+                     <div class="price__item item-price">
+                        <div class="item-price__name">
+                           Premium
+                        </div>
+                        <div class="item-price__price">
+                           700 $
+                        </div>
+                        <ul class="item-price__list">
+                           <li>One or two locations</li>
+                           <li>200 photos in color</li>
+                           <li>20 photos in retouch</li>
+                           <li>Readiness 1-2 weeks</li>
+                           <li>Make up, visage</li>
+                        </ul>
+                        <button class="item-price__btn btn-link">Order shooting</button>
+                     </div>
+                  </div>
+                  <div class="price__column">
+                     <div class="price__item item-price">
+                        <div class="item-price__name">
+                           Gold
+                        </div>
+                        <div class="item-price__price">
+                           1000 $
+                        </div>
+                        <ul class="item-price__list">
+                           <li>Three locations or more</li>
+                           <li>300 photos in color</li>
+                           <li>50 photos in retouch</li>
+                           <li>Readiness 1 week</li>
+                           <li>Make up, visage, hairstyle</li>
+                        </ul>
+                        <button class="item-price__btn btn-link">Order shooting</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="contact">
+            <div class="contact__container">
+               <div class="contact__form-column">
+                  <h2 class="contact__title">
+                     Contact me
+                  </h2>
+                  <form class="contact__form form" action="#" method="post">
+                     <div class="form__line">
+                        <input type="email" name="email" placeholder="E-mail">
+                     </div>
+                     <div class="form__line">
+                        <input type="tel" name="phone" placeholder="Phone">
+                     </div>
+                     <div class="form__area">
+                        <textarea name="Message" placeholder="Message"></textarea>
+                     </div>
+                     <div class="form__button">
+                        <button type="submit" class="form__btn btn-link">Send message</button>
+                     </div>
+                  </form>
+               </div>
+               <div class="contact__image">
+                  <img src="assets/img/second-screen-near-with-footer.jpg" alt="Alexa Rise professionly photo">
+               </div>
+            </div>
+         </section>
       </main>
       <footer class="footer">
-         <div class="container"></div>
+         <div class="container">
+            <div class="footer__items item">
+               <div class="item__data">
+                  <span class="item__c-element">
+                     <img src="assets/img/c-icon-footer.svg" alt="c-icon">
+                  </span>
+                  <span class="item__year">
+                     2022
+                  </span>
+                  <a href="#" class="item__git">
+                     github
+                  </a>
+               </div>
+               <div class="item__text">
+                  Rolling Scopes School
+               </div>
+               <nav class="item__social">
+                  <ul class="item__social-list">
+                     <li><a href="#" class="item__social-icon">
+                           <svg class="item__icon-inst">
+                              <use href="./assets/svg/sprite.svg#inst-icon-footer"></use>
+                           </svg>
+                        </a></li>
+                     <li><a href="#" class="item__social-icon">
+                           <svg class="item__icon-face">
+                              <use href="./assets/svg/sprite.svg#fb-icon-footer"></use>
+                           </svg>
+                        </a></li>
+                     <li><a href="#" class="item__social-icon">
+                           <svg class="item__icon-twit">
+                              <use href="./assets/svg/sprite.svg#tw-icon-footer"></use>
+                           </svg>
+                        </a></li>
+                     <li><a href="#" class="item__social-icon">
+                           <svg class="item__icon-pinter">
+                              <use href="./assets/svg/sprite.svg#pinterest-icon-footer"></use>
+                           </svg>
+                        </a></li>
+                  </ul>
+               </nav>
+            </div>
+         </div>
       </footer>
    </div>
 
