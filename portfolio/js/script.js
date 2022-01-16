@@ -19,3 +19,6 @@ if (headerLinks.length > 0) {
       }
    }
 }
+
+let resultTask = '1. +10 \n2. +20 \n3. +48 \n4. +12 \n5. +20';
+console.log (resultTask);

@@ -270,6 +270,10 @@ body {
   cursor: pointer;
 }
 
+.header__lang-en:focus {
+  color: #bdae82;
+}
+
 .header__lang-ru {
   color: inherit;
   -webkit-transition: 0.3s;
@@ -279,6 +283,10 @@ body {
 .header__lang-ru:hover {
   color: #bdae82;
   cursor: pointer;
+}
+
+.header__lang-ru:focus {
+  color: #bdae82;
 }
 
 .main {
@@ -335,7 +343,7 @@ body {
 .hero__block {
   position: relative;
   z-index: 100;
-  padding: 160px 20px 160px 80px;
+  padding: 90px 20px 160px 80px;
   max-width: 570px;
 }
 
@@ -509,6 +517,13 @@ body {
 
 .portfolio__item img {
   max-width: 100%;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.portfolio__item img:hover {
+  -webkit-transform: scale(1.02, 1.02);
+          transform: scale(1.02, 1.02);
 }
 
 .video {
@@ -552,6 +567,8 @@ body {
 
 .video__icon:hover {
   fill: #bdae82;
+  -webkit-transform: scale(0.89);
+          transform: scale(0.89);
 }
 
 .price {
@@ -811,6 +828,13 @@ body {
 .item__text {
   font-size: 20px;
   line-height: 1.2;
+  color: #ffffff;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.item__text:hover {
+  color: #bdae82;
 }
 
 @media (max-width: 768px) {

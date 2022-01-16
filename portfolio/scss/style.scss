@@ -153,6 +153,9 @@ body {
          color: #bdae82;
          cursor: pointer;
       }
+      &:focus {
+         color: #bdae82;
+      }
    }
 
    &__lang-ru {
@@ -161,6 +164,9 @@ body {
       &:hover {
          color: #bdae82;
          cursor: pointer;
+      }
+      &:focus {
+         color: #bdae82;
       }
    }
 }
@@ -205,7 +211,7 @@ body {
    &__block {
       position: relative;
       z-index: 100;
-      padding: 160px 20px 160px 80px;
+      padding: 90px 20px 160px 80px;
       max-width: 570px;
       *:not(:last-child) {
          margin-bottom: 25px;
@@ -350,8 +356,13 @@ body {
       //    padding-top: 90%;
       //    min-height: 0vh;
       // }
+
       img {
          max-width: 100%;
+         transition: 0.3s;
+         &:hover {
+            transform: scale(1.02, 1.02);
+         }
       }
    }
 }
@@ -391,6 +402,7 @@ body {
       fill: #ffffff;
       &:hover {
          fill: #bdae82;
+         transform: scale(0.89);
       }
    }
 }
@@ -606,6 +618,11 @@ body {
    &__text {
       font-size: 20px;
       line-height: 1.2;
+      color: #ffffff;
+      transition: 0.3s;
+      &:hover {
+         color: #bdae82;
+      }
       @media (max-width: 768px) {
          margin-bottom: 20px;
       }
