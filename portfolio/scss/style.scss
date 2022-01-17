@@ -143,10 +143,10 @@ body {
       font-weight: bold;
       font-size: 20px;
       span {
-         margin: 0 4px 0 6px;
+         margin: 0 0px 0 4px;
       }
    }
-   &__lang-en {
+   &__lang {
       color: inherit;
       transition: 0.3s;
       &:hover {
@@ -154,21 +154,13 @@ body {
          cursor: pointer;
       }
       &:focus {
+         color: #bdae82;
+      }
+      &.active {
          color: #bdae82;
       }
    }
 
-   &__lang-ru {
-      color: inherit;
-      transition: 0.3s;
-      &:hover {
-         color: #bdae82;
-         cursor: pointer;
-      }
-      &:focus {
-         color: #bdae82;
-      }
-   }
 }
 //========================================================//
 
@@ -187,7 +179,7 @@ body {
       min-height: 70vh;
    }
    &__main-screen {
-      padding-top: 63.2%;
+      padding-top: 62.8%;
       @media (max-width: px) {
          &:after {
             content: "";
@@ -222,7 +214,7 @@ body {
       font-family: Merriweather;
       font-weight: bold;
       font-size: 60px;
-      line-height: 1.6;
+      line-height: 1.5;
       @media (min-width: 768px) {
          @include adaptiv-value("font-size", 60, 32, 1);
       }
@@ -300,6 +292,7 @@ body {
 
 //-----------------section-portfolio----------------------//
 .portfolio {
+   padding: 20px 0 0 0;
    // &__container {
    // }
 
@@ -325,7 +318,7 @@ body {
       background: #000;
       color: #bdae82;
       border: 2px solid #bdae82;
-      &:focus {
+      &.active {
          background: #bdae82;
          color: #000;
       }
@@ -373,7 +366,7 @@ body {
 
 //-----------------section-video--------------------------//
 .video {
-   padding: 100px 0 0 0;
+   padding: 80px 0 0 0;
    &__title {
       margin-bottom: 60px;
    }
@@ -416,7 +409,7 @@ body {
    // }
 
    &__title {
-      margin-bottom: 60px;
+      margin-bottom: 58px;
    }
 
    &__row {
@@ -440,7 +433,7 @@ body {
    align-items: center;
    flex: 1 1 auto;
    border: 3px solid #bdae82;
-   padding: 43px 10px;
+   padding: 40px 10px;
    *:last-child {
       margin-bottom: 0;
    }
@@ -475,8 +468,8 @@ body {
 //--------------------------------------------------------//
 
 //-----------------section-contacts-----------------------//
-.contact {
-   padding: 80px 0 0 0;
+.contacts {
+   padding: 100px 0 0 0;
 
    &__container {
       position: relative;
@@ -514,7 +507,7 @@ body {
       position: relative;
       z-index: 3231;
       width: 100%;
-      max-width: 500px;
+      max-width: 490px;
       @media (max-width: 768px) {
          margin: 0px auto;
       }
@@ -523,7 +516,7 @@ body {
 
 .form {
    *:not(:last-child) {
-      margin-bottom: 20px;
+      margin-bottom: 17px;
    }
 
    ::placeholder {
@@ -561,7 +554,7 @@ body {
    }
 
    &__button {
-      padding: 10px 0 0 0;
+      padding: 11px 0 0 0;
       @media (max-width: 768px) {
          display: flex;
          justify-content: center;
@@ -578,7 +571,7 @@ body {
 
 //=====footer=============================================//
 .footer {
-   padding: 50px 0;
+   padding: 60px 0;
 }
 
 .item {
@@ -594,7 +587,7 @@ body {
    &__data {
       font-size: 20px;
       *:not(:last-child) {
-         margin-right: 20px;
+         margin-right: 16px;
       }
       @media (max-width: 768px) {
          margin-bottom: 16px;
