@@ -485,7 +485,7 @@ body.lock {
 }
 
 .hero__main-screen {
-  padding-top: 62.8%;
+  padding-top: 63.2%;
 }
 
 @media (max-width: 768px) {
@@ -533,7 +533,7 @@ body.lock {
 .hero__block {
   position: relative;
   z-index: 100;
-  padding: 90px 20px 160px 80px;
+  padding: 85px 20px 160px 80px;
   max-width: 570px;
 }
 
@@ -711,7 +711,7 @@ body.lock {
 }
 
 .portfolio {
-  padding: 20px 0 0 0;
+  padding: 60px 0 0 0;
 }
 
 @media (max-width: 768px) {
@@ -778,6 +778,9 @@ body.lock {
 }
 
 .portfolio__column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-flex: 0;
       -ms-flex: 0 1 33.333%;
           flex: 0 1 33.333%;
@@ -802,8 +805,31 @@ body.lock {
   }
 }
 
+.portfolio__item {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  padding-top: 123.7%;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .portfolio__item {
+    max-width: 450px;
+    margin: 0 auto;
+    padding-top: 87%;
+    min-height: 60vh;
+  }
+}
+
 .portfolio__item img {
-  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
@@ -814,12 +840,12 @@ body.lock {
 }
 
 .video {
-  padding: 80px 0px 0 0px;
+  padding: 70px 20px 0 20px;
 }
 
 @media (max-width: 768px) {
   .video {
-    padding: 70px 0px 0 0px;
+    padding: 70px 20px 0 20px;
   }
 }
 
@@ -835,7 +861,7 @@ body.lock {
 }
 
 .video__player {
-  position: relative;
+  padding-top: 50.7%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -849,30 +875,40 @@ body.lock {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .video__player {
+    padding-top: 57.5%;
+    margin: 0 -20px;
+    min-height: 35vh;
+  }
 }
 
 .video__player img {
-  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 @media (max-width: 768px) {
   .video__player img {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 1 418px;
-            flex: 0 1 418px;
-  }
-}
-
-@media (max-width: 766px) {
-  .video__player img {
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
+    -o-object-position: -6px;
+       object-position: -6px;
   }
 }
 
 .video__btn-player {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   z-index: 100;
   background: transparent;
 }
