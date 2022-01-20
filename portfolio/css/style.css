@@ -350,7 +350,7 @@ body.lock {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80.75%;
+    width: 620px;
     height: 100%;
     background: black;
     -webkit-transition: right 0.5s ease 0s;
@@ -359,7 +359,7 @@ body.lock {
   }
 }
 
-@media (max-width: 768px) and (max-width: 500px) {
+@media (max-width: 768px) and (max-width: 620px) {
   .header__nav {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -367,6 +367,7 @@ body.lock {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    width: 100%;
   }
 }
 
@@ -391,7 +392,7 @@ body.lock {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 620px) {
   .header__nav-list {
     padding: 134px 20px 0 20px;
   }
@@ -518,8 +519,8 @@ body.lock {
 
 @media (max-width: 768px) {
   .hero__main-screen img {
-    -o-object-position: -10%;
-       object-position: -10%;
+    -o-object-position: left;
+       object-position: left;
   }
 }
 

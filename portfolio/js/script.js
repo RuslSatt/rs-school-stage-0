@@ -75,60 +75,6 @@ if (portfolioButtons.length > 0) {
          for (const b of valueItem) {
             b.style.display = "flex";
          }
-
-         // if (dataValue == '1') {
-         //    const itemValueTwoAndOne = document.querySelectorAll('.season_2, .season_3')
-         //    for (const value of itemValueTwoAndOne) {
-         //       value.style.display = 'none';
-         //    }
-         //    const itemValue = document.querySelectorAll('.season_4')
-         //    for (const value of itemValue) {
-         //       value.style.display = 'none';
-         //    }
-         //    const valueColumn = document.querySelectorAll('.season_1')
-         //    for (const value of valueColumn) {
-         //       value.style.display = 'flex';
-         //    }
-         // } else if (dataValue == '2') {
-         //    const itemValueTwoAndOne = document.querySelectorAll('.season_1, .season_3')
-         //    for (const value of itemValueTwoAndOne) {
-         //       value.style.display = 'none';
-         //    }
-         //    const itemValue = document.querySelectorAll('.season_4')
-         //    for (const value of itemValue) {
-         //       value.style.display = 'none';
-         //    }
-         //    const valueColumn = document.querySelectorAll('.season_2')
-         //    for (const value of valueColumn) {
-         //       value.style.display = 'flex';
-         //    }
-         // } else if (dataValue == '3') {
-         //    const itemValueTwoAndOne = document.querySelectorAll('.season_1, .season_2')
-         //    for (const value of itemValueTwoAndOne) {
-         //       value.style.display = 'none';
-         //    }
-         //    const itemValue = document.querySelectorAll('.season_4')
-         //    for (const value of itemValue) {
-         //       value.style.display = 'none';
-         //    }
-         //    const valueColumn = document.querySelectorAll('.season_3')
-         //    for (const value of valueColumn) {
-         //       value.style.display = 'flex';
-         //    }
-         // } else if (dataValue == '4') {
-         //    const itemValueTwoAndOne = document.querySelectorAll('.season_1, .season_2')
-         //    for (const value of itemValueTwoAndOne) {
-         //       value.style.display = 'none';
-         //    }
-         //    const itemValue = document.querySelectorAll('.season_3')
-         //    for (const value of itemValue) {
-         //       value.style.display = 'none';
-         //    }
-         //    const valueColumn = document.querySelectorAll('.season_4')
-         //    for (const value of valueColumn) {
-         //       value.style.display = 'flex';
-         //    }
-         // }
       });
    })
 }
