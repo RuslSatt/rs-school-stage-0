@@ -50,33 +50,7 @@ console.log(resultTask);
 
 //-----------------------filter---------------------------------------------//
 
-// const portfolioButtons = document.querySelectorAll('.portfolio__btn-link');
 
-// if (portfolioButtons.length > 0) {
-//    portfolioButtons.forEach(btnFile => {
-//       btnFile.addEventListener('click', function (e) {
-//          const dataValue = btnFile.getAttribute('data-filter');
-
-//          //-----------------active button-----------------//
-//          for (const i of portfolioButtons) {
-//             i.classList.remove('active');
-//          }
-//          btnFile.classList.add('active');
-
-//          //-----------------filter portfolio-----------------//
-
-//          const itemValueTwoAndOne = document.querySelectorAll('.portfolio__column')
-//          for (const a of itemValueTwoAndOne) {
-//             a.style.display = "none";
-//          }
-//          const valueItem = document.querySelectorAll(".portfolio__column.season_" + dataValue);
-
-//          for (const b of valueItem) {
-//             b.style.display = "flex";
-//          }
-//       });
-//    })
-// }
 
 
 
