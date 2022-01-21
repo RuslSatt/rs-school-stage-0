@@ -4,14 +4,13 @@
 
 const burgerIcon = document.querySelector('.header__icon');
 const menuNav = document.querySelector('.header__nav');
+const logoHeader = document.querySelector('.header__logo');
 if (burgerIcon) {
    burgerIcon.addEventListener('click', function (e) {
 
       burgerIcon.classList.toggle('active');
       menuNav.classList.toggle('active');
       document.body.classList.toggle('lock');
-
-      const logoHeader = document.querySelector('.header__logo');
       logoHeader.classList.toggle('back');
    })
 }
@@ -34,7 +33,7 @@ if (headerLinks.length > 0) {
             burgerIcon.classList.remove('active');
             menuNav.classList.remove('active');
             document.body.classList.remove('lock');
-
+            logoHeader.classList.remove('back');
          }
 
          window.scrollTo({
@@ -71,18 +70,13 @@ if (portfolioButtons.length > 0) {
             a.style.display = "none";
          }
          const valueItem = document.querySelectorAll(".portfolio__column.season_" + dataValue);
-         
+
          for (const b of valueItem) {
             b.style.display = "flex";
          }
       });
    })
 }
-
-
-
-
-
 
 
 
