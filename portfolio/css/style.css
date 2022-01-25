@@ -102,6 +102,27 @@ h6 {
   }
 }
 
+.light-theme {
+  background: #ffffff;
+  color: #000;
+}
+
+.header__svg-icon-white {
+  display: none;
+}
+
+.header__svg-icon-white.white-icon {
+  display: block;
+}
+
+.header__svg-icon-dark {
+  display: block;
+}
+
+.header__svg-icon-dark.dark-icon {
+  display: none;
+}
+
 body {
   font-family: Inter;
   background-color: #000;
@@ -274,6 +295,25 @@ body.lock {
   }
 }
 
+.header__change {
+  background: transparent;
+  margin-left: 20px;
+}
+
+.header__icon-change {
+  max-width: 40px;
+  max-height: 40px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  fill: #ffffff;
+}
+
+@media (min-width: 769px) {
+  .header__icon-change:hover {
+    fill: #bdae82;
+  }
+}
+
 .header__icon {
   display: none;
 }
@@ -284,15 +324,15 @@ body.lock {
 }
 
 .header__icon.active::before {
-  top: 50%;
-  -webkit-transform: rotate(-45deg) translate(0px, -50%);
-          transform: rotate(-45deg) translate(0px, -50%);
+  top: 45%;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 
 .header__icon.active::after {
-  top: 50%;
-  -webkit-transform: rotate(45deg) translate(0px, -50%);
-          transform: rotate(45deg) translate(0px, -50%);
+  top: 45%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
 }
 
 @media (max-width: 768px) {
@@ -449,12 +489,12 @@ body.lock {
   color: inherit;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 @media (min-width: 769px) {
   .header__lang:hover {
     color: #bdae82;
-    cursor: pointer;
   }
 }
 
@@ -628,6 +668,21 @@ body.lock {
   margin-bottom: 60px;
 }
 
+.skills__title.title-theme {
+  background-image: linear-gradient(to top, #fff 39px, #000 39px, #000 41px, #fff 41px);
+}
+
+.skills__title.title-theme h2 {
+  background-color: #fff;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .skills__title.title-theme {
+    background-image: linear-gradient(to top, #fff 22px, #000 22px, #000 24px, #fff 24px);
+  }
+}
+
 .skills__row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -740,6 +795,21 @@ body.lock {
   }
 }
 
+.portfolio__title.title-theme {
+  background-image: linear-gradient(to top, #fff 39px, #000 39px, #000 41px, #fff 41px);
+}
+
+.portfolio__title.title-theme h2 {
+  background-color: #fff;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .portfolio__title.title-theme {
+    background-image: linear-gradient(to top, #fff 22px, #000 22px, #000 24px, #fff 24px);
+  }
+}
+
 .portfolio__buttons {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -769,6 +839,16 @@ body.lock {
   background: #000;
   color: #bdae82;
   border: 2px solid #bdae82;
+}
+
+.portfolio__btn-link.light-theme-btn {
+  background: transparent;
+  color: #000;
+}
+
+.portfolio__btn-link.light-theme-btn:hover {
+  color: #fff;
+  background: #bdae82;
 }
 
 .portfolio__btn-link.active {
@@ -871,6 +951,21 @@ body.lock {
   }
 }
 
+.video__title.title-theme {
+  background-image: linear-gradient(to top, #fff 39px, #000 39px, #000 41px, #fff 41px);
+}
+
+.video__title.title-theme h2 {
+  background-color: #fff;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .video__title.title-theme {
+    background-image: linear-gradient(to top, #fff 22px, #000 22px, #000 24px, #fff 24px);
+  }
+}
+
 .video__player {
   padding-top: 50.7%;
   display: -webkit-box;
@@ -948,7 +1043,13 @@ body.lock {
 }
 
 .price {
-  padding: 100px 0 0px 0;
+  padding: 100px 0 100px 0;
+}
+
+@media (max-width: 768px) {
+  .price {
+    padding: 100px 0 30px 0;
+  }
 }
 
 .price__title {
@@ -958,6 +1059,21 @@ body.lock {
 @media (max-width: 768px) {
   .price__title {
     margin-bottom: 67px;
+  }
+}
+
+.price__title.title-theme {
+  background-image: linear-gradient(to top, #fff 39px, #000 39px, #000 41px, #fff 41px);
+}
+
+.price__title.title-theme h2 {
+  background-color: #fff;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .price__title.title-theme {
+    background-image: linear-gradient(to top, #fff 22px, #000 22px, #000 24px, #fff 24px);
   }
 }
 
@@ -1048,16 +1164,6 @@ body.lock {
           flex: 1 1 auto;
   font-size: 18px;
   line-height: 2;
-}
-
-.contacts {
-  padding: 100px 0 0 0;
-}
-
-@media (max-width: 768px) {
-  .contacts {
-    padding: 30px 0 0 0;
-  }
 }
 
 .contacts__container {

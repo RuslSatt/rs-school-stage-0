@@ -51,37 +51,96 @@ console.log(resultTask);
 //-----------------------filter---------------------------------------------//
 
 
-const portfolioButtons = document.querySelectorAll('.portfolio__btn-link');
+const portfolioButtons = document.querySelector('.portfolio__buttons');
 
-if (portfolioButtons.length > 0) {
-   portfolioButtons.forEach(btnFile => {
-      btnFile.addEventListener('click', function (e) {
-         const dataValue = btnFile.getAttribute('data-filter');
+function changeImage(event) {
+   if (event.target.closest('.portfolio__btn-link')) {
+      const filter = event.target.dataset.filter;
+      const allImages = document.querySelectorAll('.portfolio__image');
+      allImages.forEach((imageFor, index) => imageFor.src = `./assets/img/${filter}/${filter + '_' + (index + 1)}.jpg`);
+      const allLinks = document.querySelectorAll('.portfolio__item');
+      allLinks.forEach((imageFor, index) => imageFor.href = `./assets/img/${filter}/${filter + '_' + (index + 1)}.jpg`);
+   }
+}
 
-         //-----------------active button-----------------//
-         for (const i of portfolioButtons) {
+portfolioButtons.addEventListener('click', changeImage);
+
+// -------------------------------active buttons ---------------------------- //
+const activeButtons = document.querySelectorAll('.portfolio__btn-link');
+if (activeButtons.length > 0) {
+   activeButtons.forEach(whileButton => {
+      whileButton.addEventListener('click', function (e) {
+         for (const i of activeButtons) {
             i.classList.remove('active');
          }
-         btnFile.classList.add('active');
+         whileButton.classList.add('active');
+      })
+   })
+}
 
-         //-----------------filter portfolio-----------------//
-
-         const itemValueTwoAndOne = document.querySelectorAll('.portfolio__column')
-         for (const a of itemValueTwoAndOne) {
-            a.style.display = "none";
+const activeButtonsLang = document.querySelectorAll('.header__lang');
+if (activeButtons.length > 0) {
+   activeButtonsLang.forEach(whileButtonLang => {
+      whileButtonLang.addEventListener('click', function (e) {
+         for (const i of activeButtonsLang) {
+            i.classList.remove('active');
          }
-         const valueItem = document.querySelectorAll(".portfolio__column.season_" + dataValue);
-
-         for (const b of valueItem) {
-            b.style.display = "flex";
-         }
-      });
+         whileButtonLang.classList.add('active');
+      })
    })
 }
 
 
+// ---------- change theme ---------------- //
+const skills = document.querySelector('.skills');
+const port = document.querySelector('.portfolio');
+const video = document.querySelector('.video');
+const price = document.querySelector('.price');
+
+const sectionTheme = [
+   skills,
+   port,
+   video,
+   price,
+];
+
+const skillsTitle = document.querySelector('.skills__title');
+const portTitle = document.querySelector('.portfolio__title');
+const videoTitle = document.querySelector('.video__title');
+const priceTitle = document.querySelector('.price__title');
+
+const titleTheme = [
+   skillsTitle,
+   portTitle,
+   videoTitle,
+   priceTitle,
+]
 
 
+const headerIcon = document.querySelector('.header__icon-change');
+const elementLangWhite = document.querySelector('.header__svg-icon-white');
+const elementLangDark = document.querySelector('.header__svg-icon-dark');
+
+function changeTheme(event) {
+
+   elementLangWhite.classList.toggle('white-icon');
+   elementLangDark.classList.toggle('dark-icon');
+
+   sectionTheme.forEach(eachElementTheme => {
+      eachElementTheme.classList.toggle('light-theme');
+   });
+
+   titleTheme.forEach(titleThemeFor => {
+      titleThemeFor.classList.toggle('title-theme');
+   });
+
+   const button = document.querySelectorAll('.portfolio__btn-link');
+   button.forEach(buttons => {
+      buttons.classList.toggle('light-theme-btn')
+   });
+}
+
+headerIcon.addEventListener('click', changeTheme);
 
 
 
