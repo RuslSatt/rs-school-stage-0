@@ -22,13 +22,13 @@
    color: #000;
 }
 
-.header__svg-icon-white{
+.header__svg-icon-white {
    display: none;
    &.white-icon {
       display: block;
    }
 }
-.header__svg-icon-dark{
+.header__svg-icon-dark {
    display: block;
    &.dark-icon {
       display: none;
@@ -97,7 +97,6 @@ body {
          color: #ffffff;
       }
    }
-
 }
 
 .title-gold {
@@ -106,7 +105,6 @@ body {
    background-image: linear-gradient(to top, #000 39px, #bdae82 39px, #bdae82 41px, #000 41px);
    max-width: 700px;
    margin: 0px auto;
-   position: relative;
    @media (max-width: $mW3) {
       max-width: 364px;
    }
@@ -114,6 +112,7 @@ body {
       background-image: linear-gradient(to top, #000 22px, #bdae82 22px, #bdae82 24px, #000 24px);
    }
    h2 {
+      position: relative;
       max-width: 150px;
       margin: 0px auto;
       padding: 0 10px;
@@ -192,16 +191,16 @@ body {
    &__icon {
       display: none;
       &.active {
-         span {
+         .center {
             transform: scale(0) translate(0px, 50%);
          }
-         &::before {
+         .before {
             top: 45%;
-            transform: rotate(-45deg) ;
+            transform: rotate(-45deg);
          }
-         &::after {
+         .after {
             top: 45%;
-            transform: rotate(45deg) ;
+            transform: rotate(45deg);
          }
       }
       @media (max-width: $mW3) {
@@ -214,8 +213,7 @@ body {
          order: 1;
          margin-left: 20px;
       }
-      &::before {
-         content: "";
+      .before {
          right: 0;
          position: absolute;
          height: 10%;
@@ -223,9 +221,11 @@ body {
          transition: all 0.3s ease 0s;
          background: #ffffff;
          top: 0;
+         &.elem-icon {
+            background: #000;
+         }
       }
-      &::after {
-         content: "";
+      .after {
          right: 0;
          position: absolute;
          height: 10%;
@@ -233,8 +233,11 @@ body {
          transition: all 0.3s ease 0s;
          background: #ffffff;
          bottom: 0;
+         &.elem-icon {
+            background: #000;
+         }
       }
-      span {
+      .center {
          top: 40%;
          transform: scale(1) translate(0px, 50%);
          right: 0;
@@ -243,6 +246,9 @@ body {
          width: 100%;
          transition: all 0.3s ease 0s;
          background: #ffffff;
+         &.elem-icon {
+            background: #000;
+         }
       }
    }
 
@@ -261,6 +267,11 @@ body {
             display: flex;
             justify-content: center;
             width: 100%;
+         }
+      }
+      &.change {
+         @media (max-width: $mW3) {
+            background: rgb(255, 255, 255);
          }
       }
       &.active {
@@ -303,6 +314,11 @@ body {
          font-size: 35px;
          margin-left: 0px;
          // @include adaptiv-value("font-size", 50, 25, 1.1);
+      }
+      &.theme-list {
+         @media (max-width: $mW3) {
+            color: #000;
+         }
       }
    }
 
@@ -375,6 +391,7 @@ body {
          }
          @media (max-width: 550px) {
             object-position: center;
+            
          }
       }
    }
@@ -437,14 +454,25 @@ body {
 
 //-----------------section-skills-------------------------//
 .skills {
+   position: relative;
+   z-index: 1;
    padding: 100px 0 10px 0;
    // &__container {
    // }
-      @media (max-width: $mW3) {
-         padding: 74px 0 10px 0;
-      }
+   @media (max-width: $mW3) {
+      padding: 101px 0 10px 0;
+      margin-top: -27px;
+   }
    &__title {
       margin-bottom: 60px;
+      h2 {
+         &.title-lang {
+            max-width: 220px;
+            @media (max-width: $mW3) {
+               max-width: 170px;
+            }
+         }
+      }
       &.title-theme {
          background-image: linear-gradient(to top, #fff 39px, #000 39px, #000 41px, #fff 41px);
          h2 {
@@ -530,6 +558,12 @@ body {
          @media (max-width: $mW3) {
             max-width: 185px;
             margin-bottom: 65px;
+         }
+         &.title-lang {
+            max-width: 300px;
+            @media (max-width: $mW3) {
+               max-width: 230px;
+            }
          }
       }
       &.title-theme {
@@ -791,8 +825,6 @@ body {
 
 //-----------------section-contacts-----------------------//
 .contacts {
-
-
    &__container {
       position: relative;
       @media (max-width: $mW3) {
@@ -925,6 +957,7 @@ body {
 
 //=====footer=============================================//
 .footer {
+   background: #000;
    padding: 60px 0;
    @media (max-width: $mW3) {
       padding: 30px 0;

@@ -1,13 +1,17 @@
 'use strict';
 
 //-------menu-burger--------------------//
-
+const burgerIconTheme = document.querySelectorAll('[data-theme]');
 const burgerIcon = document.querySelector('.header__icon');
 const menuNav = document.querySelector('.header__nav');
 const logoHeader = document.querySelector('.header__logo');
 if (burgerIcon) {
    burgerIcon.addEventListener('click', function (e) {
-
+      if (elementLangWhite.classList.contains('white-icon')) {
+         burgerIconTheme.forEach(burgerIconThemeFor => {
+            burgerIconThemeFor.classList.toggle('elem-icon');
+         })
+      }
       burgerIcon.classList.toggle('active');
       menuNav.classList.toggle('active');
       document.body.classList.toggle('lock');
@@ -63,6 +67,22 @@ function changeImage(event) {
    }
 }
 
+// Todo --------------- Cash images ------------------ //
+const seasons = ['winter', 'spring', 'summer', 'autumn'];
+
+
+function preloadSummerImages() {
+   for (let i = 1; i <= 6; i++) {
+      seasons.forEach(seasonsFor => {
+         const filterSeason = seasonsFor;
+         const img = new Image();
+         img.src = `./assets/img/${filterSeason}/${filterSeason + '_' + i}.jpg`;
+      })
+   }
+}
+preloadSummerImages();
+// Todo --------------- Caсhe images ------------------ //
+
 portfolioButtons.addEventListener('click', changeImage);
 
 // -------------------------------active buttons ---------------------------- //
@@ -116,8 +136,10 @@ const titleTheme = [
    priceTitle,
 ]
 
-
+const headerLinksTheme = document.querySelectorAll('.header__nav-link')
+const headerNav = document.querySelector('.header__nav');
 const headerIcon = document.querySelector('.header__icon-change');
+const button = document.querySelectorAll('.portfolio__btn-link');
 const elementLangWhite = document.querySelector('.header__svg-icon-white');
 const elementLangDark = document.querySelector('.header__svg-icon-dark');
 
@@ -125,6 +147,11 @@ function changeTheme(event) {
 
    elementLangWhite.classList.toggle('white-icon');
    elementLangDark.classList.toggle('dark-icon');
+
+   headerNav.classList.toggle('change');
+   headerLinksTheme.forEach(linksTheme => {
+      linksTheme.classList.toggle('theme-list')
+   });
 
    sectionTheme.forEach(eachElementTheme => {
       eachElementTheme.classList.toggle('light-theme');
@@ -134,7 +161,7 @@ function changeTheme(event) {
       titleThemeFor.classList.toggle('title-theme');
    });
 
-   const button = document.querySelectorAll('.portfolio__btn-link');
+
    button.forEach(buttons => {
       buttons.classList.toggle('light-theme-btn')
    });
@@ -144,3 +171,59 @@ headerIcon.addEventListener('click', changeTheme);
 
 
 
+// ----------------------------------- translate page ---------------------------------- //
+
+import i18Obj from './translate.js';
+
+const buttonsLangs = document.querySelector('.header__buttons-lang');
+
+function showButtons(event) {
+   if (event.target.closest('[data-lang = ru]')) {
+
+      const titleStyleSkills = document.querySelector('[data-style = skills]');
+      titleStyleSkills.classList.add ('title-lang');
+      const titleStylePort = document.querySelector('[data-style = portfolio]');
+      titleStylePort.classList.add ('title-lang');
+
+
+
+      function getTranslate(en) {
+         const translateData = document.querySelectorAll('[data-i18]');
+         translateData.forEach(translateDataFor => {
+            en = translateDataFor.dataset.i18;
+            for (let key in i18Obj.ru) {
+               const keyObj = key;
+               if (en === keyObj) {
+                  translateDataFor.textContent = i18Obj.ru[en];
+               }
+            }
+         })
+      }
+      getTranslate();
+   }
+   if (event.target.closest('[data-lang = en]')) {
+
+      const titleStyleSkills = document.querySelector('[data-style = skills]');
+      titleStyleSkills.classList.remove ('title-lang');
+      const titleStylePort = document.querySelector('[data-style = portfolio]');
+      titleStylePort.classList.remove ('title-lang');
+
+      function getTranslate(ru) {
+         const translateData = document.querySelectorAll('[data-i18]');
+         translateData.forEach(translateDataFor => {
+            ru = translateDataFor.dataset.i18;
+            for (let key in i18Obj.en) {
+               const keyObj = key;
+               if (ru === keyObj) {
+                  translateDataFor.textContent = i18Obj.en[ru];
+               }
+            }
+         })
+      }
+      getTranslate();
+   }
+}
+
+buttonsLangs.addEventListener('click', showButtons);
+
+// ----------------------------------- translate page ---------------------------------- //
