@@ -49,11 +49,7 @@ if (headerLinks.length > 0) {
    }
 }
 
-let resultTask = '1. +48 \n2. +15 \n3. +22';
-console.log(resultTask);
-
 //-----------------------filter---------------------------------------------//
-
 
 const portfolioButtons = document.querySelector('.portfolio__buttons');
 
@@ -67,9 +63,14 @@ function changeImage(event) {
    }
 }
 
-// Todo --------------- Cash images ------------------ //
-const seasons = ['winter', 'spring', 'summer', 'autumn'];
+portfolioButtons.addEventListener('click', changeImage);
 
+//-----------------------filter---------------------------------------------//
+
+
+// Todo --------------- Cash images ------------------ //
+
+const seasons = ['winter', 'spring', 'summer', 'autumn'];
 
 function preloadSummerImages() {
    for (let i = 1; i <= 6; i++) {
@@ -81,11 +82,12 @@ function preloadSummerImages() {
    }
 }
 preloadSummerImages();
+
 // Todo --------------- Caсhe images ------------------ //
 
-portfolioButtons.addEventListener('click', changeImage);
 
 // -------------------------------active buttons ---------------------------- //
+
 const activeButtons = document.querySelectorAll('.portfolio__btn-link');
 if (activeButtons.length > 0) {
    activeButtons.forEach(whileButton => {
@@ -110,8 +112,11 @@ if (activeButtons.length > 0) {
    })
 }
 
+// -------------------------------active buttons ---------------------------- //
 
-// ---------- change theme ---------------- //
+
+// ---------------------------- change theme -------------------------------- //
+
 const skills = document.querySelector('.skills');
 const port = document.querySelector('.portfolio');
 const video = document.querySelector('.video');
@@ -145,6 +150,7 @@ const elementLangDark = document.querySelector('.header__svg-icon-dark');
 
 function changeTheme(event) {
 
+   document.body.classList.toggle('body-back')
    elementLangWhite.classList.toggle('white-icon');
    elementLangDark.classList.toggle('dark-icon');
 
@@ -169,61 +175,112 @@ function changeTheme(event) {
 
 headerIcon.addEventListener('click', changeTheme);
 
+// ---------------------------- change theme -------------------------------- //
 
 
 // ----------------------------------- translate page ---------------------------------- //
 
 import i18Obj from './translate.js';
 
-const buttonsLangs = document.querySelector('.header__buttons-lang');
+const buttonLangEn = document.querySelector('[data-lang = ru]');
 
-function showButtons(event) {
-   if (event.target.closest('[data-lang = ru]')) {
+function getTranslateEn(en) {
 
-      const titleStyleSkills = document.querySelector('[data-style = skills]');
-      titleStyleSkills.classList.add ('title-lang');
-      const titleStylePort = document.querySelector('[data-style = portfolio]');
-      titleStylePort.classList.add ('title-lang');
-
-
-
-      function getTranslate(en) {
-         const translateData = document.querySelectorAll('[data-i18]');
-         translateData.forEach(translateDataFor => {
-            en = translateDataFor.dataset.i18;
-            for (let key in i18Obj.ru) {
-               const keyObj = key;
-               if (en === keyObj) {
-                  translateDataFor.textContent = i18Obj.ru[en];
-               }
-            }
-         })
-      }
-      getTranslate();
+   const activeButtonsLang = document.querySelectorAll('.header__lang');
+   if (activeButtons.length > 0) {
+      activeButtonsLang.forEach(whileButtonLang => {
+         for (const i of activeButtonsLang) {
+            i.classList.remove('active');
+         }
+         whileButtonLang.classList.add('active');
+      })
    }
-   if (event.target.closest('[data-lang = en]')) {
 
-      const titleStyleSkills = document.querySelector('[data-style = skills]');
-      titleStyleSkills.classList.remove ('title-lang');
-      const titleStylePort = document.querySelector('[data-style = portfolio]');
-      titleStylePort.classList.remove ('title-lang');
+   const titleStyleSkills = document.querySelector('[data-style = skills]');
+   titleStyleSkills.classList.add('title-lang');
+   const titleStylePort = document.querySelector('[data-style = portfolio]');
+   titleStylePort.classList.add('title-lang');
 
-      function getTranslate(ru) {
-         const translateData = document.querySelectorAll('[data-i18]');
-         translateData.forEach(translateDataFor => {
-            ru = translateDataFor.dataset.i18;
-            for (let key in i18Obj.en) {
-               const keyObj = key;
-               if (ru === keyObj) {
-                  translateDataFor.textContent = i18Obj.en[ru];
-               }
-            }
-         })
+   const translateData = document.querySelectorAll('[data-i18]');
+   translateData.forEach(translateDataFor => {
+      en = translateDataFor.dataset.i18;
+      for (let key in i18Obj.ru) {
+         const keyObj = key;
+         if (en === keyObj) {
+            translateDataFor.textContent = i18Obj.ru[en];
+         }
       }
-      getTranslate();
-   }
+   })
 }
 
-buttonsLangs.addEventListener('click', showButtons);
+buttonLangEn.addEventListener('click', getTranslateEn);
+
+const buttonLangRu = document.querySelector('[data-lang = en]');
+
+function getTranslateRu(ru) {
+
+   const titleStyleSkills = document.querySelector('[data-style = skills]');
+   titleStyleSkills.classList.remove('title-lang');
+   const titleStylePort = document.querySelector('[data-style = portfolio]');
+   titleStylePort.classList.remove('title-lang');
+
+
+   const translateData = document.querySelectorAll('[data-i18]');
+   translateData.forEach(translateDataFor => {
+      ru = translateDataFor.dataset.i18;
+      for (let key in i18Obj.en) {
+         const keyObj = key;
+         if (ru === keyObj) {
+            translateDataFor.textContent = i18Obj.en[ru];
+         }
+         if (translateDataFor.placeholder) {
+            translateDataFor.placeholder = i18Obj.en[ru];
+         }
+      }
+   })
+}
+
+
+buttonLangRu.addEventListener('click', getTranslateRu);
 
 // ----------------------------------- translate page ---------------------------------- //
+
+
+
+// ?  ------------------------- lOCAL STORAGE -------------------------------------------- //
+
+function setLocalStorage() {
+   let theme = 'dark';
+   if (document.body.classList.contains('body-back')) {
+      theme = 'light';
+   }
+   localStorage.setItem('theme', theme);
+   let lang = 'en';
+   const langLocal = document.querySelector('[data-lang = ru]')
+   if (langLocal.classList.contains('active')) {
+      lang = 'ru';
+   }
+   localStorage.setItem('lang', lang);
+}
+window.addEventListener('beforeunload', setLocalStorage);
+
+function getLocalStorage() {
+   if (localStorage.getItem('theme')) {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'light') {
+         changeTheme(theme);
+      }
+   }
+   if (localStorage.getItem('lang')) {
+      const lang = localStorage.getItem('lang');
+      if (lang === 'ru') {
+         getTranslateEn(lang);
+      } else {
+         getTranslateRu(lang);
+      }
+
+   }
+}
+window.addEventListener('load', getLocalStorage);
+
+// ?  ------------------------- lOCAL STORAGE -------------------------------------------- //

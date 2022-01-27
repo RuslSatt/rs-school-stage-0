@@ -102,48 +102,9 @@ h6 {
   }
 }
 
-.light-theme {
-  background: #ffffff;
-  color: #000;
-}
-
-.header__svg-icon-white {
-  display: none;
-}
-
-.header__svg-icon-white.white-icon {
-  display: block;
-}
-
-.header__svg-icon-dark {
-  display: block;
-}
-
-.header__svg-icon-dark.dark-icon {
-  display: none;
-}
-
 body {
   font-family: Inter;
   background-color: #000;
-}
-
-body.lock {
-  overflow: hidden;
-}
-
-@media (max-width: 768px) {
-  body.lock::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000001;
-    opacity: 0.5;
-    z-index: 2;
-  }
 }
 
 .wrapper {
@@ -314,6 +275,22 @@ body.lock {
   }
 }
 
+.header__svg-icon-white {
+  display: block;
+}
+
+.header__svg-icon-white.white-icon {
+  display: none;
+}
+
+.header__svg-icon-dark {
+  display: none;
+}
+
+.header__svg-icon-dark.dark-icon {
+  display: block;
+}
+
 .header__icon {
   display: none;
 }
@@ -427,12 +404,6 @@ body.lock {
   }
 }
 
-@media (max-width: 768px) {
-  .header__nav.change {
-    background: white;
-  }
-}
-
 .header__nav.active {
   right: 0;
 }
@@ -487,12 +458,6 @@ body.lock {
     line-height: 2.08;
     font-size: 35px;
     margin-left: 0px;
-  }
-}
-
-@media (max-width: 768px) {
-  .header__nav-link.theme-list {
-    color: #000;
   }
 }
 
@@ -703,21 +668,6 @@ body.lock {
   }
 }
 
-.skills__title.title-theme {
-  background-image: linear-gradient(to top, #fff 39px, #000 39px, #000 41px, #fff 41px);
-}
-
-.skills__title.title-theme h2 {
-  background-color: #fff;
-  color: #000;
-}
-
-@media (max-width: 768px) {
-  .skills__title.title-theme {
-    background-image: linear-gradient(to top, #fff 22px, #000 22px, #000 24px, #fff 24px);
-  }
-}
-
 .skills__row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -837,21 +787,6 @@ body.lock {
 @media (max-width: 768px) {
   .portfolio__title h2.title-lang {
     max-width: 230px;
-  }
-}
-
-.portfolio__title.title-theme {
-  background-image: linear-gradient(to top, #fff 39px, #000 39px, #000 41px, #fff 41px);
-}
-
-.portfolio__title.title-theme h2 {
-  background-color: #fff;
-  color: #000;
-}
-
-@media (max-width: 768px) {
-  .portfolio__title.title-theme {
-    background-image: linear-gradient(to top, #fff 22px, #000 22px, #000 24px, #fff 24px);
   }
 }
 
@@ -996,21 +931,6 @@ body.lock {
   }
 }
 
-.video__title.title-theme {
-  background-image: linear-gradient(to top, #fff 39px, #000 39px, #000 41px, #fff 41px);
-}
-
-.video__title.title-theme h2 {
-  background-color: #fff;
-  color: #000;
-}
-
-@media (max-width: 768px) {
-  .video__title.title-theme {
-    background-image: linear-gradient(to top, #fff 22px, #000 22px, #000 24px, #fff 24px);
-  }
-}
-
 .video__player {
   padding-top: 50.7%;
   display: -webkit-box;
@@ -1104,21 +1024,6 @@ body.lock {
 @media (max-width: 768px) {
   .price__title {
     margin-bottom: 67px;
-  }
-}
-
-.price__title.title-theme {
-  background-image: linear-gradient(to top, #fff 39px, #000 39px, #000 41px, #fff 41px);
-}
-
-.price__title.title-theme h2 {
-  background-color: #fff;
-  color: #000;
-}
-
-@media (max-width: 768px) {
-  .price__title.title-theme {
-    background-image: linear-gradient(to top, #fff 22px, #000 22px, #000 24px, #fff 24px);
   }
 }
 
@@ -1458,4 +1363,58 @@ body.lock {
 
 .item__social-list *:not(:first-child) {
   margin-left: 20px;
+}
+
+.lock {
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .lock::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000001;
+    opacity: 0.5;
+    z-index: 2;
+  }
+}
+
+.body-back {
+  background-color: #fff;
+}
+
+.light-theme {
+  background: #ffffff;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .change {
+    background: white;
+  }
+}
+
+@media (max-width: 768px) {
+  .theme-list {
+    color: #000;
+  }
+}
+
+.title-theme {
+  background-image: linear-gradient(to top, #fff 39px, #000 39px, #000 41px, #fff 41px);
+}
+
+.title-theme h2 {
+  background-color: #fff;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .title-theme {
+    background-image: linear-gradient(to top, #fff 22px, #000 22px, #000 24px, #fff 24px);
+  }
 }
