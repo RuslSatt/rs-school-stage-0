@@ -21,22 +21,6 @@
 body {
    font-family: Inter;
    background-color: #000;
-   &.lock {
-      overflow: hidden;
-      @media (max-width: $mW3) {
-         &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgb(0, 0, 1);
-            opacity: 0.5;
-            z-index: 2;
-         }
-      }
-   }
 }
 .wrapper {
    overflow: hidden;
@@ -80,7 +64,6 @@ body {
          color: #ffffff;
       }
    }
-
 }
 
 .title-gold {
@@ -89,7 +72,6 @@ body {
    background-image: linear-gradient(to top, #000 39px, #bdae82 39px, #bdae82 41px, #000 41px);
    max-width: 700px;
    margin: 0px auto;
-   position: relative;
    @media (max-width: $mW3) {
       max-width: 364px;
    }
@@ -97,6 +79,7 @@ body {
       background-image: linear-gradient(to top, #000 22px, #bdae82 22px, #bdae82 24px, #000 24px);
    }
    h2 {
+      position: relative;
       max-width: 150px;
       margin: 0px auto;
       padding: 0 10px;
@@ -153,21 +136,52 @@ body {
          }
       }
    }
+
+   &__change {
+      background: transparent;
+      margin-left: 20px;
+   }
+
+   &__icon-change {
+      max-width: 40px;
+      max-height: 40px;
+      transition: 0.3s;
+      fill: #ffffff;
+      @media (min-width: 769px) {
+         &:hover {
+            fill: #bdae82;
+         }
+      }
+   }
+
+   &__svg-icon-white {
+      display: block;
+      &.white-icon {
+         display: none;
+      }
+   }
+
+   &__svg-icon-dark {
+      display: none;
+      &.dark-icon {
+         display: block;
+      }
+   }
    // ================================ Style menu burger ============================ //
 
    &__icon {
       display: none;
       &.active {
-         span {
+         .center {
             transform: scale(0) translate(0px, 50%);
          }
-         &::before {
-            top: 50%;
-            transform: rotate(-45deg) translate(0px, -50%);
+         .before {
+            top: 45%;
+            transform: rotate(-45deg);
          }
-         &::after {
-            top: 50%;
-            transform: rotate(45deg) translate(0px, -50%);
+         .after {
+            top: 45%;
+            transform: rotate(45deg);
          }
       }
       @media (max-width: $mW3) {
@@ -180,8 +194,7 @@ body {
          order: 1;
          margin-left: 20px;
       }
-      &::before {
-         content: "";
+      .before {
          right: 0;
          position: absolute;
          height: 10%;
@@ -189,9 +202,11 @@ body {
          transition: all 0.3s ease 0s;
          background: #ffffff;
          top: 0;
+         &.elem-icon {
+            background: #000;
+         }
       }
-      &::after {
-         content: "";
+      .after {
          right: 0;
          position: absolute;
          height: 10%;
@@ -199,8 +214,11 @@ body {
          transition: all 0.3s ease 0s;
          background: #ffffff;
          bottom: 0;
+         &.elem-icon {
+            background: #000;
+         }
       }
-      span {
+      .center {
          top: 40%;
          transform: scale(1) translate(0px, 50%);
          right: 0;
@@ -209,6 +227,9 @@ body {
          width: 100%;
          transition: all 0.3s ease 0s;
          background: #ffffff;
+         &.elem-icon {
+            background: #000;
+         }
       }
    }
 
@@ -229,6 +250,7 @@ body {
             width: 100%;
          }
       }
+
       &.active {
          right: 0;
       }
@@ -284,10 +306,10 @@ body {
    &__lang {
       color: inherit;
       transition: 0.3s;
+      cursor: pointer;
       @media (min-width: 769px) {
          &:hover {
             color: #bdae82;
-            cursor: pointer;
          }
       }
       &:focus {
@@ -403,14 +425,25 @@ body {
 
 //-----------------section-skills-------------------------//
 .skills {
+   position: relative;
+   z-index: 1;
    padding: 100px 0 10px 0;
    // &__container {
    // }
-      @media (max-width: $mW3) {
-         padding: 74px 0 10px 0;
-      }
+   @media (max-width: $mW3) {
+      padding: 101px 0 10px 0;
+      margin-top: -27px;
+   }
    &__title {
       margin-bottom: 60px;
+      h2 {
+         &.title-lang {
+            max-width: 220px;
+            @media (max-width: $mW3) {
+               max-width: 170px;
+            }
+         }
+      }
    }
 
    &__row {
@@ -487,6 +520,12 @@ body {
             max-width: 185px;
             margin-bottom: 65px;
          }
+         &.title-lang {
+            max-width: 300px;
+            @media (max-width: $mW3) {
+               max-width: 230px;
+            }
+         }
       }
    }
 
@@ -508,6 +547,14 @@ body {
       background: #000;
       color: #bdae82;
       border: 2px solid #bdae82;
+      &.light-theme-btn {
+         background: transparent;
+         color: #000;
+         &:hover {
+            color: #fff;
+            background: #bdae82;
+         }
+      }
       &.active {
          background: #bdae82;
          color: #000;
@@ -631,7 +678,10 @@ body {
 
 //-----------------section-price--------------------------//
 .price {
-   padding: 100px 0 0px 0;
+   padding: 100px 0 100px 0;
+   @media (max-width: $mW3) {
+      padding: 100px 0 30px 0;
+   }
    // &__container {
    // }
    &__title {
@@ -706,11 +756,6 @@ body {
 
 //-----------------section-contacts-----------------------//
 .contacts {
-   padding: 100px 0 0 0;
-   @media (max-width: $mW3) {
-      padding: 30px 0 0 0;
-   }
-
    &__container {
       position: relative;
       @media (max-width: $mW3) {
@@ -843,6 +888,7 @@ body {
 
 //=====footer=============================================//
 .footer {
+   background: #000;
    padding: 60px 0;
    @media (max-width: $mW3) {
       padding: 30px 0;
@@ -931,3 +977,52 @@ body {
 }
 
 //========================================================//
+
+.lock {
+   overflow: hidden;
+   @media (max-width: $mW3) {
+      &::before {
+         content: "";
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: rgb(0, 0, 1);
+         opacity: 0.5;
+         z-index: 2;
+      }
+   }
+}
+
+.body-back {
+   background-color: #fff;
+}
+
+.light-theme {
+   background: #ffffff;
+   color: #000;
+}
+
+.change {
+   @media (max-width: $mW3) {
+      background: rgb(255, 255, 255);
+   }
+}
+
+.theme-list {
+   @media (max-width: $mW3) {
+      color: #000;
+   }
+}
+
+.title-theme {
+   background-image: linear-gradient(to top, #fff 39px, #000 39px, #000 41px, #fff 41px);
+   h2 {
+      background-color: #fff;
+      color: #000;
+   }
+   @media (max-width: $mW3) {
+      background-image: linear-gradient(to top, #fff 22px, #000 22px, #000 24px, #fff 24px);
+   }
+}
