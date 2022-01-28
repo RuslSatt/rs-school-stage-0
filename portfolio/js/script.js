@@ -209,6 +209,10 @@ function getTranslateEn(en) {
          if (en === keyObj) {
             translateDataFor.textContent = i18Obj.ru[en];
          }
+         if (translateDataFor.placeholder) {
+            translateDataFor.value = '';
+            translateDataFor.placeholder = i18Obj.ru[en];
+         }
       }
    })
 }
@@ -232,10 +236,7 @@ function getTranslateRu(ru) {
          const keyObj = key;
          if (ru === keyObj) {
             translateDataFor.textContent = i18Obj.en[ru];
-         }
-         if (translateDataFor.placeholder) {
-            translateDataFor.placeholder = i18Obj.en[ru];
-         }
+         } 
       }
    })
 }
