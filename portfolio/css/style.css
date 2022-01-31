@@ -171,8 +171,8 @@ body {
 @media (min-width: 769px) {
   .btn-link:hover {
     background-position: right center;
-    -webkit-transform: translateY(-5px);
-            transform: translateY(-5px);
+    -webkit-transform: translateY(-2px);
+            transform: translateY(-2px);
   }
 }
 
@@ -1445,10 +1445,7 @@ body {
 
 @media (min-width: 769px) {
   .theme-list:hover {
-    color: #000;
-    -webkit-box-shadow: 0px 5px 7px #74694a;
-            box-shadow: 0px 5px 7px #74694a;
-    border-radius: 5px;
+    color: #fff;
   }
 }
 
