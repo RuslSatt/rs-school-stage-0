@@ -8,8 +8,8 @@
    <link rel="stylesheet" href="css/style.css">
    <link rel="shortcut icon" href="assets/img/favicon-icon.ico">
    <title>Portfolio</title>
+   
 </head>
-
 <body>
    <div class="wrapper">
       <header class="header">
@@ -25,22 +25,22 @@
                <span data-theme="black" class="after"></span>
             </div>
             <nav class="header__nav">
-               <ul class="header__nav-list">
+               <ul  class="header__nav-list">
                   <li>
-                     <a data-i18="skills" data-goto=".skills__container" href="#" class="header__nav-link">Skills</a>
+                     <a data-link = 'linkTheme' data-i18="skills" data-goto=".skills__container" href="#" class="header__nav-link">Skills</a>
                   </li>
                   <li>
-                     <a data-i18="portfolio" data-goto=".portfolio__container" href="#"
+                     <a data-link = 'linkTheme' data-i18="portfolio" data-goto=".portfolio__container" href="#"
                         class="header__nav-link">Portfolio</a>
                   </li>
                   <li>
-                     <a data-i18="video" data-goto=".video__title" href="#" class="header__nav-link">Video</a>
+                     <a data-link = 'linkTheme' data-i18="video" data-goto=".video__title" href="#" class="header__nav-link">Video</a>
                   </li>
                   <li>
-                     <a data-i18="price" data-goto=".price__container" href="#" class="header__nav-link">Price</a>
+                     <a data-link = 'linkTheme' data-i18="price" data-goto=".price__container" href="#" class="header__nav-link">Price</a>
                   </li>
                   <li>
-                     <a data-i18="contacts" data-goto=".contacts__container" href="#"
+                     <a data-link = 'linkTheme'data-i18="contacts" data-goto=".contacts__container" href="#"
                         class="header__nav-link">Contacts</a>
                   </li>
                </ul>
@@ -52,7 +52,7 @@
             </div>
             <button class="header__change">
                <svg class="header__icon-change">
-                  <use class="header__svg-icon-dark" href="./assets/svg/sprite.svg#dark"></use>
+                  <use data-trans="darkTrans" class="header__svg-icon-dark" href="./assets/svg/sprite.svg#dark"></use>
                   <use class="header__svg-icon-white" href="./assets/svg/sprite.svg#carbon_sun"></use>
                </svg>
             </button>
@@ -68,10 +68,10 @@
                   Save sincere emotions, romantic feelings and happy moments of life together with professional
                   photographer Alexa Rise
                </p>
-               <button data-i18="hire" class="hero__btn-link btn-link">Hire me </button>
+               <button data-btn = 'btn' data-i18="hire" class="hero__btn-link btn-link">Hire me </button>
             </div>
             <div class="hero__main-screen">
-               <img src="assets/img/main-screen.jpg" alt="main-screen">
+               <img class="hero__screen" src="assets/img/main-screen.jpg" alt="main-screen">
             </div>
          </section>
          <section class="skills">
@@ -220,7 +220,7 @@
                            <li data-i18="price-description-1-span-4">Readiness 2-3 weeks</li>
                            <li data-i18="price-description-1-span-5">Make up, visage</li>
                         </ul>
-                        <button data-i18="order" class="item-price__btn btn-link">Order shooting</button>
+                        <button data-btn = 'btn' data-i18="order" class="item-price__btn btn-link">Order shooting</button>
                      </div>
                   </div>
                   <div class="price__column">
@@ -238,7 +238,7 @@
                            <li data-i18="price-description-2-span-4">Readiness 1-2 weeks</li>
                            <li data-i18="price-description-2-span-5">Make up, visage</li>
                         </ul>
-                        <button data-i18="order" class="item-price__btn btn-link">Order shooting</button>
+                        <button data-btn = 'btn' data-i18="order" class="item-price__btn btn-link">Order shooting</button>
                      </div>
                   </div>
                   <div class="price__column">
@@ -256,7 +256,7 @@
                            <li data-i18="price-description-3-span-4">Readiness 1 week</li>
                            <li data-i18="price-description-3-span-5">Make up, visage, hairstyle</li>
                         </ul>
-                        <button data-i18="order" class="item-price__btn btn-link">Order shooting</button>
+                        <button data-btn = 'btn' data-i18="order" class="item-price__btn btn-link">Order shooting</button>
                      </div>
                   </div>
                </div>
@@ -269,22 +269,22 @@
                      Contact me
                   </h2>
                   <form class="contacts__form form" action="#" method="post">
-                     <div class="form__line">
-                        <input data-i18="email" type="email" name="email" placeholder="E-mail">
+                     <div class="form__wrapper-input">
+                        <input class="form__input area" data-i18="email" type="email" name="email" placeholder="E-mail">
                      </div>
-                     <div class="form__line">
-                        <input data-i18="phone" type="tel" name="phone" placeholder="Phone">
+                     <div class="form__wrapper-input">
+                        <input class="form__input area" data-i18="phone" type="tel" name="phone" placeholder="Phone">
                      </div>
-                     <div class="form__area">
-                        <textarea data-i18="message" name="Message" placeholder="Message"></textarea>
+                     <div class="form__wrapper-area">
+                        <textarea class="form__area area" data-i18="message" name="Message" placeholder="Message"></textarea>
                      </div>
                      <div class="form__button">
-                        <button data-i18="send-message" type="submit" class="form__btn btn-link">Send message</button>
+                        <button data-btn = 'btn' data-i18="send-message" type="submit" class="form__btn btn-link">Send message</button>
                      </div>
                   </form>
                </div>
                <div class="contacts__image">
-                  <img src="assets/img/second-screen-near-with-footer.jpg" alt="Alexa Rise professionly photo">
+                  <img class="contacts__screen" src="assets/img/second-screen-near-with-footer.jpg" alt="Alexa Rise professionly photo">
                </div>
             </div>
          </section>
@@ -294,16 +294,16 @@
             <div class="footer__items item">
                <div class="item__data">
                   <span class="item__c-element">
-                     <img src="assets/img/c-icon-footer.svg" alt="c-icon">
+                     ©
                   </span>
                   <span class="item__year">
                      2022
                   </span>
-                  <a href="https://github.com/RuslSatt" class="item__git">
+                  <a data-link = 'linkTheme' href="https://github.com/RuslSatt" class="item__git">
                      github
                   </a>
                </div>
-               <a href="https://rs.school/js-stage0/" class="item__text">
+               <a data-link = 'linkTheme' href="https://rs.school/js-stage0/" class="item__text">
                   Rolling Scopes School
                </a>
                <nav class="item__social">
