@@ -142,7 +142,10 @@ body {
 }
 
 .btn-link {
+  position: relative;
+  overflow: hidden;
   font-size: 20px;
+  font-weight: 400;
   color: #000;
   min-height: 55px;
   display: -webkit-box;
@@ -155,7 +158,9 @@ body {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
-  background: #bdae82;
+  background-size: 200% auto;
+  background-image: -webkit-gradient(linear, left top, right top, from(#f6d365), color-stop(51%, #f1f1f1), to(#f6d365));
+  background-image: linear-gradient(to right, #f6d365 0%, #f1f1f1 51%, #f6d365 100%);
   padding: 7px 0px;
   max-width: 220px;
   min-width: 220px;
@@ -165,7 +170,9 @@ body {
 
 @media (min-width: 769px) {
   .btn-link:hover {
-    color: #ffffff;
+    background-position: right center;
+    -webkit-transform: translateY(-5px);
+            transform: translateY(-5px);
   }
 }
 
@@ -362,6 +369,8 @@ body {
   -webkit-transform: scale(1) translate(0px, 50%);
           transform: scale(1) translate(0px, 50%);
   right: 0;
+  bottom: 0;
+  left: 0;
   position: absolute;
   height: 10%;
   width: 100%;
@@ -440,7 +449,7 @@ body {
 .header__nav-link {
   font-size: 20px;
   line-height: 2.5;
-  color: #ffffff;
+  color: inherit;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   margin-left: 30px;
@@ -450,6 +459,12 @@ body {
   .header__nav-link:hover {
     color: #bdae82;
     cursor: pointer;
+  }
+}
+
+@media (max-width: 830px) {
+  .header__nav-link {
+    margin-left: 15px;
   }
 }
 
@@ -463,13 +478,13 @@ body {
 
 .header__buttons-lang {
   margin-left: 30px;
-  color: #ffffff;
   font-weight: bold;
   font-size: 20px;
 }
 
 .header__buttons-lang span {
   margin: 0 4px 0 4px;
+  color: inherit;
 }
 
 .header__lang {
@@ -483,10 +498,6 @@ body {
   .header__lang:hover {
     color: #bdae82;
   }
-}
-
-.header__lang:focus {
-  color: #bdae82;
 }
 
 .header__lang.active {
@@ -525,7 +536,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.377);
+    background: rgba(0, 0, 0, 0.301);
   }
 }
 
@@ -592,6 +603,7 @@ body {
   font-size: 60px;
   line-height: 2;
   margin-bottom: 10px;
+  color: inherit;
 }
 
 @media (min-width: 768px) {
@@ -623,6 +635,7 @@ body {
 }
 
 .hero__subtitle {
+  color: inherit;
   font-size: 20px;
   line-height: 2;
   margin-bottom: 25px;
@@ -632,12 +645,6 @@ body {
   .hero__subtitle {
     line-height: 1.2;
     margin-bottom: 60px;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero__button {
-    padding: 0px 0 0 0;
   }
 }
 
@@ -816,23 +823,26 @@ body {
 
 .portfolio__btn-link {
   margin-bottom: 5px;
-  background: #000;
-  color: #bdae82;
+  background-image: -webkit-gradient(linear, left top, right top, from(#0a0a0a), color-stop(51%, #000000), to(#f6d365));
+  background-image: linear-gradient(to right, #0a0a0a 0%, #000000 51%, #f6d365 100%);
+  color: white;
   border: 2px solid #bdae82;
 }
 
 .portfolio__btn-link.light-theme-btn {
-  background: transparent;
+  background-image: -webkit-gradient(linear, left top, right top, from(#ffffff), color-stop(51%, #f1f1f1), to(#f6d365));
+  background-image: linear-gradient(to right, #ffffff 0%, #f1f1f1 51%, #f6d365 100%);
   color: #000;
+  border: 2px solid #bdae82;
 }
 
 .portfolio__btn-link.light-theme-btn:hover {
-  color: #fff;
-  background: #bdae82;
+  background-position: center right;
 }
 
 .portfolio__btn-link.active {
-  background: #bdae82;
+  background-image: -webkit-gradient(linear, left top, right top, from(#f6d365), color-stop(51%, #f1f1f1), to(#f6d365));
+  background-image: linear-gradient(to right, #f6d365 0%, #f1f1f1 51%, #f6d365 100%);
   color: #000;
 }
 
@@ -1128,7 +1138,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.479);
+    background: rgba(0, 0, 0, 0.315);
   }
 }
 
@@ -1183,35 +1193,7 @@ body {
   margin-bottom: 17px;
 }
 
-.form ::-webkit-input-placeholder {
-  color: #bdae82;
-  font-family: Inter;
-  font-size: 20px;
-  line-height: 2;
-}
-
-.form :-ms-input-placeholder {
-  color: #bdae82;
-  font-family: Inter;
-  font-size: 20px;
-  line-height: 2;
-}
-
-.form ::-ms-input-placeholder {
-  color: #bdae82;
-  font-family: Inter;
-  font-size: 20px;
-  line-height: 2;
-}
-
-.form ::placeholder {
-  color: #bdae82;
-  font-family: Inter;
-  font-size: 20px;
-  line-height: 2;
-}
-
-.form__line input {
+.form__input {
   min-height: 50px;
   padding: 5px 0px 5px 20px;
   background: rgba(0, 0, 0, 0.5);
@@ -1224,17 +1206,45 @@ body {
   transition: 0.3s ease;
 }
 
+.form__input::-webkit-input-placeholder {
+  color: #bdae82;
+  font-family: Inter;
+  font-size: 20px;
+  line-height: 2;
+}
+
+.form__input:-ms-input-placeholder {
+  color: #bdae82;
+  font-family: Inter;
+  font-size: 20px;
+  line-height: 2;
+}
+
+.form__input::-ms-input-placeholder {
+  color: #bdae82;
+  font-family: Inter;
+  font-size: 20px;
+  line-height: 2;
+}
+
+.form__input::placeholder {
+  color: #bdae82;
+  font-family: Inter;
+  font-size: 20px;
+  line-height: 2;
+}
+
 @media (min-width: 769px) {
-  .form__line input:hover {
+  .form__input:hover {
     border: 2px solid #f8f8f8;
   }
 }
 
-.form__line input:focus {
+.form__input:focus {
   border: 2px solid #f8f8f8;
 }
 
-.form__area textarea {
+.form__area {
   background: rgba(0, 0, 0, 0.5);
   min-height: 100px;
   padding: 5px 0px 0px 20px;
@@ -1249,13 +1259,41 @@ body {
 }
 
 @media (min-width: 769px) {
-  .form__area textarea:hover {
+  .form__area:hover {
     border: 2px solid #f8f8f8;
   }
 }
 
-.form__area textarea:focus {
+.form__area:focus {
   border: 2px solid #f8f8f8;
+}
+
+.form__area::-webkit-input-placeholder {
+  color: #bdae82;
+  font-family: Inter;
+  font-size: 20px;
+  line-height: 2;
+}
+
+.form__area:-ms-input-placeholder {
+  color: #bdae82;
+  font-family: Inter;
+  font-size: 20px;
+  line-height: 2;
+}
+
+.form__area::-ms-input-placeholder {
+  color: #bdae82;
+  font-family: Inter;
+  font-size: 20px;
+  line-height: 2;
+}
+
+.form__area::placeholder {
+  color: #bdae82;
+  font-family: Inter;
+  font-size: 20px;
+  line-height: 2;
 }
 
 .form__button {
@@ -1274,7 +1312,6 @@ body {
 }
 
 .footer {
-  background: #000;
   padding: 60px 0;
 }
 
@@ -1323,6 +1360,10 @@ body {
   }
 }
 
+.item__c-element {
+  color: inherit;
+}
+
 .item__git {
   color: inherit;
   -webkit-transition: 0.3s;
@@ -1338,7 +1379,7 @@ body {
 .item__text {
   font-size: 20px;
   line-height: 1.2;
-  color: #ffffff;
+  color: inherit;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
@@ -1398,9 +1439,16 @@ body {
   }
 }
 
-@media (max-width: 768px) {
-  .theme-list {
+.theme-list {
+  color: #000;
+}
+
+@media (min-width: 769px) {
+  .theme-list:hover {
     color: #000;
+    -webkit-box-shadow: 0px 5px 7px #74694a;
+            box-shadow: 0px 5px 7px #74694a;
+    border-radius: 5px;
   }
 }
 
@@ -1416,5 +1464,83 @@ body {
 @media (max-width: 768px) {
   .title-theme {
     background-image: linear-gradient(to top, #fff 22px, #000 22px, #000 24px, #fff 24px);
+  }
+}
+
+.light-theme-color {
+  color: #000;
+  fill: #000;
+}
+
+@media (min-width: 769px) {
+  .light-theme-color:hover {
+    fill: #000;
+  }
+}
+
+@media (min-width: 769px) {
+  .light-theme-transofrm-svg:hover {
+    -webkit-transform: scale(1.1, 1.1);
+            transform: scale(1.1, 1.1);
+  }
+}
+
+@media (min-width: 769px) {
+  .light-theme-transofrm:hover {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.area-theme {
+  color: #1c1c1c;
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid #bdae82;
+}
+
+.area-theme::-webkit-input-placeholder {
+  color: #1c1c1c;
+}
+
+.area-theme:-ms-input-placeholder {
+  color: #1c1c1c;
+}
+
+.area-theme::-ms-input-placeholder {
+  color: #1c1c1c;
+}
+
+.area-theme::placeholder {
+  color: #1c1c1c;
+}
+
+.button-theme {
+  color: #000;
+  background-image: -webkit-gradient(linear, left top, right top, from(#f6d365), color-stop(51%, #f1f1f1), to(#f6d365));
+  background-image: linear-gradient(to right, #f6d365 0%, #f1f1f1 51%, #f6d365 100%);
+}
+
+@media (min-width: 769px) {
+  .button-theme:hover {
+    background-position: right center;
+  }
+}
+
+.button-lang {
+  color: #000;
+  fill: #fff;
+}
+
+.button-lang.active {
+  color: #fff;
+}
+
+.button-lang:hover {
+  color: #fff;
+}
+
+@media (max-width: 550px) {
+  .sub-theme {
+    color: #fff;
   }
 }
