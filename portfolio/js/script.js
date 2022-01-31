@@ -7,11 +7,11 @@ const menuNav = document.querySelector('.header__nav');
 const logoHeader = document.querySelector('.header__logo');
 if (burgerIcon) {
    burgerIcon.addEventListener('click', function (e) {
-      if (elementLangWhite.classList.contains('white-icon')) {
-         burgerIconTheme.forEach(burgerIconThemeFor => {
-            burgerIconThemeFor.classList.toggle('elem-icon');
-         })
-      }
+      // if (elementLangWhite.classList.contains('white-icon')) {
+      //    burgerIconTheme.forEach(burgerIconThemeFor => {
+      //       burgerIconThemeFor.classList.toggle('elem-icon');
+      //    })
+      // }
       burgerIcon.classList.toggle('active');
       menuNav.classList.toggle('active');
       document.body.classList.toggle('lock');
@@ -34,6 +34,9 @@ if (headerLinks.length > 0) {
          const gotoBlockValue = gotoBlock.getBoundingClientRect().top + scrollY - document.querySelector('header').offsetHeight;
 
          if (burgerIcon.classList.contains('active')) {
+            // burgerIconTheme.forEach(burgerIconThemeFor => {
+            //    burgerIconThemeFor.classList.remove('elem-icon');
+            // })
             burgerIcon.classList.remove('active');
             menuNav.classList.remove('active');
             document.body.classList.remove('lock');
@@ -134,6 +137,7 @@ const portTitle = document.querySelector('.portfolio__title');
 const videoTitle = document.querySelector('.video__title');
 const priceTitle = document.querySelector('.price__title');
 
+
 const titleTheme = [
    skillsTitle,
    portTitle,
@@ -141,23 +145,70 @@ const titleTheme = [
    priceTitle,
 ]
 
-const headerLinksTheme = document.querySelectorAll('.header__nav-link')
+
 const headerNav = document.querySelector('.header__nav');
 const headerIcon = document.querySelector('.header__icon-change');
 const button = document.querySelectorAll('.portfolio__btn-link');
 const elementLangWhite = document.querySelector('.header__svg-icon-white');
 const elementLangDark = document.querySelector('.header__svg-icon-dark');
+const elementWrapperThemeColor = document.querySelector('.wrapper')
+const elementSvgThemeColor = document.querySelectorAll('svg');
+const elementLinkThemeHover = document.querySelectorAll('[data-link = linkTheme]');
+const contactsTitleThemeColor = document.querySelector('.contacts__title')
+const formThemeBack = document.querySelectorAll('.area');
+const buttonThemeBackColor = document.querySelectorAll('[data-btn = btn]');
+const headerIconDarkAndWhite = document.querySelector('.header__icon-change')
+const buttonsLangTheme = document.querySelectorAll('.header__lang');
+const heroTitleThemeMin = document.querySelector('.hero__subtitle')
+const videoPlayer = document.querySelector('.video__icon');
+
 
 function changeTheme(event) {
+   videoPlayer.classList.toggle ('button-lang')
+   heroTitleThemeMin.classList.toggle('sub-theme')
+
+   buttonsLangTheme.forEach(buttonLangThemeEach => {
+      buttonLangThemeEach.classList.toggle('button-lang');
+   })
+
+   headerIconDarkAndWhite.classList.toggle('light-theme-transofrm');
+   buttonThemeBackColor.forEach(buttonThemeBackColorEach => {
+      buttonThemeBackColorEach.classList.toggle('button-theme')
+   })
+   formThemeBack.forEach(formTheme => {
+      formTheme.classList.toggle('area-theme');
+   })
+   contactsTitleThemeColor.classList.toggle('light-theme-color')
+   elementLinkThemeHover.forEach(elementLinkTheme => {
+      elementLinkTheme.classList.toggle('theme-list');
+   })
+
+   elementSvgThemeColor.forEach(elementSvgTheme => {
+      elementSvgTheme.classList.toggle('light-theme-color');
+      elementSvgTheme.classList.toggle('light-theme-transofrm-svg')
+   })
+   elementWrapperThemeColor.classList.toggle('light-theme-color');
+
+   //?-------------------- images-screen-and-contacts ------------------------- //
+
+   const mainScreenTheme = document.querySelector('.hero__screen');
+   const contactsScreenTheme = document.querySelector('.contacts__screen')
+   if (document.body.classList.contains('body-back')) {
+      mainScreenTheme.src = 'assets/img/main-screen.jpg';
+      contactsScreenTheme.src = "assets/img/second-screen-near-with-footer.jpg"
+   } else {
+      contactsScreenTheme.src = "assets/img/second-screen-near-with-footer2.jpg"
+      mainScreenTheme.src = 'assets/img/main-screen2.jpg'
+   }
+
+   //?-------------------- images-screen-and-contacts ------------------------- //
 
    document.body.classList.toggle('body-back')
    elementLangWhite.classList.toggle('white-icon');
    elementLangDark.classList.toggle('dark-icon');
 
    headerNav.classList.toggle('change');
-   headerLinksTheme.forEach(linksTheme => {
-      linksTheme.classList.toggle('theme-list')
-   });
+
 
    sectionTheme.forEach(eachElementTheme => {
       eachElementTheme.classList.toggle('light-theme');
@@ -171,6 +222,10 @@ function changeTheme(event) {
    button.forEach(buttons => {
       buttons.classList.toggle('light-theme-btn')
    });
+
+   burgerIconTheme.forEach(burgerIconThemeFor => {
+      burgerIconThemeFor.classList.toggle('elem-icon');
+   })
 }
 
 headerIcon.addEventListener('click', changeTheme);
@@ -236,7 +291,11 @@ function getTranslateRu(ru) {
          const keyObj = key;
          if (ru === keyObj) {
             translateDataFor.textContent = i18Obj.en[ru];
-         } 
+         }
+         if (translateDataFor.placeholder) {
+            translateDataFor.value = '';
+            translateDataFor.placeholder = i18Obj.en[ru];
+         }
       }
    })
 }
@@ -263,7 +322,7 @@ function setLocalStorage() {
    }
    localStorage.setItem('lang', lang);
 }
-window.addEventListener('beforeunload', setLocalStorage);
+window.addEventListener('pagehide', setLocalStorage);
 
 function getLocalStorage() {
    if (localStorage.getItem('theme')) {
@@ -282,6 +341,9 @@ function getLocalStorage() {
 
    }
 }
-window.addEventListener('load', getLocalStorage);
+window.addEventListener('pageshow', getLocalStorage);
 
+
+export { setLocalStorage, getLocalStorage };
 // ?  ------------------------- lOCAL STORAGE -------------------------------------------- //
+

@@ -22,6 +22,7 @@ body {
    font-family: Inter;
    background-color: #000;
 }
+
 .wrapper {
    overflow: hidden;
    max-width: 1440px;
@@ -47,21 +48,26 @@ body {
 }
 
 .btn-link {
+   position: relative;
+   overflow: hidden;
    font-size: 20px;
+   font-weight: 400;
    color: #000;
    min-height: 55px;
    display: flex;
    justify-content: center;
    align-items: center;
    text-align: center;
-   background: #bdae82;
+   background-size: 200% auto;
+   background-image: linear-gradient(to right, #f6d365 0%, #f1f1f1 51%, #f6d365 100%);
    padding: 7px 0px;
    max-width: 220px;
    min-width: 220px;
    transition: 0.3s;
    @media (min-width: 769px) {
       &:hover {
-         color: #ffffff;
+         background-position: right center;
+         transform: translateY(-5px);
       }
    }
 }
@@ -222,6 +228,8 @@ body {
          top: 40%;
          transform: scale(1) translate(0px, 50%);
          right: 0;
+         bottom: 0;
+         left: 0;
          position: absolute;
          height: 10%;
          width: 100%;
@@ -277,7 +285,7 @@ body {
    &__nav-link {
       font-size: 20px;
       line-height: 2.5;
-      color: #ffffff;
+      color: inherit;
       transition: 0.3s;
       margin-left: 30px;
       @media (min-width: 768px) {
@@ -285,6 +293,9 @@ body {
             color: #bdae82;
             cursor: pointer;
          }
+      }
+      @media (max-width: 830px) {
+         margin-left: 15px;
       }
       @media (max-width: $mW3) {
          line-height: 2.08;
@@ -296,11 +307,11 @@ body {
 
    &__buttons-lang {
       margin-left: 30px;
-      color: #ffffff;
       font-weight: bold;
       font-size: 20px;
       span {
          margin: 0 4px 0 4px;
+         color: inherit;
       }
    }
    &__lang {
@@ -311,9 +322,6 @@ body {
          &:hover {
             color: #bdae82;
          }
-      }
-      &:focus {
-         color: #bdae82;
       }
       &.active {
          color: #bdae82;
@@ -345,7 +353,7 @@ body {
                left: 0;
                width: 100%;
                height: 100%;
-               background: rgba(0, 0, 0, 0.377);
+               background: rgba(0, 0, 0, 0.301);
             }
          }
       }
@@ -392,6 +400,7 @@ body {
       font-size: 60px;
       line-height: 2;
       margin-bottom: 10px;
+      color: inherit;
       @media (min-width: $mW3) {
          @include adaptiv-value("font-size", 60, 48, 1);
       }
@@ -405,6 +414,7 @@ body {
    }
 
    &__subtitle {
+      color: inherit;
       font-size: 20px;
       line-height: 2;
       margin-bottom: 25px;
@@ -413,13 +423,8 @@ body {
          margin-bottom: 60px;
       }
    }
-
-   &__button {
-      @media (max-width: $mW3) {
-         padding: 0px 0 0 0;
-      }
-   }
 }
+
 
 //--------------------------------------------------------//
 
@@ -544,19 +549,19 @@ body {
 
    &__btn-link {
       margin-bottom: 5px;
-      background: #000;
-      color: #bdae82;
+      background-image: linear-gradient(to right, #0a0a0a 0%, #000000 51%, #f6d365 100%);
+      color: rgb(255, 255, 255);
       border: 2px solid #bdae82;
       &.light-theme-btn {
-         background: transparent;
+         background-image: linear-gradient(to right, #ffffff 0%, #f1f1f1 51%, #f6d365 100%);
          color: #000;
+         border: 2px solid #bdae82;
          &:hover {
-            color: #fff;
-            background: #bdae82;
+            background-position: center right;
          }
       }
       &.active {
-         background: #bdae82;
+         background-image: linear-gradient(to right, #f6d365 0%, #f1f1f1 51%, #f6d365 100%);
          color: #000;
       }
    }
@@ -766,7 +771,7 @@ body {
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.479);
+            background: rgba(0, 0, 0, 0.315);
          }
       }
       *:last-child {
@@ -818,55 +823,56 @@ body {
       margin-bottom: 17px;
    }
 
-   ::placeholder {
+   &__input {
+      min-height: 50px;
+      padding: 5px 0px 5px 20px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid #bdae82;
+      width: 100%;
       color: #bdae82;
-      font-family: Inter;
       font-size: 20px;
       line-height: 2;
-   }
-
-   &__line {
-      input {
-         min-height: 50px;
-         padding: 5px 0px 5px 20px;
-         background: rgba(0, 0, 0, 0.5);
-         border: 2px solid #bdae82;
-         width: 100%;
+      transition: 0.3s ease;
+      &::placeholder {
          color: #bdae82;
+         font-family: Inter;
          font-size: 20px;
          line-height: 2;
-         transition: 0.3s ease;
-         @media (min-width: 769px) {
-            &:hover {
-               border: 2px solid #f8f8f8;
-            }
-         }
-         &:focus {
+      }
+      @media (min-width: 769px) {
+         &:hover {
             border: 2px solid #f8f8f8;
          }
+      }
+      &:focus {
+         border: 2px solid #f8f8f8;
       }
    }
 
    &__area {
-      textarea {
-         background: rgba(0, 0, 0, 0.5);
-         min-height: 100px;
-         padding: 5px 0px 0px 20px;
-         border: 2px solid #bdae82;
-         resize: none;
-         width: 100%;
-         color: #bdae82;
-         font-size: 20px;
-         line-height: 2;
-         transition: 0.3s ease;
-         @media (min-width: 769px) {
-            &:hover {
-               border: 2px solid #f8f8f8;
-            }
-         }
-         &:focus {
+      background: rgba(0, 0, 0, 0.5);
+      min-height: 100px;
+      padding: 5px 0px 0px 20px;
+      border: 2px solid #bdae82;
+      resize: none;
+      width: 100%;
+      color: #bdae82;
+      font-size: 20px;
+      line-height: 2;
+      transition: 0.3s ease;
+      @media (min-width: 769px) {
+         &:hover {
             border: 2px solid #f8f8f8;
          }
+      }
+      &:focus {
+         border: 2px solid #f8f8f8;
+      }
+      &::placeholder {
+         color: #bdae82;
+         font-family: Inter;
+         font-size: 20px;
+         line-height: 2;
       }
    }
 
@@ -888,7 +894,6 @@ body {
 
 //=====footer=============================================//
 .footer {
-   background: #000;
    padding: 60px 0;
    @media (max-width: $mW3) {
       padding: 30px 0;
@@ -915,8 +920,9 @@ body {
       }
    }
 
-   // &__c-element {
-   // }
+   &__c-element {
+      color: inherit;
+   }
 
    // &__year {
    // }
@@ -934,7 +940,7 @@ body {
    &__text {
       font-size: 20px;
       line-height: 1.2;
-      color: #ffffff;
+      color: inherit;
       transition: 0.3s;
       @media (min-width: 769px) {
          &:hover {
@@ -1011,8 +1017,13 @@ body {
 }
 
 .theme-list {
-   @media (max-width: $mW3) {
-      color: #000;
+   color: #000;
+   @media (min-width: 769px) {
+      &:hover {
+         color: #000;
+         box-shadow: 0px 5px 7px #74694a;
+         border-radius: 5px;
+      }
    }
 }
 
@@ -1026,3 +1037,65 @@ body {
       background-image: linear-gradient(to top, #fff 22px, #000 22px, #000 24px, #fff 24px);
    }
 }
+
+.light-theme-color {
+   color: #000;
+   fill: #000;
+   @media (min-width: 769px) {
+      &:hover {
+         fill: #000;
+      }
+   }
+}
+
+.light-theme-transofrm-svg {
+   @media (min-width: 769px) {
+      &:hover {
+         transform: scale(1.1, 1.1);
+      }
+   }
+}
+.light-theme-transofrm {
+   @media (min-width: 769px) {
+      &:hover {
+         transform: rotate(360deg);
+      }
+   }
+}
+
+.area-theme {
+   color: #1c1c1c;
+   background: rgba(255, 255, 255, 0.5);
+   border: 2px solid #bdae82;
+   &::placeholder {
+      color: #1c1c1c;
+   }
+}
+
+.button-theme {
+   color: #000;
+   background-image: linear-gradient(to right, #f6d365 0%, #f1f1f1 51%, #f6d365 100%);
+   @media (min-width: 769px) {
+      &:hover {
+         background-position: right center;
+      }
+   }
+}
+
+.button-lang {
+   color: #000;
+   fill: #fff;
+   &.active {
+      color: #fff;
+   }
+   &:hover {
+      color: #fff;
+   }
+}
+
+.sub-theme {
+   @media (max-width: 550px) {
+      color: #fff;
+   }
+}
+
