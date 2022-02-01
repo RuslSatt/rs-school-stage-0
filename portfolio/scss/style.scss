@@ -640,7 +640,7 @@ body {
          margin: 0 -20px;
          min-height: 35vh;
       }
-      img {
+      video {
          position: absolute;
          top: 0;
          left: 0;
@@ -659,6 +659,9 @@ body {
       transform: translate(-50%, -50%);
       z-index: 100;
       background: transparent;
+      &.view-player {
+         display: none;
+      }
    }
 
    &__icon {
@@ -678,6 +681,100 @@ body {
       }
    }
 }
+
+//! ----------------- Custom video ----------------- //
+.controls {
+   display: none;
+   align-items: center;
+   justify-content: space-between;
+   width: 100%;
+   position: relative;
+   z-index: 10;
+   &.view {
+      display: flex;
+   }
+   &__progress-bar {
+      display: flex;
+      background-color: #f6d365;
+      height: 10px;
+      // 
+   }
+   &__progress-value {
+      display: flex;
+      flex-basis: 0%;
+      background-color: #f1f1f1;
+      position: relative;
+      &::before {
+         content: '';
+         display: inline-block;
+         position: absolute;
+         top: 0;
+         right: 0;
+         transform: translate(5px, -25%);
+         background-color: #db2424;
+         height: 20px;
+         width: 20px;
+         border-radius: 50%;
+         cursor: e-resize;
+      }
+   }
+   input {
+      background-color: #f6d365;
+      border-radius: 5px;
+   }
+   &__play-icons {
+      max-width: 40px;
+      max-height: 40px;
+      transition: 0.3s;
+      display: block;
+      cursor: pointer;
+   }
+   &__volume-icons {
+      max-width: 40px;
+      max-height: 40px;
+      transition: 0.3s;
+      display: block;
+      cursor: pointer;
+   }
+   &__play-icon {
+      display: block;
+      fill: #ffffff;
+      &.change-play{
+         display: none;
+      }
+   }
+   &__pause-icon {
+      display: none;
+      fill: #ffffff;
+      &.change-pause {
+         cursor: pointer;
+         display: block;
+      }
+   }
+   &__volume-icon {
+      display: block;
+      fill: #ffffff;
+      &.change-volume {
+         display: none;
+      }
+   }
+   &__mute-icon {
+      display: none;
+      fill: #ffffff;
+      &.change-mute {
+         display: block;
+      }
+   }
+   &__progress-bar{
+      width: 80%;
+      input {
+         background-color: #f6d365;
+      }
+   }
+}
+
+//! ----------------- Custom video ----------------- //
+
 
 //--------------------------------------------------------//
 

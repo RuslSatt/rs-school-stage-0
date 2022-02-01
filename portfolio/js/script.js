@@ -164,7 +164,7 @@ const videoPlayer = document.querySelector('.video__icon');
 
 
 function changeTheme(event) {
-   videoPlayer.classList.toggle ('button-lang')
+   videoPlayer.classList.toggle('button-lang')
    heroTitleThemeMin.classList.toggle('sub-theme')
 
    buttonsLangTheme.forEach(buttonLangThemeEach => {
@@ -347,3 +347,102 @@ window.addEventListener('pageshow', getLocalStorage);
 export { setLocalStorage, getLocalStorage };
 // ?  ------------------------- lOCAL STORAGE -------------------------------------------- //
 
+// ? -------------------------- Custom video --------------------------------------------- //
+// ! -------------------------- Get our elements ----------------------------------------- //
+
+const player = document.querySelector('.controls');
+const videoMain = document.querySelector('.video__videoplayer');
+const playIconMain = document.querySelector('.controls__play-icons');
+const volumeIconMain = document.querySelector('.controls__volume-icons');
+const playIcon = document.querySelector('.controls__play-icon');
+const pauseIcon = document.querySelector('.controls__pause-icon');
+const progressBar = document.querySelector('.controls__progress-bar');
+const progressValue = document.querySelector('.controls__progress-value');
+const valueVolume = document.querySelector('.controls__volume');
+const toggle = document.querySelector('.video__btn-player');
+const volumeIcon = document.querySelector('.controls__volume-icon');
+const muteIcon = document.querySelector('.controls__mute-icon');
+// ! -------------------------- Build out function --------------------------------------- //
+
+function togglePLay() {
+   if (videoMain.paused) {
+      videoMain.play();
+      player.classList.add('view');
+      toggle.classList.add('view-player');
+      playIcon.classList.add('change-play');
+      pauseIcon.classList.add('change-pause');
+
+   } else {
+      videoMain.pause();
+      toggle.classList.remove('view-player');
+      pauseIcon.classList.remove('change-pause');
+      playIcon.classList.remove('change-play');
+   }
+}
+
+function rangeUpdate() {
+   videoMain[this.name] = this.value;
+}
+
+function rangeProgress() {
+   const percent = (videoMain.currentTime / videoMain.duration) * 100;
+   progressValue.style.flexBasis = `${percent}%`;
+}
+
+function scrub(e) {
+   const scrubTime = (e.offsetX / progressBar.offsetWidth) * videoMain.duration;
+   videoMain.currentTime = scrubTime;
+}
+
+function volumeIconClick() {
+   if (videoMain.muted !== true) {
+      videoMain.muted = true;
+      valueVolume.value = '0';
+      volumeIcon.classList.add('change-volume');
+      muteIcon.classList.add('change-mute');
+   } else {
+      videoMain.muted = false;
+      volumeIcon.classList.remove('change-volume');
+      muteIcon.classList.remove('change-mute');
+      valueVolume.value = videoMain.volume;
+   }
+
+}
+
+function updateVol() {
+   const volume = this.value;
+   videoMain.volume = volume;
+   if (videoMain.volume > 0) {
+      volumeIcon.classList.remove('change-volume');
+      muteIcon.classList.remove('change-mute');
+
+   } else {
+      volumeIcon.classList.add('change-volume');
+      muteIcon.classList.add('change-mute');
+   }
+}
+
+
+
+
+// ! -------------------------- Hook up -------------------------------------------------- //
+
+videoMain.addEventListener('click', togglePLay);
+toggle.addEventListener('click', togglePLay);
+playIconMain.addEventListener('click', togglePLay);
+
+progressBar.addEventListener('change', rangeUpdate);
+progressBar.addEventListener('mousemove', rangeUpdate);
+videoMain.addEventListener('timeupdate', rangeProgress);
+
+volumeIconMain.addEventListener('click', volumeIconClick);
+
+let mousedown = false;
+progressBar.addEventListener('click', scrub);
+progressBar.addEventListener('mousemove', (e) => mousedown && scrub(e));
+progressBar.addEventListener('mousedown', () => mousedown = true);
+progressBar.addEventListener('mouseup', () => mousedown = false);
+
+valueVolume.addEventListener('change', updateVol);
+
+// ? -------------------------- Custom video --------------------------------------------- //

@@ -967,7 +967,7 @@ body {
   }
 }
 
-.video__player img {
+.video__player video {
   position: absolute;
   top: 0;
   left: 0;
@@ -978,7 +978,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  .video__player img {
+  .video__player video {
     -o-object-position: -6px;
        object-position: -6px;
   }
@@ -992,6 +992,10 @@ body {
           transform: translate(-50%, -50%);
   z-index: 100;
   background: transparent;
+}
+
+.video__btn-player.view-player {
+  display: none;
 }
 
 .video__icon {
@@ -1015,6 +1019,126 @@ body {
     max-width: 64px;
     max-height: 64px;
   }
+}
+
+.controls {
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.controls.view {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.controls__progress-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #f6d365;
+  height: 10px;
+}
+
+.controls__progress-value {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-preferred-size: 0%;
+      flex-basis: 0%;
+  background-color: #f1f1f1;
+  position: relative;
+}
+
+.controls__progress-value::before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  -webkit-transform: translate(5px, -25%);
+          transform: translate(5px, -25%);
+  background-color: #db2424;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  cursor: e-resize;
+}
+
+.controls input {
+  background-color: #f6d365;
+  border-radius: 5px;
+}
+
+.controls__play-icons {
+  max-width: 40px;
+  max-height: 40px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  display: block;
+  cursor: pointer;
+}
+
+.controls__volume-icons {
+  max-width: 40px;
+  max-height: 40px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  display: block;
+  cursor: pointer;
+}
+
+.controls__play-icon {
+  display: block;
+  fill: #ffffff;
+}
+
+.controls__play-icon.change-play {
+  display: none;
+}
+
+.controls__pause-icon {
+  display: none;
+  fill: #ffffff;
+}
+
+.controls__pause-icon.change-pause {
+  cursor: pointer;
+  display: block;
+}
+
+.controls__volume-icon {
+  display: block;
+  fill: #ffffff;
+}
+
+.controls__volume-icon.change-volume {
+  display: none;
+}
+
+.controls__mute-icon {
+  display: none;
+  fill: #ffffff;
+}
+
+.controls__mute-icon.change-mute {
+  display: block;
+}
+
+.controls__progress-bar {
+  width: 80%;
+}
+
+.controls__progress-bar input {
+  background-color: #f6d365;
 }
 
 .price {
