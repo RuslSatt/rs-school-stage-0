@@ -401,14 +401,16 @@ function togglePLay() {
 
 function rangeUpdate() {
    videoMain[this.name] = this.value;
+   progressBar.value = this.value;
 }
 
 function rangeProgress() {
-   let percent = (videoMain.currentTime / videoMain.duration) * 100;
-   progressBar.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) ${percent}%, rgb(246, 211, 101) 0%)`;
-   
-
+   let percent = Math.floor((videoMain.currentTime / videoMain.duration) * 100);
    progressBar.value = percent;
+   progressBar.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) ${percent - 0.05}%, rgb(246, 211, 101) 0%)`;
+   
+   
+   
    if (progressBar.value === '100') {
       toggle.classList.remove('view-player');
       pauseIcon.classList.remove('change-pause');
@@ -430,6 +432,7 @@ function rangeProgress() {
 function scrub(e) {
    const scrubTime = (e.offsetX / progressBar.offsetWidth) * videoMain.duration;
    videoMain.currentTime = scrubTime;
+   
 }
 
 
@@ -446,10 +449,16 @@ function volumeIconClick() {
       videoMain.muted = false;
       volumeIcon.classList.remove('change-volume');
       muteIcon.classList.remove('change-mute');
+      
       valueVolume.value = videoMain.volume;
       const volume = valueVolume.value;
       videoMain.volume = volume;
       let volumeScrub = volume * 100;
+
+      if (videoMain.volume === 0) {
+         videoMain.volume = '0.01';
+      }
+
       valueVolume.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) ${volumeScrub}%, rgb(246, 211, 101) 0%)`;
    }
 }
@@ -457,15 +466,16 @@ function volumeIconClick() {
 function updateVol() {
    let volume = this.value;
    videoMain.volume = volume;
-   let volumeScrub = videoMain.volume * 100;
-   valueVolume.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) ${volumeScrub}%, rgb(246, 211, 101) 0%)`;
    if (videoMain.volume > 0) {
+      valueVolume.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) ${this.value * 100}%, rgb(246, 211, 101) 0%)`;
       volumeIcon.classList.remove('change-volume');
       muteIcon.classList.remove('change-mute');
+      videoMain.muted = false;
    } else {
+      valueVolume.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) 0%, rgb(246, 211, 101) 0%)`;
       volumeIcon.classList.add('change-volume');
       muteIcon.classList.add('change-mute');
-      videoMain.muted = false;
+      videoMain.muted = true;
    }
 }
 
@@ -478,23 +488,18 @@ videoMain.addEventListener('click', togglePLay);
 toggle.addEventListener('click', togglePLay);
 playIconMain.addEventListener('click', togglePLay);
 
-progressBar.addEventListener('change', rangeUpdate);
-progressBar.addEventListener('mousemove', rangeUpdate);
 videoMain.addEventListener('timeupdate', rangeProgress);
-progressBar.addEventListener('mousemove', rangeProgress);
 
 volumeIconMain.addEventListener('click', volumeIconClick);
-valueVolume.addEventListener('change', updateVol);
-valueVolume.addEventListener('mousemove', updateVol);
-valueVolume.addEventListener('mousedown', updateVol);
+valueVolume.addEventListener('input', updateVol);
+
+progressBar.addEventListener('input', rangeProgress);
 
 let mousedown = false;
-
-progressBar.addEventListener('mousedown', scrub);
-progressBar.addEventListener('mousemove', (e) => mousedown && scrub(e));
-progressBar.addEventListener('mousedown', () => mousedown = true);
-progressBar.addEventListener('mouseup', () => mousedown = false);
-progressBar.addEventListener('mouseover', () => mousedown = false);
+progressBar.addEventListener('pointerdown', scrub );
+progressBar.addEventListener('pointermove', (e) => mousedown && scrub(e));
+progressBar.addEventListener('pointerdown', () => mousedown = true);
+progressBar.addEventListener('pointerup', () => mousedown = false);
 
 videoMain.addEventListener('loadeddata', durationTimeVideo);
 
