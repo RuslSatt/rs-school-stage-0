@@ -164,7 +164,7 @@ const videoPlayer = document.querySelector('.video__icon');
 
 
 function changeTheme(event) {
-   videoPlayer.classList.toggle ('button-lang')
+   videoPlayer.classList.toggle('button-lang')
    heroTitleThemeMin.classList.toggle('sub-theme')
 
    buttonsLangTheme.forEach(buttonLangThemeEach => {
@@ -347,3 +347,160 @@ window.addEventListener('pageshow', getLocalStorage);
 export { setLocalStorage, getLocalStorage };
 // ?  ------------------------- lOCAL STORAGE -------------------------------------------- //
 
+// ? -------------------------- Custom video --------------------------------------------- //
+// ! -------------------------- Get our elements ----------------------------------------- //
+
+const player = document.querySelector('.controls');
+const videoMain = document.querySelector('.video__videoplayer');
+const playIconMain = document.querySelector('.controls__play-icons');
+const volumeIconMain = document.querySelector('.controls__volume-icons');
+const playIcon = document.querySelector('.controls__play-icon');
+const pauseIcon = document.querySelector('.controls__pause-icon');
+const progressBar = document.querySelector('.controls__progress-bar');
+const valueVolume = document.querySelector('.controls__volume');
+const toggle = document.querySelector('.video__btn-player');
+const volumeIcon = document.querySelector('.controls__volume-icon');
+const muteIcon = document.querySelector('.controls__mute-icon');
+const protgressTimer = document.querySelector('.controls__time');
+const protgressTimerMain = document.querySelector('.controls__time-video');
+// ! -------------------------- Build out function --------------------------------------- //
+valueVolume.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) 10%, rgb(246, 211, 101) 0%)`;
+progressBar.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) 0%, rgb(246, 211, 101) 0%)`;
+videoMain.volume = 0.1;
+
+function durationTimeVideo () {
+   let durationTime = videoMain.duration;
+   let minutesMain = Math.floor (durationTime / 60);
+   let secondsMain = Math.floor (durationTime % 60);
+   if (minutesMain < 10) {
+      minutesMain = '0' + String(minutesMain);
+   }
+   if (secondsMain < 10) {
+      secondsMain = '0' + String(secondsMain);
+   }
+   protgressTimerMain.innerHTML = `${minutesMain}:${secondsMain}`;
+}
+
+
+
+function togglePLay() {
+   if (videoMain.paused) {
+      videoMain.play();
+      player.classList.add('view');
+      toggle.classList.add('view-player');
+      playIcon.classList.add('change-play');
+      pauseIcon.classList.add('change-pause');
+
+   } else {
+      videoMain.pause();
+      toggle.classList.remove('view-player');
+      pauseIcon.classList.remove('change-pause');
+      playIcon.classList.remove('change-play');
+   }
+}
+
+function rangeUpdate() {
+   videoMain[this.name] = this.value;
+   progressBar.value = this.value;
+}
+
+function rangeProgress() {
+   let percent = Math.floor((videoMain.currentTime / videoMain.duration) * 100);
+   progressBar.value = percent;
+   progressBar.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) ${percent - 0.05}%, rgb(246, 211, 101) 0%)`;
+   
+   
+   
+   if (progressBar.value === '100') {
+      toggle.classList.remove('view-player');
+      pauseIcon.classList.remove('change-pause');
+      playIcon.classList.remove('change-play');
+   }
+
+   let minutes = Math.floor (videoMain.currentTime / 60);
+   let seconds = Math.floor (videoMain.currentTime % 60);
+   if (minutes < 10) {
+      minutes = '0' + String(minutes);
+   }
+   if (seconds < 10) {
+      seconds = '0' + String(seconds);
+   }
+   protgressTimer.innerHTML = `${minutes}:${seconds}`;
+}
+
+
+function scrub(e) {
+   const scrubTime = (e.offsetX / progressBar.offsetWidth) * videoMain.duration;
+   videoMain.currentTime = scrubTime;
+   
+}
+
+
+
+
+function volumeIconClick() {
+   if (videoMain.muted !== true) {
+      videoMain.muted = true;
+      valueVolume.value = '0';
+      volumeIcon.classList.add('change-volume');
+      muteIcon.classList.add('change-mute');
+      valueVolume.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) 0%, rgb(246, 211, 101) 0%)`;
+   } else {
+      videoMain.muted = false;
+      volumeIcon.classList.remove('change-volume');
+      muteIcon.classList.remove('change-mute');
+      
+      valueVolume.value = videoMain.volume;
+      const volume = valueVolume.value;
+      videoMain.volume = volume;
+      let volumeScrub = volume * 100;
+
+      if (videoMain.volume === 0) {
+         videoMain.volume = '0.01';
+      }
+
+      valueVolume.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) ${volumeScrub}%, rgb(246, 211, 101) 0%)`;
+   }
+}
+
+function updateVol() {
+   let volume = this.value;
+   videoMain.volume = volume;
+   if (videoMain.volume > 0) {
+      valueVolume.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) ${this.value * 100}%, rgb(246, 211, 101) 0%)`;
+      volumeIcon.classList.remove('change-volume');
+      muteIcon.classList.remove('change-mute');
+      videoMain.muted = false;
+   } else {
+      valueVolume.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) 0%, rgb(246, 211, 101) 0%)`;
+      volumeIcon.classList.add('change-volume');
+      muteIcon.classList.add('change-mute');
+      videoMain.muted = true;
+   }
+}
+
+
+
+
+// ! -------------------------- Hook up -------------------------------------------------- //
+
+videoMain.addEventListener('click', togglePLay);
+toggle.addEventListener('click', togglePLay);
+playIconMain.addEventListener('click', togglePLay);
+
+videoMain.addEventListener('timeupdate', rangeProgress);
+
+volumeIconMain.addEventListener('click', volumeIconClick);
+valueVolume.addEventListener('input', updateVol);
+
+progressBar.addEventListener('input', rangeProgress);
+
+let mousedown = false;
+progressBar.addEventListener('pointerdown', scrub );
+progressBar.addEventListener('pointermove', (e) => mousedown && scrub(e));
+progressBar.addEventListener('pointerdown', () => mousedown = true);
+progressBar.addEventListener('pointerup', () => mousedown = false);
+
+videoMain.addEventListener('loadeddata', durationTimeVideo);
+
+// ? -------------------------- Custom video --------------------------------------------- //
