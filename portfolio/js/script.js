@@ -367,6 +367,7 @@ const protgressTimerMain = document.querySelector('.controls__time-video');
 valueVolume.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) 10%, rgb(246, 211, 101) 0%)`;
 progressBar.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) 0%, rgb(246, 211, 101) 0%)`;
 videoMain.volume = 0.1;
+valueVolume.value = 0.1;
 
 function durationTimeVideo () {
    let durationTime = videoMain.duration;
@@ -401,13 +402,12 @@ function togglePLay() {
 
 function rangeUpdate() {
    videoMain[this.name] = this.value;
-   progressBar.value = this.value;
 }
 
 function rangeProgress() {
    let percent = Math.floor((videoMain.currentTime / videoMain.duration) * 100);
    progressBar.value = percent;
-   progressBar.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) ${percent - 0.05}%, rgb(246, 211, 101) 0%)`;
+   progressBar.style.background = `linear-gradient(to right, rgb(10, 10, 10) 0%, rgb(0, 0, 0) ${percent}%, rgb(246, 211, 101) 0%)`;
    
    
    
@@ -491,16 +491,21 @@ playIconMain.addEventListener('click', togglePLay);
 videoMain.addEventListener('timeupdate', rangeProgress);
 
 volumeIconMain.addEventListener('click', volumeIconClick);
+
 valueVolume.addEventListener('input', updateVol);
+valueVolume.addEventListener('input', rangeUpdate);
+valueVolume.addEventListener('pointermove', rangeUpdate);
 
 progressBar.addEventListener('input', rangeProgress);
+progressBar.addEventListener('input', rangeUpdate);
 
 let mousedown = false;
-progressBar.addEventListener('pointerdown', scrub );
+progressBar.addEventListener('click', scrub );
 progressBar.addEventListener('pointermove', (e) => mousedown && scrub(e));
 progressBar.addEventListener('pointerdown', () => mousedown = true);
 progressBar.addEventListener('pointerup', () => mousedown = false);
 
 videoMain.addEventListener('loadeddata', durationTimeVideo);
-
+videoMain.addEventListener('timeupdate', durationTimeVideo);
 // ? -------------------------- Custom video --------------------------------------------- //
+
