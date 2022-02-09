@@ -1,0 +1,124 @@
+@import "_zero.scss";
+@import url(https://fonts.googleapis.com/css?family=Montserrat:regular,700);
+
+body {
+   font-family: Montserrat;
+   color: #fff;
+}
+
+.wrapper {
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+}
+// =================== header ===================================== //
+.header {
+   min-height: 60px;
+   background: rgba(5, 5, 5, 0.733);
+   padding: 20px 20px;
+   &__input {
+      width: 100%;
+      max-width: 200px;
+      min-height: 30px;
+      border-radius: 10px;
+      padding: 10px 0 10px 10px;
+      font-size: 16px;
+      background: rgba(0, 0, 0, 0.342);
+      color: #fff;
+      &::placeholder {
+         color: #fff;
+         font-size: 16px;
+      }
+   }
+   &__container {
+      display: flex;
+      justify-content: flex-start;
+   }
+}
+.container {
+   max-width: 1440px;
+   margin: 0px auto;
+   padding: 0px 20px;
+}
+// =================== header ===================================== //
+// =================== main ======================================= //
+.movie {
+   background: rgba(114, 114, 114, 0.589);
+   padding: 40px 0;
+   flex: 1 1 auto;
+   &__row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      margin: 0 -10px;
+   }
+
+   &__column {
+      max-width: 355px;
+      padding: 0 10px;
+      margin-bottom: 20px;
+   }
+
+   &__img {
+      max-width: 100%;
+   }
+   &__footer {
+      display: flex;
+      align-items: center;
+      padding: 0px 10px;
+      min-height: 150px;
+      background: rgba(20, 20, 20, 0.699);
+      @media (max-width: 768px) {
+         min-height: 70px;
+      }
+   }
+   &__name {
+      color: #fff;
+      font-size: 16px;
+   }
+}
+// =================== main ======================================= //
+// =================== footer ===================================== //
+.footer {
+   background-color: #000;
+   &__wrap {
+      min-height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @media (max-width: 768px) {
+         flex-direction: column;
+         padding: 20px 0;
+         line-height: 1.8;
+      }
+   }
+   &__year {
+   }
+
+   &__git {
+      transition: 0.3s ease;
+      a {
+         color: inherit;
+      }
+      @media (min-width: 768px) {
+         &:hover {
+            color: aquamarine;
+         }
+      }
+   }
+
+   &__school {
+      transition: 0.3s ease;
+      a {
+         color: inherit;
+      }
+      @media (min-width: 768px) {
+         &:hover {
+            color: aquamarine;
+         }
+      }
+   }
+}
+// =================== footer ===================================== //
