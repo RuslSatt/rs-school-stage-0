@@ -1,0 +1,208 @@
+@import "_zero.scss";
+@import url(https://fonts.googleapis.com/css?family=Montserrat:regular,700);
+
+body {
+   font-family: Montserrat;
+   color: #fff;
+}
+
+.wrapper {
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+}
+// =================== header ===================================== //
+.header {
+   min-height: 60px;
+   background: rgba(5, 5, 5, 0.733);
+   padding: 20px;
+   @media (max-width: 768px) {
+      padding: 10px;
+   }
+   &__input {
+      cursor: pointer;
+      position: relative;
+      width: 100%;
+      max-width: 200px;
+      min-height: 30px;
+      border-radius: 10px;
+      padding: 10px 0 10px 10px;
+      font-size: 16px;
+      background: rgba(0, 0, 0, 0.342);
+      color: #fff;
+
+      &::placeholder {
+         color: #fff;
+         font-size: 16px;
+      }
+   }
+   &__container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+   }
+   &__top {
+      padding: 10px;
+      background: rgba(114, 114, 114, 0.589);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      &:hover {
+         color: rgba(0, 0, 0, 0.884);
+         background: rgba(161, 161, 161, 0.589);
+      }
+   }
+   &__cross {
+
+   }
+}
+.container {
+   max-width: 1440px;
+   margin: 0px auto;
+   padding: 0px 20px;
+}
+// =================== header ===================================== //
+// =================== main ======================================= //
+.movie {
+   background: rgba(114, 114, 114, 0.589);
+   padding: 40px 0;
+   flex: 1 1 auto;
+   &__row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0 -10px;
+   }
+
+   &__column {
+      width: 355px;
+      padding: 0 10px;
+      margin-bottom: 20px;
+      display: flex;
+   }
+
+   &__item {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+   }
+
+   &__back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: rgb(255, 255, 255);
+      display: block;
+      background-color: rgba(100, 84, 84, 0.884);
+      transform: translateX(100%);
+      transition: 0.5s;
+      padding: 10px;
+      line-height: 1.5;
+   }
+
+   &__img {
+      flex: 1 1 auto;
+      max-width: 100%;
+   }
+   &__footer {
+      padding: 15px 10px;
+      min-height: 150px;
+      background: rgba(20, 20, 20, 0.699);
+      @media (max-width: 768px) {
+         display: flex;
+         flex-direction: column;
+      }
+   }
+   &__name {
+      text-align: center;
+      padding: 10px 5px;
+      background: rgba(58, 51, 51, 0.678);
+      color: #fff;
+      font-size: 16px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+   }
+
+   &__number {
+      padding: 10px 5px;
+      background: rgba(58, 51, 51, 0.678);
+      max-width: 50px;
+      text-align: center;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      margin-right: auto;
+      color: rgba(48, 241, 10, 0.938);
+   }
+
+   &__button {
+      background: rgba(58, 51, 51, 0.678);
+      padding: 10px 5px;
+      border-radius: 10px;
+      transition: 0.3s ease;
+      color: inherit;
+      position: relative;
+      z-index: 100;
+      &:hover {
+         color: #000;
+         background: rgba(110, 101, 101, 0.733);
+      }
+   }
+}
+// =================== main ======================================= //
+// =================== footer ===================================== //
+.footer {
+   background-color: #000;
+   &__wrap {
+      min-height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @media (max-width: 768px) {
+         flex-direction: column;
+         padding: 20px 0;
+         line-height: 1.8;
+      }
+   }
+   &__year {
+   }
+
+   &__git {
+      transition: 0.3s ease;
+      a {
+         color: inherit;
+      }
+      @media (min-width: 768px) {
+         &:hover {
+            color: aquamarine;
+         }
+      }
+   }
+
+   &__school {
+      transition: 0.3s ease;
+      a {
+         color: inherit;
+      }
+      @media (min-width: 768px) {
+         &:hover {
+            color: aquamarine;
+         }
+      }
+   }
+}
+// =================== footer ===================================== //
+
+.none {
+   display: none;
+}
+
+.active {
+   transform: translateX(0%);
+}
