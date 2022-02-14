@@ -1,5 +1,5 @@
 // ------------------------------- API ------------------------------- //
-let url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c';
+let url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=b8cbeb3dacd0e1d8c24b79671c01e68d';
 
 
 // ----------------- Get value input ------------------- //
@@ -22,11 +22,16 @@ formGet.addEventListener('blur', function () {
 
 // ---------------- Поиск через иконку --------------------- //
 const iconSearch = document.querySelector('.header__search');
+// ---------------- Запрет отправки формы ----------------- //
+iconSearch.addEventListener ('submit', function (e) {
+   e.preventDefault();
+})
+
 function getIcon(e) {
    if (e.target.closest('.header__button')) {
       let keyBtn = formGet.value;
       if (keyBtn !== '') {
-         url = `https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query=${keyBtn}`;
+         url = `https://api.themoviedb.org/3/search/movie?api_key=b8cbeb3dacd0e1d8c24b79671c01e68d&query=${keyBtn}`;
       };
 
    }
@@ -45,11 +50,11 @@ formGet.addEventListener('keydown', function (e) {
    if (e.keyCode === 13) { // -- Enter -- //
       const keyForms = formGet.value;
       // ------------------------------- API по значению input ------------------------------- //
-      url = `https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query=${keyForms}&tag_mode=all`;
+      url = `https://api.themoviedb.org/3/search/movie?api_key=b8cbeb3dacd0e1d8c24b79671c01e68d&query=${keyForms}&tag_mode=all`;
 
 
       if (keyForms == '') { // ------------------------------- Проверка на пустую строку ------------------------------- //
-         url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c';
+         url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=b8cbeb3dacd0e1d8c24b79671c01e68d';
       }
 
 
@@ -71,7 +76,6 @@ async function getData() {
    const result = await fetch(url);
    const data = await result.json();
    showData(data);
-   console.log (data)
 }
 getData();
 
