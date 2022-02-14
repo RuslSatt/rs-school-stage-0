@@ -20,21 +20,71 @@ body {
    @media (max-width: 768px) {
       padding: 10px;
    }
-   &__input {
-      cursor: pointer;
+   &__form {
       position: relative;
+      width: 330px;
+   }
+   &__input {
       width: 100%;
-      max-width: 200px;
-      min-height: 30px;
-      border-radius: 10px;
+      border-radius: 5px;
       padding: 10px 0 10px 10px;
       font-size: 16px;
-      background: rgba(0, 0, 0, 0.342);
+      background: rgb(109, 109, 109);
+      border: 2px solid #f6f3f3;
       color: #fff;
-
+      outline: none;
+      transition: 0.3s ease;
+      overflow: hidden;
       &::placeholder {
          color: #fff;
          font-size: 16px;
+      }
+      &:hover {
+         background: rgb(63, 63, 63);
+      }
+      &:focus {
+         background: rgb(63, 63, 63);
+      }
+   }
+   &__button {
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      right: 0;
+      background-color: #f6f3f3;
+      height: 43px;
+      width: 40px;
+      padding: 7px;
+      border-radius: 0 5px 5px 0px;
+      transition: 0.3s ease;
+      @media (min-width: 786px) {
+         &:hover {
+            width: 50px;
+         }
+      }
+
+      @media (max-width: 768px) {
+         width: 50px;
+      }
+   }
+   &__cross {
+      position: absolute;
+      display: none;
+      top: 6%;
+      right: 40px;
+      pointer-events: none;
+      padding: 7px 7px 7px 7px;
+      background: transparent;
+      @media (max-width: 768px) {
+         right: 60px;
+      }
+
+      img {
+         pointer-events: all;
+         transition: 0.3s ease;
+         &:hover {
+            transform: scale(1.25);
+         }
       }
    }
    &__container {
@@ -55,9 +105,6 @@ body {
          background: rgba(161, 161, 161, 0.589);
       }
    }
-   &__cross {
-
-   }
 }
 .container {
    max-width: 1440px;
@@ -68,7 +115,7 @@ body {
 // =================== main ======================================= //
 .movie {
    background: rgba(114, 114, 114, 0.589);
-   padding: 40px 0;
+   padding: 40px 0 20px 0;
    flex: 1 1 auto;
    &__row {
       display: flex;
@@ -101,10 +148,17 @@ body {
       color: rgb(255, 255, 255);
       display: block;
       background-color: rgba(100, 84, 84, 0.884);
+      backdrop-filter: blur(5px);
       transform: translateX(100%);
       transition: 0.5s;
       padding: 10px;
       line-height: 1.5;
+   }
+
+   &__back-review {
+      font-size: 24px;
+      margin-bottom: 20px;
+      font-weight: bold;
    }
 
    &__img {
@@ -121,26 +175,43 @@ body {
       }
    }
    &__name {
+      border: 2px solid #f6f3f3;
+      min-height: 50px;
       text-align: center;
-      padding: 10px 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 5px 5px;
       background: rgba(58, 51, 51, 0.678);
       color: #fff;
       font-size: 16px;
       border-radius: 10px;
       margin-bottom: 10px;
    }
-
+   &__release-number {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+   }
    &__number {
-      padding: 10px 5px;
+      padding: 10px 10px;
       background: rgba(58, 51, 51, 0.678);
       max-width: 50px;
       text-align: center;
       border-radius: 10px;
-      margin-bottom: 10px;
       margin-right: auto;
       color: rgba(48, 241, 10, 0.938);
    }
-
+   &__release-date {
+      padding: 10px 10px;
+      background: rgba(58, 51, 51, 0.678);
+      text-align: center;
+      border-radius: 10px;
+      letter-spacing: 2;
+      color: rgb(214, 255, 205);
+   }
    &__button {
       background: rgba(58, 51, 51, 0.678);
       padding: 10px 5px;
@@ -149,25 +220,26 @@ body {
       color: inherit;
       position: relative;
       z-index: 100;
-      &:hover {
-         color: #000;
-         background: rgba(110, 101, 101, 0.733);
+      @media (min-width: 768px) {
+         &:hover {
+            color: #fff;
+            background: rgba(110, 101, 101, 0.733);
+         }
       }
    }
 }
 // =================== main ======================================= //
 // =================== footer ===================================== //
 .footer {
-   background-color: #000;
+   background-color: rgb(126, 123, 123);
    &__wrap {
-      min-height: 60px;
+      min-height: 70px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      @media (max-width: 768px) {
+      @media (max-width: 500px) {
          flex-direction: column;
          padding: 20px 0;
-         line-height: 1.8;
       }
    }
    &__year {
@@ -177,7 +249,9 @@ body {
       transition: 0.3s ease;
       a {
          color: inherit;
+         font-weight: bold;
       }
+
       @media (min-width: 768px) {
          &:hover {
             color: aquamarine;
@@ -187,12 +261,21 @@ body {
 
    &__school {
       transition: 0.3s ease;
-      a {
-         color: inherit;
+      width: 100px;
+      height: 37.13px;
+      @media (max-width: 500px) {
+         margin: 10px 0;
       }
-      @media (min-width: 768px) {
+      &:hover {
+         transform: scale(1.05);
+      }
+   }
+   &__logo {
+
+      img {
+         transition: 0.3s ease;
          &:hover {
-            color: aquamarine;
+            transform: scale(1.1);
          }
       }
    }
@@ -205,4 +288,7 @@ body {
 
 .active {
    transform: translateX(0%);
+}
+.cross-active {
+   display: inline-block;
 }

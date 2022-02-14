@@ -13,15 +13,18 @@
    <div class="wrapper">
       <header class="header">
          <div class="header__container container">
-
-               <input placeholder="search" type="text" class="header__input">
-               <div class="header__cross">
-                  <span></span>
-                  <span></span>
-               </div>
-               
-               <span class="header__top">Top Movie</span>
-
+            <form action="#" class="header__form">
+               <input maxlength="25" placeholder="search" type="text" class="header__input">
+               <button class="header__button" type="submit">
+                  <img src="./assets/img/Search.svg" alt="search">
+               </button>
+               <button class="header__cross" type="submit">
+                  <img src="./assets/img/Cross.svg" alt="cross">
+               </button>
+            </form>
+            <span class="header__top">
+               <img src="./assets/img/Home.svg" alt="home">
+            </span>
          </div>
       </header>
       <main class="movie">
@@ -32,10 +35,16 @@
                      <img src="" alt="more" class="movie__img">
                      <div class="movie__footer">
                         <p class="movie__name">Movie</p>
-                        <p class="movie__number">7.85</p>
-                        <button data-filter="1" class="movie__button">Movie review</button>
+                        <div class="movie__release-number">
+                           <p class="movie__number">7.85</p>
+                           <p class="movie__release-date"></p>
+                        </div>
+                        <button data-filter="1" class="movie__button">Overview</button>
                      </div>
-                     <div data-filter="1" class="movie__back"></div>
+                     <div data-filter="1" class="movie__back">
+                        <p class="movie__back-review">Overview</p>
+                        <p class="movie__back-overview"></p>
+                     </div>
                   </div>
                </div>
                <div class="movie__column">
@@ -43,10 +52,16 @@
                      <img src="" alt="more" class="movie__img">
                      <div class="movie__footer">
                         <p class="movie__name">Movie</p>
-                        <p class="movie__number">7.85</p>
-                        <button data-filter="2" class="movie__button">Movie review</button>
+                        <div class="movie__release-number">
+                           <p class="movie__number">7.85</p>
+                           <p class="movie__release-date"></p>
+                        </div>
+                        <button data-filter="2" class="movie__button">Overview</button>
                      </div>
-                     <div data-filter="2" class="movie__back"></div>
+                     <div data-filter="2" class="movie__back">
+                        <p class="movie__back-review">Overview</p>
+                        <p class="movie__back-overview"></p>
+                     </div>
                   </div>
                </div>
                <div class="movie__column">
@@ -54,10 +69,16 @@
                      <img src="" alt="more" class="movie__img">
                      <div class="movie__footer">
                         <p class="movie__name">Movie</p>
-                        <p class="movie__number">7.85</p>
-                        <button data-filter="3" class="movie__button">Movie review</button>
+                        <div class="movie__release-number">
+                           <p class="movie__number">7.85</p>
+                           <p class="movie__release-date"></p>
+                        </div>
+                        <button data-filter="3" class="movie__button">Overview</button>
                      </div>
-                     <div data-filter="3" class="movie__back"></div>
+                     <div data-filter="3" class="movie__back">
+                        <p class="movie__back-review">Overview</p>
+                        <p class="movie__back-overview"></p>
+                     </div>
                   </div>
                </div>
                <div class="movie__column">
@@ -65,10 +86,16 @@
                      <img src="" alt="more" class="movie__img">
                      <div class="movie__footer">
                         <p class="movie__name">Movie</p>
-                        <p class="movie__number">7.85</p>
-                        <button data-filter="4" class="movie__button">Movie review</button>
+                        <div class="movie__release-number">
+                           <p class="movie__number">7.85</p>
+                           <p class="movie__release-date"></p>
+                        </div>
+                        <button data-filter="4" class="movie__button">Overview</button>
                      </div>
-                     <div data-filter="4" class="movie__back"></div>
+                     <div data-filter="4" class="movie__back">
+                        <p class="movie__back-review">Overview</p>
+                        <p class="movie__back-overview"></p>
+                     </div>
                   </div>
                </div>
                <div class="movie__column">
@@ -76,10 +103,16 @@
                      <img src="" alt="more" class="movie__img">
                      <div class="movie__footer">
                         <p class="movie__name">Movie</p>
-                        <p class="movie__number">7.85</p>
-                        <button data-filter="5" class="movie__button">Movie review</button>
+                        <div class="movie__release-number">
+                           <p class="movie__number">7.85</p>
+                           <p class="movie__release-date"></p>
+                        </div>
+                        <button data-filter="5" class="movie__button">Overview</button>
                      </div>
-                     <div data-filter="5" class="movie__back"></div>
+                     <div data-filter="5" class="movie__back">
+                        <p class="movie__back-review">Overview</p>
+                        <p class="movie__back-overview"></p>
+                     </div>
                   </div>
                </div>
                <div class="movie__column">
@@ -87,10 +120,16 @@
                      <img src="" alt="more" class="movie__img">
                      <div class="movie__footer">
                         <p class="movie__name">Movie</p>
-                        <p class="movie__number">7.85</p>
-                        <button data-filter="6" class="movie__button">Movie review</button>
+                        <div class="movie__release-number">
+                           <p class="movie__number">7.85</p>
+                           <p class="movie__release-date"></p>
+                        </div>
+                        <button data-filter="6" class="movie__button">Overview</button>
                      </div>
-                     <div data-filter="6" class="movie__back"></div>
+                     <div data-filter="6" class="movie__back">
+                        <p class="movie__back-review">Overview</p>
+                        <p class="movie__back-overview"></p>
+                     </div>
                   </div>
                </div>
                <div class="movie__column">
@@ -98,10 +137,16 @@
                      <img src="" alt="more" class="movie__img">
                      <div class="movie__footer">
                         <p class="movie__name">Movie</p>
-                        <p class="movie__number">7.85</p>
-                        <button data-filter="7" class="movie__button">Movie review</button>
+                        <div class="movie__release-number">
+                           <p class="movie__number">7.85</p>
+                           <p class="movie__release-date"></p>
+                        </div>
+                        <button data-filter="7" class="movie__button">Overview</button>
                      </div>
-                     <div data-filter="7" class="movie__back"></div>
+                     <div data-filter="7" class="movie__back">
+                        <p class="movie__back-review">Overview</p>
+                        <p class="movie__back-overview"></p>
+                     </div>
                   </div>
                </div>
                <div class="movie__column">
@@ -109,10 +154,16 @@
                      <img src="" alt="more" class="movie__img">
                      <div class="movie__footer">
                         <p class="movie__name">Movie</p>
-                        <p class="movie__number">7.85</p>
-                        <button data-filter="8" class="movie__button">Movie review</button>
+                        <div class="movie__release-number">
+                           <p class="movie__number">7.85</p>
+                           <p class="movie__release-date"></p>
+                        </div>
+                        <button data-filter="8" class="movie__button">Overview</button>
                      </div>
-                     <div data-filter="8" class="movie__back"></div>
+                     <div data-filter="8" class="movie__back">
+                        <p class="movie__back-review">Overview</p>
+                        <p class="movie__back-overview"></p>
+                     </div>
                   </div>
                </div>
                <div class="movie__column">
@@ -120,10 +171,16 @@
                      <img src="" alt="more" class="movie__img">
                      <div class="movie__footer">
                         <p class="movie__name">Movie</p>
-                        <p class="movie__number">7.85</p>
-                        <button data-filter="9" class="movie__button">Movie review</button>
+                        <div class="movie__release-number">
+                           <p class="movie__number">7.85</p>
+                           <p class="movie__release-date"></p>
+                        </div>
+                        <button data-filter="9" class="movie__button">Overview</button>
                      </div>
-                     <div data-filter="9" class="movie__back"></div>
+                     <div data-filter="9" class="movie__back">
+                        <p class="movie__back-review">Overview</p>
+                        <p class="movie__back-overview"></p>
+                     </div>
                   </div>
                </div>
                <div class="movie__column">
@@ -131,10 +188,16 @@
                      <img src="" alt="more" class="movie__img">
                      <div class="movie__footer">
                         <p class="movie__name">Movie</p>
-                        <p class="movie__number">7.85</p>
-                        <button data-filter="10" class="movie__button">Movie review</button>
+                        <div class="movie__release-number">
+                           <p class="movie__number">7.85</p>
+                           <p class="movie__release-date"></p>
+                        </div>
+                        <button data-filter="10" class="movie__button">Overview</button>
                      </div>
-                     <div data-filter="10" class="movie__back"></div>
+                     <div data-filter="10" class="movie__back">
+                        <p class="movie__back-review">Overview</p>
+                        <p class="movie__back-overview"></p>
+                     </div>
                   </div>
                </div>
                <div class="movie__column">
@@ -142,10 +205,16 @@
                      <img src="" alt="more" class="movie__img">
                      <div class="movie__footer">
                         <p class="movie__name">Movie</p>
-                        <p class="movie__number">7.85</p>
-                        <button data-filter= "11" class="movie__button">Movie review</button>
+                        <div class="movie__release-number">
+                           <p class="movie__number">7.85</p>
+                           <p class="movie__release-date"></p>
+                        </div>
+                        <button data-filter="11" class="movie__button">Overview</button>
                      </div>
-                     <div data-filter= "11" class="movie__back"></div>
+                     <div data-filter="11" class="movie__back">
+                        <p class="movie__back-review">Overview</p>
+                        <p class="movie__back-overview"></p>
+                     </div>
                   </div>
                </div>
                <div class="movie__column">
@@ -153,10 +222,16 @@
                      <img src="" alt="more" class="movie__img">
                      <div class="movie__footer">
                         <p class="movie__name">Movie</p>
-                        <p class="movie__number">7.85</p>
-                        <button data-filter= "12" class="movie__button">Movie review</button>
+                        <div class="movie__release-number">
+                           <p class="movie__number">7.85</p>
+                           <p class="movie__release-date"></p>
+                        </div>
+                        <button data-filter="12" class="movie__button">Overview</button>
                      </div>
-                     <div data-filter= "12" class="movie__back"></div>
+                     <div data-filter="12" class="movie__back">
+                        <p class="movie__back-review">Overview</p>
+                        <p class="movie__back-overview"></p>
+                     </div>
                   </div>
                </div>
             </div>
@@ -166,17 +241,19 @@
          <div class="footer__container container">
             <div class="footer__wrap">
                <div class="footer__year">2022</div>
-               <div class="footer__git">
-                  <a href="https://github.com/RuslSatt">github</a>
-               </div>
                <div class="footer__school">
-                  <a href="https://rs.school/js-stage0/">Rolling Scopes School</a> 
+                  <a href="https://rs.school/js-stage0/">
+                     <img class="footer__logo" src="./assets/img/rs_school_js.svg" alt="Logo our course">
+                  </a>
+               </div>
+               <div class="footer__git">
+                  <a href="https://github.com/RuslSatt">GITHUB</a>
                </div>
             </div>
          </div>
       </div>
    </div>
-   <script src="./js/script.js"></script>
+   <script src="./js/script.js" type="module"></script>
 </body>
 
 </html>
