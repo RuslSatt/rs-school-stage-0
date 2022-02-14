@@ -21,7 +21,7 @@ formGet.addEventListener('blur', function () {
 })
 
 // ---------------- Поиск через иконку --------------------- //
-const iconSearch = document.querySelector('.header__form');
+const iconSearch = document.querySelector('.header__search');
 function getIcon(e) {
    if (e.target.closest('.header__button')) {
       let keyBtn = formGet.value;
