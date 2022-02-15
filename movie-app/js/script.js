@@ -35,11 +35,7 @@ function getIcon(e) {
       };
 
    }
-   async function getData() {
-      const result = await fetch(url);
-      const data = await result.json();
-      showData(data); // Вывод содержимого на страницу
-   }
+   // ------------------- Обработка API -------------- //
    getData();
 }
 iconSearch.addEventListener('click', getIcon);
@@ -59,11 +55,6 @@ formGet.addEventListener('keydown', function (e) {
 
 
       // ------------------- Обработка API -------------- //
-      async function getData() {
-         const result = await fetch(url);
-         const data = await result.json();
-         showData(data); // Вывод содержимого на страницу
-      }
       getData();
    }
 })
@@ -111,7 +102,7 @@ function showData(data) {
       }
 
       // ---------------- if length array with movies more 12 -------------- //
-      if (lengthData > 12) {
+      if (lengthData >= 12) {
          img.forEach((image, index) => {
             const dataImg = data.results[0 + index].poster_path;
             if (dataImg !== null) {
@@ -142,7 +133,7 @@ function showData(data) {
          }
       }
       // ---------------- if length array with movies more 12 -------------- //
-      if (lengthData > 12) {
+      if (lengthData >= 12) {
          title.forEach((titleName, index) => {
             const keysTitle = data.results[0 + index].title;
             titleName.textContent = `${keysTitle}`;
@@ -167,7 +158,7 @@ function showData(data) {
          }
       }
       // ---------------- if length array with movies more 12 -------------- //
-      if (lengthData > 12) {
+      if (lengthData >= 12) {
          overView.forEach((overViewGet, index) => {
             const keysOver = data.results[0 + index].overview;
             overViewGet.textContent = `${keysOver}`;
@@ -196,7 +187,7 @@ function showData(data) {
          }
       }
       // ---------------- if length array with movies more 12 -------------- //
-      if (lengthData > 12) {
+      if (lengthData >= 12) {
          numberMovie.forEach((numberMovieGet, index) => {
             const keysNumberMovie = data.results[0 + index].vote_average;
             if (keysNumberMovie <= 7.5 && keysNumberMovie >= 5) {
@@ -223,7 +214,7 @@ function showData(data) {
          }
       }
       // ---------------- if length array with movies more 12 -------------- //
-      if (lengthData > 12) {
+      if (lengthData >= 12) {
          releaseDate.forEach((release, index) => {
             const keysRelease = data.results[0 + index].release_date;
             release.textContent = `Release date - ${keysRelease}`;
@@ -261,11 +252,6 @@ topMovie.addEventListener('click', function (e) {
    cross.classList.remove('cross-active');
    formGet.value = '';
    url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c';
-   async function getData() {
-      const result = await fetch(url);
-      const data = await result.json();
-      showData(data); // Вывод содержимого на страницу
-   }
    getData();
 })
 
