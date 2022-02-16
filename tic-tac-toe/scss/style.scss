@@ -1,0 +1,283 @@
+@import "_zero.scss";
+@import url(https://fonts.googleapis.com/css?family=Montserrat:regular);
+
+body {
+   font-family: Montserrat;
+}
+// -------------- оболочка ---------------- //
+.wrapper {
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+   background-color: #76b8de;
+   overflow: hidden;
+}
+
+// ---------------- main --------------- //
+.main {
+   flex: 1 1 auto;
+   display: flex;
+   align-items: center;
+}
+.main__container {
+   flex: 0 1 600px;
+   margin: 0px auto;
+   padding: 0 20px;
+}
+
+// --------------- main block ------------- //
+.game {
+   padding: 15px 15px;
+   border: 5px solid #feffd6;
+   border-radius: 20px;
+   background: #afdab659;
+   box-shadow: 15px 15px 7px #feffd629;
+   &__head {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      @media (max-width: 434px) {
+         flex-direction: column;
+         gap: 10px;
+      }
+   }
+
+   &__name-1,
+   &__name-2 {
+      background-color: #feffd6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      border-radius: 10px;
+      padding: 10px;
+      flex: 0 1 170px;
+      min-height: 45px;
+      @media (max-width: 434px) {
+         flex: 0;
+      }
+   }
+   &__name-1 {
+      position: relative;
+      padding-right: 40px;
+      &::before {
+         content: "";
+         display: inline-block;
+         position: absolute;
+         top: 5%;
+         right: 25px;
+         width: 2px;
+         height: 40px;
+         background-color: #0085ff;
+         transform: rotate(45deg);
+      }
+      &::after {
+         content: "";
+         display: inline-block;
+         position: absolute;
+         top: 5%;
+         right: 25px;
+         width: 2px;
+         height: 40px;
+         background-color: #0085ff;
+         transform: rotate(-45deg);
+      }
+   }
+   &__name-2 {
+      position: relative;
+
+      &::before {
+         content: "";
+         background: url('../assets/img/ellipse.svg') right no-repeat;
+         display: inline-block;
+         position: absolute;
+         top: 0;
+         right: 10px;
+         width: 100%;
+         height: 100%;
+      }
+   }
+   &__head-ellipse {
+      margin-left: 20px;
+      width: 20px;
+   }
+   &__title {
+      background-color: #feffd6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border-radius: 10px;
+      padding: 10px;
+      max-width: 320px;
+      margin: 0px auto;
+      @media (max-width: 437px) {
+         width: 100%;
+         max-width: none;
+      }
+   }
+
+   &__blocks {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      max-width: 350px;
+      margin: 0px auto;
+      padding-top: 20px;
+   }
+
+   &__block-span-1 {
+      position: absolute;
+      background-color: #0085ff;
+      height: 70px;
+      width: 3px;
+      transform: rotate(45deg);
+   }
+   &__block-span-2 {
+      position: absolute;
+      background-color: #0085ff;
+      height: 70px;
+      width: 3px;
+      transform: rotate(-45deg);
+   }
+
+   &__block {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      background-color: #feffd6;
+      border-radius: 10px;
+      transition: 0.3s;
+      cursor: pointer;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      img {
+         width: 70px;
+         height: 70px;
+         @media (max-width: 370px) {
+            width: 60px;
+            height: 60px;
+         }
+      }
+      &:hover {
+         transform: scale(1.05);
+      }
+      @media (max-width: 437px) {
+         width: 90px;
+         height: 90px;
+      }
+      @media (max-width: 370px) {
+         width: 70px;
+         height: 70px;
+      }
+   }
+   &__button {
+      padding-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+   &__start{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: #feffd6;
+      flex: 0 1 200px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+   }
+}
+
+.footer {
+}
+
+
+
+// -------------- Hello page ------------- //
+.hello-page {
+   min-height: 100vh;
+   height: 100%;
+   width: 100%;
+   position: absolute;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background-color: #76b8de;
+}
+
+.player-one {
+   margin-bottom: 10px;
+   position: relative;
+   &::before {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: -75%;
+      right: -30px;
+      width: 2px;
+      height: 40px;
+      background-color: #0085ff;
+      transform: rotate(45deg);
+   }
+   &::after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: -75%;
+      right: -30px;
+      width: 2px;
+      height: 40px;
+      background-color: #0085ff;
+      transform: rotate(-45deg);
+   }
+}
+.player-two {
+   margin-bottom: 10px;
+   position: relative;
+   &::before {
+      content: "";
+      background: url('../assets/img/ellipse.svg') right no-repeat;
+      display: inline-block;
+      position: absolute;
+      top: -100%;
+      right: -50px;
+      width: 100%;
+      height: 100%;
+      padding: 19px;
+   }
+}
+.input-one, .input-two {
+   max-width: 200px;
+   width: 100%;
+   padding: 5px 10px;
+   margin-bottom: 30px;
+   background-color: #feffd6;
+   border-radius: 10px;
+   font-size: 14px;
+}
+
+.btn {
+   max-width: 100px;
+   width: 100%;
+   background-color: #feffd6;
+   padding: 5px 10px;
+   border-radius: 10px;
+}
+
+.block-none {
+   transition: 1s;
+   opacity: 0;
+   visibility: hidden;
+}
+
+
+.mute {
+   pointer-events: none;
+}
