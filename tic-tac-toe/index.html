@@ -17,13 +17,15 @@
                <div class="game__head">
                   <div class="game__name-1">
 
+                     <span class="game__score-player-1">0</span>
                   </div>
                   <div class="game__name-2">
 
+                     <span class='game__score-player-2'>0</span>
                   </div>
                </div>
                <h1 class="game__title">
-                  Welcome in game
+                  Раунд 1
                </h1>
                <div class="game__blocks">
                   <div data-filter="1" class="game__block"></div>
@@ -38,20 +40,43 @@
                </div>
                <div class="game__button">
                   <button class="game__start">Restart</button>
+                  <img class="game__home" src="./assets/img/Home.svg" alt="">
+                  <img class="game__refresh" src="./assets/img/Refresh.png" alt="">
+                  <button class="game__table">Таблица рекордов</button>
                </div>
             </section>
          </div>
-
       </main>
       <footer class="footer">
-
       </footer>
-      <div class="hello-page">
+
+
+      <div class="hello__page">
+         <p class="hello__title">Выбери условия</p>
+         <p class="hello__condition-three">До 3 побед</p>
+         <p class="hello__condition-five">До 5 побед</p>
          <p class="player-one">Player</p>
-         <input type="text" name="text" class="input-one">
+         <input autocomplete="off" maxlength="8" type="text" name="text" class="input-one">
          <p class="player-two">Player</p>
-         <input type="text" name="text" class="input-two">
-         <button class="btn">Continue</button>
+         <input autocomplete="off" maxlength="8" type="text" name="text" class="input-two">
+         <button class="btn">Play</button>
+      </div>
+      <div class="table">
+         <div class="table__score">
+            <div class="table__name"></div>
+            <div class="table__number"></div>
+            <button class="table__btn">BACK</button>
+         </div>
+      </div>
+      <div class="happy">
+         <div class="happy__name">
+         </div>
+         <button class="happy__button-repeat">
+            Сыграть еще раз?
+         </button>
+         <button class="happy__button-exit">
+            Главное меню
+         </button>
       </div>
    </div>
 
