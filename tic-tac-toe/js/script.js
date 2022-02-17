@@ -84,8 +84,8 @@ const happyButtonExit = document.querySelector('.happy__button-exit');
 btnRestart.classList.add('mute');
 btnRestart.style.backgroundColor = '#cacaba';
 
-
 let click = 0;
+
 function getClickOnBlock(e) {
 
    if (e.target.closest('.game__block')) {
@@ -98,9 +98,16 @@ function getClickOnBlock(e) {
          e.target.classList.add('mute');
       }
       click++
+      console.log (click);
       getWinCombination();
+      if (click === 9) {
+         btnRestart.classList.remove('mute');
+         btnRestart.style.backgroundColor = '#feffd6';
+      }
    }
 }
+
+
 
 parentBlocks.addEventListener('click', getClickOnBlock);
 
@@ -145,7 +152,7 @@ function getWinCombination() {
          round++;
          scoreFirst++;
          changeScoreFirst.textContent = scoreFirst;
-         results = `Этот раунд за ${namePlayerFirst}`;
+         results = `Раунд взял(а) ${namePlayerFirst}`;
          giveNameWinner();
 
          // ! --------------------------------------------------------------------- //
@@ -197,7 +204,7 @@ function getWinCombination() {
          round++;
          scoreSecond++;
          changeScoreSecond.textContent = scoreSecond;
-         results = `Этот раунд за ${namePlayerSecond}`;
+         results = `Раунд взял(а) ${namePlayerSecond}`;
          giveNameWinner();
 
          // ! --------------------------------------------------------------------- //
@@ -255,8 +262,9 @@ changePlayer.addEventListener('click', function (e) {
    scoreFirst = 0;
    scoreSecond = 0;
    round = 1;
+   click = 0;
    helloPage.classList.remove('block-opacity');
-   mainBlock.classList.remove('block-none');
+   mainBlock.classList.remove('block-remove-opacity');
    removeClassChangeStyleBlocks();
    removeCrossAndCircle();
    removeNamePlayer();
@@ -273,9 +281,11 @@ refreshBtn.addEventListener('click', function (e) {
    removeCrossAndCircle();
    changeScoreFirst.textContent = '0';
    changeScoreSecond.textContent = '0';
-
+   click = 0;
    gameTitle.textContent = `Раунд 1`;
    gameTitle.style.backgroundColor = '#feffd6'
+   btnRestart.classList.add('mute');
+   btnRestart.style.backgroundColor = '#cacaba';
 })
 
 function removeCrossAndCircle() {
@@ -334,17 +344,17 @@ happyButtonRepeat.addEventListener('click', function (e) {
 
 happyButtonExit.addEventListener('click', function (e) {
    helloPage.classList.remove('block-opacity');
-   mainBlock.classList.remove('block-none');
+   mainBlock.classList.remove('block-remove-opacity');
    removeClassChangeStyleBlocks();
    removeCrossAndCircle();
    changeScoreFirst.textContent = '0';
    changeScoreSecond.textContent = '0';
    scoreFirst = 0;
    scoreSecond = 0;
+   click = 0;
    happyName.classList.remove('block-remove-opacity');
    gameTitle.textContent = `Раунд ${round}`;
    gameTitle.style.backgroundColor = '#feffd6'
-   click = 0;
    inputNamePlayerOne.value = '';
    inputNamePlayerTwo.value = '';
    conditionGameFirst.classList.remove('condition__color');
