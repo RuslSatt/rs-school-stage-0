@@ -142,8 +142,6 @@ function getWinCombination() {
          btnRestart.classList.remove('mute');
          btnRestart.style.backgroundColor = '#feffd6';
 
-
-
          round++;
          scoreFirst++;
          changeScoreFirst.textContent = scoreFirst;
@@ -196,13 +194,10 @@ function getWinCombination() {
          btnRestart.classList.remove('mute');
          btnRestart.style.backgroundColor = '#feffd6';
 
-         happyName.classList.add('block-remove-opacity');
-         happyNamePLayer.textContent = `${namePlayerFirst} победитель! Поздравляем`;
-
          round++;
          scoreSecond++;
          changeScoreSecond.textContent = scoreSecond;
-         results = "Нолики победили";
+         results = `Этот раунд за ${namePlayerSecond}`;
          giveNameWinner();
 
          // ! --------------------------------------------------------------------- //
