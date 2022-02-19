@@ -338,10 +338,12 @@ function changeClassMainAndHello() {
 // ------------------- score -------------------------- //
 let ind = 0;
 let array = [];
+
 let localArray = [];
 let arr = [];
+
 console.log(arr);
-console.log (array);
+console.log(array);
 
 
 
@@ -353,37 +355,34 @@ function getRecordFirstPLayer() {
    }
 
    array.forEach((arrayIs, index) => {
-      if (arrayIs.includes(namePlayerFirst)) {
+      if (arrayIs.name == namePlayerFirst) {
          console.log(index);
          ind = index;
       }
    });
 
    if (array.length === 0) {
-      arr.push(namePlayerFirst);
-      arr.push(score);
-      array.push(arr);
+      arr.push({ name: namePlayerFirst, num: score });
+      array.push(arr[0]);
       createNewElementInTableFirst();
-   } else if (array.length === localArray.length) {
-      if (!array[ind].includes(namePlayerFirst)) {
-         arr.push(namePlayerFirst);
-         arr.push(score);
-         array.unshift(arr);
+   } else if (array.length === localArray.length && array.length !== 0) {
+      if (array[ind].name !== namePlayerFirst) {
+         arr.push({ name: namePlayerFirst, num: score });
+         array.unshift(arr[0]);
          createNewElementInTableFirst();
       } else {
-         let number = ++array[ind][1];
+         let number = ++array[ind].num;
          const idNumberPlayer = document.getElementById(namePlayerFirst);
          idNumberPlayer.textContent = number;
       }
    } else {
-      if (!array[ind].includes(namePlayerFirst)) {
-         arr.push(namePlayerFirst);
-         arr.push(score);
-         const arrElements = arr.splice(2, 2);
-         array.unshift(arrElements);
+      if (array[ind].name !== namePlayerFirst) {
+         arr.push({ name: namePlayerFirst, num: score });
+         arr.splice(0, 1);
+         array.unshift(arr[0]);
          createNewElementInTableFirst();
       } else {
-         let number = ++array[ind][1];
+         let number = ++array[ind].num;
          const idNumberPlayer = document.getElementById(namePlayerFirst);
          idNumberPlayer.textContent = number;
       }
@@ -394,14 +393,14 @@ function createNewElementInTableFirst() {
    const namePLayerRecord = document.querySelector('.table__name');
    let namePLayerWinner = document.createElement('p');
    namePLayerWinner.className = 'table__player-name';
-   namePLayerWinner.innerHTML = array[ind][0];
+   namePLayerWinner.innerHTML = array[ind].name;
    namePLayerRecord.append(namePLayerWinner);
 
    const numberPlayerRecord = document.querySelector('.table__number');
    let numberPLayerWinner = document.createElement('p');
    numberPLayerWinner.className = 'table__player-number';
    numberPLayerWinner.id = namePlayerFirst;
-   numberPLayerWinner.innerHTML = array[ind][1];
+   numberPLayerWinner.innerHTML = array[ind].num;
    numberPlayerRecord.append(numberPLayerWinner);
 }
 // ! ----------------------- Function ----------------------------- //
@@ -411,27 +410,27 @@ function setLocalStorage() {
    localStorage.setItem('score', JSON.stringify(array));
 }
 
-
-
 function getLocalStorage() {
    const pars = localStorage.getItem('score');
    localArray = JSON.parse(pars)
+   localArray.sort((a, b) => b.num - a.num);
    console.log(localArray);
    localArray.forEach(localArr => {
       array.push(localArr);
       const namePLayerRecord = document.querySelector('.table__name');
       let namePLayerWinner = document.createElement('p');
       namePLayerWinner.className = 'table__player-name';
-      namePLayerWinner.innerHTML = localArr[0];
+      namePLayerWinner.innerHTML = localArr.name;
       namePLayerRecord.append(namePLayerWinner);
 
       const numberPlayerRecord = document.querySelector('.table__number');
       let numberPLayerWinner = document.createElement('p');
       numberPLayerWinner.className = 'table__player-number';
-      numberPLayerWinner.id = localArr[0];
-      numberPLayerWinner.innerHTML = localArr[1];
+      numberPLayerWinner.id = localArr.name;
+      numberPLayerWinner.innerHTML = localArr.num;
       numberPlayerRecord.append(numberPLayerWinner);
    })
 }
 window.addEventListener('pagehide', setLocalStorage);
 window.addEventListener('pageshow', getLocalStorage);
+
