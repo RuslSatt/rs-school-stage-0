@@ -1,5 +1,5 @@
+// --Start main code--------------- Hello page --------------------------------- //
 
-// -----------------Hello page --------------------------------- //
 const inputNamePlayerOne = document.querySelector('.input-one');
 const inputNamePlayerTwo = document.querySelector('.input-two');
 const btnContinue = document.querySelector('.btn');
@@ -8,10 +8,7 @@ const mainBlock = document.querySelector('.main');
 const conditionGameFirst = document.querySelector('.hello__condition-three')
 const conditionGameSecond = document.querySelector('.hello__condition-five')
 
-
-
-// -------------------------------------------------------------------------- //
-
+// -------------------Choiсe condition-------------------------------------- //
 
 conditionGameFirst.addEventListener('click', function (e) {
    if (conditionGameSecond.classList.contains('condition__color')) {
@@ -20,8 +17,7 @@ conditionGameFirst.addEventListener('click', function (e) {
    } else {
       conditionGameFirst.classList.add('condition__color');
    }
-})
-
+});
 conditionGameSecond.addEventListener('click', function (e) {
    if (conditionGameFirst.classList.contains('condition__color')) {
       conditionGameFirst.classList.remove('condition__color');
@@ -29,37 +25,38 @@ conditionGameSecond.addEventListener('click', function (e) {
    } else {
       conditionGameSecond.classList.add('condition__color');
    }
-})
+});
+
+// --------------------- Click on button play ---------------------- //
 
 let namePlayerFirst = '';
 let namePlayerSecond = '';
-// ------------------------- Next page --------------------------------------- //
 btnContinue.addEventListener('click', function (e) {
    if (inputNamePlayerOne.value !== '' &&
       inputNamePlayerTwo.value !== '' &&
       conditionGameFirst.classList.contains('condition__color') ||
       conditionGameSecond.classList.contains('condition__color')
    ) {
+      onMuteBtnRestart();
+      changeGameTitle();
       helloPage.classList.add('block-opacity');
       mainBlock.classList.add('block-remove-opacity');
-      // ----------- Присваивание имени строкам ----------- //
+      // ----------- Get name players ----------- //
       namePlayerFirst = inputNamePlayerOne.value;
-
+      // ----------- Create new element with name player ---------- //
       let namePLayerElementOne = document.createElement('p');
       namePLayerElementOne.className = 'game__name-player';
       namePLayerElementOne.innerHTML = namePlayerFirst;
       namePlayerOne.prepend(namePLayerElementOne)
-
+      // ----------- Get name players ----------- //
       namePlayerSecond = inputNamePlayerTwo.value;
-
+      // ----------- Create new element with name player ---------- //
       let namePLayerElementTwo = document.createElement('p');
       namePLayerElementTwo.className = 'game__name-player';
       namePLayerElementTwo.innerHTML = namePlayerSecond;
       namePlayerTwo.prepend(namePLayerElementTwo)
    }
 })
-
-
 
 // ------------------------ Main --------------------------------- //
 const namePlayerOne = document.querySelector('.game__name-1');
@@ -80,9 +77,7 @@ const happyNamePLayer = document.querySelector('.happy__name');
 const happyButtonRepeat = document.querySelector('.happy__button-repeat');
 const happyButtonExit = document.querySelector('.happy__button-exit');
 
-// ---------------------- выводим крестик или нолик ----------------------- //
-btnRestart.classList.add('mute');
-btnRestart.style.backgroundColor = '#cacaba';
+// ---------------------- Step ----------------------- //
 
 let click = 0;
 
@@ -98,28 +93,23 @@ function getClickOnBlock(e) {
          e.target.classList.add('mute');
       }
       click++
-      console.log (click);
       getWinCombination();
       if (click === 9) {
-         btnRestart.classList.remove('mute');
-         btnRestart.style.backgroundColor = '#feffd6';
+         offMuteBtnRestart();
       }
    }
 }
 
-
-
 parentBlocks.addEventListener('click', getClickOnBlock);
 
-
-// ---------------------- win ----------------------- //
+// ---------------------- winner ----------------------- //
 let scoreFirst = 0;
 let scoreSecond = 0;
 let results = '';
-let score = 0;
+let score = 1;
 let round = 1;
-function getWinCombination() {
 
+function getWinCombination() {
    const arrValueBlocks = [
       [0, 1, 2],
       [3, 4, 5],
@@ -130,59 +120,24 @@ function getWinCombination() {
       [0, 4, 8],
       [2, 4, 6],
    ]
-
    for (let i = 0; i < arrValueBlocks.length; i++) {
       if (
          blocks[arrValueBlocks[i][0]].querySelector('.game__block-span-1') &&
          blocks[arrValueBlocks[i][1]].querySelector('.game__block-span-1') &&
          blocks[arrValueBlocks[i][2]].querySelector('.game__block-span-1')
       ) {
-         for (let j = 0; j < 3; j++) {
+         for (let j = 0; j < 3; j++) { // Give style on winning
             const colorBlock = blocks[arrValueBlocks[i][j]];
             colorBlock.style.backgroundColor = '#2FFE43'
             gameTitle.style.backgroundColor = '#0085ff'
          }
          blocks.forEach(blockMute => {
-            blockMute.classList.add('mute');
+            blockMute.classList.add('mute'); // Mute everything blocks on winning
          })
-
-         btnRestart.classList.remove('mute');
-         btnRestart.style.backgroundColor = '#feffd6';
-
-         round++;
-         scoreFirst++;
-         changeScoreFirst.textContent = scoreFirst;
-         results = `Раунд взял(а) ${namePlayerFirst}`;
-         giveNameWinner();
-
-         // ! --------------------------------------------------------------------- //
-         if (conditionGameFirst.classList.contains('condition__color')) {
-            if (scoreFirst === 3) {
-               happyName.classList.add('block-remove-opacity');
-               happyNamePLayer.textContent = `${namePlayerFirst} победитель! Поздравляем`;
-
-               round = 1;
-
-               let scoreResult = score++;
-               let arr = {
-                  namePlayerFirst: scoreResult,
-               }
-            }
-         }
-         if (conditionGameSecond.classList.contains('condition__color')) {
-            if (scoreFirst === 5) {
-               happyName.classList.add('block-remove-opacity');
-               happyNamePLayer.textContent = `${namePlayerFirst} победитель! Поздравляем`;
-
-               round = 1;
-
-               let scoreResult = score++;
-               let arr = {
-                  namePlayerFirst: scoreResult,
-               }
-            }
-         }
-         // ! --------------------------------------------------------------------- //
+         offMuteBtnRestart();
+         changeContentFirst();
+         getNameWinner();
+         choiceWinnerOnConditionGameFirst()
 
       } else if (
          blocks[arrValueBlocks[i][0]].querySelector('.game__img') &&
@@ -197,96 +152,138 @@ function getWinCombination() {
          blocks.forEach(blockMute => {
             blockMute.classList.add('mute');
          })
+         offMuteBtnRestart();
+         changeContentSecond();
+         getNameWinner();
+         choiceWinnerOnConditionGameSecond();
+      }
+   }
+}
+// ---------------- Work with buttons --------------- //
 
-         btnRestart.classList.remove('mute');
-         btnRestart.style.backgroundColor = '#feffd6';
+btnRestart.addEventListener('click', function (e) {
+   click = 0;
+   onMuteBtnRestart();
+   removeCrossAndCircle();
+   removeClassChangeStyleBlocks();
+   changeGameTitle();
+})
 
-         round++;
-         scoreSecond++;
-         changeScoreSecond.textContent = scoreSecond;
-         results = `Раунд взял(а) ${namePlayerSecond}`;
-         giveNameWinner();
+changePlayer.addEventListener('click', function (e) {
+   changeClassMainAndHello();
+   zeroingScoreAndSteps();
+   removeClassChangeStyleBlocks();
+   removeCrossAndCircle();
+   removeNamePlayer();
+   removeCondition();
+   onMuteBtnRestart();
+})
 
-         // ! --------------------------------------------------------------------- //
-         if (conditionGameFirst.classList.contains('condition__color')) {
-            if (scoreSecond === 3) {
-               happyName.classList.add('block-remove-opacity');
-               happyNamePLayer.textContent = `${namePlayerSecond} победитель! Поздравляем`;
+refreshBtn.addEventListener('click', function (e) {
+   gameTitle.textContent = `Раунд 1`;
+   gameTitle.style.backgroundColor = '#feffd6'
+   zeroingScoreAndSteps();
+   removeClassChangeStyleBlocks();
+   removeCrossAndCircle();
+   onMuteBtnRestart();
+})
 
-               round = 1;
+tableBtn.addEventListener('click', function (e) {
+   scoreTable.classList.add('block-remove-opacity');
+})
 
-               let scoreResult = score++;
-               let arr = {
-                  namePlayerSecond: scoreResult,
-               }
-            }
-         }
-         if (conditionGameSecond.classList.contains('condition__color')) {
-            if (scoreSecond === 5) {
-               happyName.classList.add('block-remove-opacity');
-               happyNamePLayer.textContent = `${namePlayerSecond} победитель! Поздравляем`;
+scoreTableBtn.addEventListener('click', function (e) {
+   scoreTable.classList.remove('block-remove-opacity');
+})
 
-               round = 1;
+happyButtonRepeat.addEventListener('click', function (e) {
+   happyName.classList.remove('block-remove-opacity');
+   zeroingScoreAndSteps();
+   removeClassChangeStyleBlocks();
+   removeCrossAndCircle();
+   changeGameTitle();
+   onMuteBtnRestart();
 
-               let scoreResult = score++;
-               let arr = {
-                  namePlayerSecond: scoreResult,
-               }
-            }
-         }
-         // ! --------------------------------------------------------------------- //
+})
+
+happyButtonExit.addEventListener('click', function (e) {
+   happyName.classList.remove('block-remove-opacity');
+   inputNamePlayerOne.value = '';
+   inputNamePlayerTwo.value = '';
+   changeClassMainAndHello();
+   removeClassChangeStyleBlocks();
+   removeCrossAndCircle();
+   zeroingScoreAndSteps();
+   changeGameTitle();
+   removeCondition();
+})
+
+// ! ----------------------- Functions ----------------------------- //
+
+function onMuteBtnRestart() {
+   btnRestart.classList.add('mute');
+   btnRestart.style.backgroundColor = '#cacaba';
+}
+function offMuteBtnRestart() {
+   btnRestart.classList.remove('mute');
+   btnRestart.style.backgroundColor = '#feffd6';
+}
+
+
+function changeContentFirst() {
+   round++;
+   scoreFirst++;
+   changeScoreFirst.textContent = scoreFirst;
+   results = `Раунд взял(а) ${namePlayerFirst}`;
+}
+
+function changeContentSecond() {
+   round++;
+   scoreSecond++;
+   changeScoreSecond.textContent = scoreSecond;
+   results = `Раунд взял(а) ${namePlayerSecond}`;
+}
+
+function getNameWinner() {
+   gameTitle.textContent = results;
+}
+
+function choiceWinnerOnConditionGameFirst() {
+   if (conditionGameFirst.classList.contains('condition__color')) {
+      if (scoreFirst === 1) {
+         happyName.classList.add('block-remove-opacity');
+         happyNamePLayer.textContent = `${namePlayerFirst} победитель! Поздравляем`;
+         round = 1;
+         getRecordFirstPLayer();
+
+      }
+   }
+   if (conditionGameSecond.classList.contains('condition__color')) {
+      if (scoreFirst === 5) {
+         happyName.classList.add('block-remove-opacity');
+         happyNamePLayer.textContent = `${namePlayerFirst} победитель! Поздравляем`;
+         round = 1;
+         getRecordFirstPLayer();
       }
    }
 }
 
-
-
-function giveNameWinner() {
-   gameTitle.textContent = results;
+function choiceWinnerOnConditionGameSecond() {
+   if (conditionGameFirst.classList.contains('condition__color')) {
+      if (scoreSecond === 3) {
+         happyName.classList.add('block-remove-opacity');
+         happyNamePLayer.textContent = `${namePlayerSecond} победитель! Поздравляем`;
+         round = 1;
+      }
+   }
+   if (conditionGameSecond.classList.contains('condition__color')) {
+      if (scoreSecond === 5) {
+         happyName.classList.add('block-remove-opacity');
+         happyNamePLayer.textContent = `${namePlayerSecond} победитель! Поздравляем`;
+         round = 1;
+      }
+   }
 }
-
-
-
-
-btnRestart.addEventListener('click', function (e) {
-   btnRestart.classList.add('mute');
-   btnRestart.style.backgroundColor = '#cacaba';
-   removeCrossAndCircle();
-   removeClassChangeStyleBlocks();
-   gameTitle.textContent = `Раунд ${round}`;
-   gameTitle.style.backgroundColor = '#feffd6'
-   click = 0;
-})
-
-changePlayer.addEventListener('click', function (e) {
-   scoreFirst = 0;
-   scoreSecond = 0;
-   round = 1;
-   click = 0;
-   helloPage.classList.remove('block-opacity');
-   mainBlock.classList.remove('block-remove-opacity');
-   removeClassChangeStyleBlocks();
-   removeCrossAndCircle();
-   removeNamePlayer();
-   changeScoreFirst.textContent = '0';
-   changeScoreSecond.textContent = '0';
-   conditionGameFirst.classList.remove('condition__color');
-   conditionGameSecond.classList.remove('condition__color');
-})
-
-refreshBtn.addEventListener('click', function (e) {
-   scoreFirst = 0;
-   scoreSecond = 0;
-   removeClassChangeStyleBlocks();
-   removeCrossAndCircle();
-   changeScoreFirst.textContent = '0';
-   changeScoreSecond.textContent = '0';
-   click = 0;
-   gameTitle.textContent = `Раунд 1`;
-   gameTitle.style.backgroundColor = '#feffd6'
-   btnRestart.classList.add('mute');
-   btnRestart.style.backgroundColor = '#cacaba';
-})
 
 function removeCrossAndCircle() {
    const blocksSpan = document.querySelectorAll('.game__block-span-1, .game__block-span-2');
@@ -298,7 +295,6 @@ function removeCrossAndCircle() {
       image.remove();
    });
 }
-
 
 function removeClassChangeStyleBlocks() {
    blocks.forEach(elementBlock => {
@@ -316,47 +312,126 @@ function removeNamePlayer() {
    inputNamePlayerTwo.value = '';
 }
 
-
-tableBtn.addEventListener('click', function (e) {
-   scoreTable.classList.add('block-remove-opacity');
-})
-
-scoreTableBtn.addEventListener('click', function (e) {
-   scoreTable.classList.remove('block-remove-opacity');
-})
-
-happyButtonRepeat.addEventListener('click', function (e) {
+function zeroingScoreAndSteps() {
+   changeScoreFirst.textContent = '0';
+   changeScoreSecond.textContent = '0';
    scoreFirst = 0;
    scoreSecond = 0;
+   click = 0;
    round = 1;
-   click = 0;
-   removeClassChangeStyleBlocks();
-   removeCrossAndCircle();
-   changeScoreFirst.textContent = '0';
-   changeScoreSecond.textContent = '0';
+}
 
-   happyName.classList.remove('block-remove-opacity');
-   gameTitle.textContent = `Раунд ${round}`;
-   gameTitle.style.backgroundColor = '#feffd6'
-   btnRestart.classList.add('mute');
-   btnRestart.style.backgroundColor = '#cacaba';
-})
-
-happyButtonExit.addEventListener('click', function (e) {
-   helloPage.classList.remove('block-opacity');
-   mainBlock.classList.remove('block-remove-opacity');
-   removeClassChangeStyleBlocks();
-   removeCrossAndCircle();
-   changeScoreFirst.textContent = '0';
-   changeScoreSecond.textContent = '0';
-   scoreFirst = 0;
-   scoreSecond = 0;
-   click = 0;
-   happyName.classList.remove('block-remove-opacity');
-   gameTitle.textContent = `Раунд ${round}`;
-   gameTitle.style.backgroundColor = '#feffd6'
-   inputNamePlayerOne.value = '';
-   inputNamePlayerTwo.value = '';
+function removeCondition() {
    conditionGameFirst.classList.remove('condition__color');
    conditionGameSecond.classList.remove('condition__color');
-})
+}
+
+function changeGameTitle() {
+   gameTitle.textContent = `Раунд ${round}`;
+   gameTitle.style.backgroundColor = '#feffd6'
+}
+
+function changeClassMainAndHello() {
+   helloPage.classList.remove('block-opacity');
+   mainBlock.classList.remove('block-remove-opacity');
+}
+// ------------------- score -------------------------- //
+let ind = 0;
+let array = [];
+let localArray = [];
+let arr = [];
+console.log(arr);
+console.log (array);
+
+
+
+function getRecordFirstPLayer() {
+   ind = 0;
+
+   if (array.length > 10) {
+      array.splice(0, 1);
+   }
+
+   array.forEach((arrayIs, index) => {
+      if (arrayIs.includes(namePlayerFirst)) {
+         console.log(index);
+         ind = index;
+      }
+   });
+
+   if (array.length === 0) {
+      arr.push(namePlayerFirst);
+      arr.push(score);
+      array.push(arr);
+      createNewElementInTableFirst();
+   } else if (array.length === localArray.length) {
+      if (!array[ind].includes(namePlayerFirst)) {
+         arr.push(namePlayerFirst);
+         arr.push(score);
+         array.unshift(arr);
+         createNewElementInTableFirst();
+      } else {
+         let number = ++array[ind][1];
+         const idNumberPlayer = document.getElementById(namePlayerFirst);
+         idNumberPlayer.textContent = number;
+      }
+   } else {
+      if (!array[ind].includes(namePlayerFirst)) {
+         arr.push(namePlayerFirst);
+         arr.push(score);
+         const arrElements = arr.splice(2, 2);
+         array.unshift(arrElements);
+         createNewElementInTableFirst();
+      } else {
+         let number = ++array[ind][1];
+         const idNumberPlayer = document.getElementById(namePlayerFirst);
+         idNumberPlayer.textContent = number;
+      }
+   }
+}
+
+function createNewElementInTableFirst() {
+   const namePLayerRecord = document.querySelector('.table__name');
+   let namePLayerWinner = document.createElement('p');
+   namePLayerWinner.className = 'table__player-name';
+   namePLayerWinner.innerHTML = array[ind][0];
+   namePLayerRecord.append(namePLayerWinner);
+
+   const numberPlayerRecord = document.querySelector('.table__number');
+   let numberPLayerWinner = document.createElement('p');
+   numberPLayerWinner.className = 'table__player-number';
+   numberPLayerWinner.id = namePlayerFirst;
+   numberPLayerWinner.innerHTML = array[ind][1];
+   numberPlayerRecord.append(numberPLayerWinner);
+}
+// ! ----------------------- Function ----------------------------- //
+// ? ----------------------- Local Storage ------------------------ //
+
+function setLocalStorage() {
+   localStorage.setItem('score', JSON.stringify(array));
+}
+
+// localStorage.clear()
+
+function getLocalStorage() {
+   const pars = localStorage.getItem('score');
+   localArray = JSON.parse(pars)
+   console.log(localArray);
+   localArray.forEach(localArr => {
+      array.push(localArr);
+      const namePLayerRecord = document.querySelector('.table__name');
+      let namePLayerWinner = document.createElement('p');
+      namePLayerWinner.className = 'table__player-name';
+      namePLayerWinner.innerHTML = localArr[0];
+      namePLayerRecord.append(namePLayerWinner);
+
+      const numberPlayerRecord = document.querySelector('.table__number');
+      let numberPLayerWinner = document.createElement('p');
+      numberPLayerWinner.className = 'table__player-number';
+      numberPLayerWinner.id = localArr[0];
+      numberPLayerWinner.innerHTML = localArr[1];
+      numberPlayerRecord.append(numberPLayerWinner);
+   })
+}
+window.addEventListener('pagehide', setLocalStorage);
+window.addEventListener('pageshow', getLocalStorage);
