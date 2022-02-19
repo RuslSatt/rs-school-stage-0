@@ -22,8 +22,8 @@ body {
 .main {
    flex: 1 1 auto;
    display: flex;
-   opacity: 0;
-   visibility: hidden;
+   // opacity: 0;
+   // visibility: hidden;
    align-items: center;
 }
 .main__container {
@@ -373,10 +373,46 @@ body {
       background-color: #feffd6;
       border-radius: 10px;
       overflow: auto;
+      padding-bottom: 10px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+   }
+   &__score-li {
+      flex: 1 1 auto;
       display: flex;
       justify-content: center;
-      align-items: flex-end;
-      padding-bottom: 10px;
+      gap: 20px;
+      padding: 10px;
+      p {
+         margin-bottom: 10px;
+      }
+   }
+   &__title-number {
+      margin-bottom: 10px;
+      background-color: #89c2f8;
+      padding: 10px;
+      width: 100px;
+      border-radius: 10px;
+   }
+   &__title-name {
+      background-color: #89c2f8;
+      padding: 10px;
+      width: 150px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+   }
+   &__player-number {
+      background-color: #cece9daf;
+      border-radius: 10px;
+      width: 100px;
+      padding: 5px;
+   }
+   &__player-name {
+      background-color: #cece9daf;
+      border-radius: 10px;
+      width: 150px;
+      padding: 5px;
    }
    &__btn {
       max-width: 100px;
