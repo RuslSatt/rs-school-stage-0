@@ -411,7 +411,7 @@ function setLocalStorage() {
    localStorage.setItem('score', JSON.stringify(array));
 }
 
-// localStorage.clear()
+
 
 function getLocalStorage() {
    const pars = localStorage.getItem('score');
