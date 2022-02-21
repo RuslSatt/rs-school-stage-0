@@ -367,7 +367,6 @@ function getRecordFirstPLayer() {
 
    array.forEach((arrayIs, index) => {
       if (arrayIs.name == namePlayerFirst) {
-         console.log(index);
          ind = index;
       }
    });
@@ -442,7 +441,6 @@ function getRecordSecondPLayer() {
 
    array.forEach((arrayIs, index) => {
       if (arrayIs.name == namePlayerSecond) {
-         console.log(index);
          ind = index;
       }
    });
