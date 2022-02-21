@@ -259,7 +259,7 @@ function choiceWinnerOnConditionGameFirst() {
       }
    }
    if (conditionGameSecond.classList.contains('condition__color')) {
-      if (scoreFirst === 5) {
+      if (scoreFirst === 3) {
          happyName.classList.add('block-remove-opacity');
          happyNamePLayer.textContent = `${namePlayerFirst} победитель! Поздравляем`;
          round = 1;
@@ -270,17 +270,19 @@ function choiceWinnerOnConditionGameFirst() {
 
 function choiceWinnerOnConditionGameSecond() {
    if (conditionGameFirst.classList.contains('condition__color')) {
+      if (scoreSecond === 1) {
+         happyName.classList.add('block-remove-opacity');
+         happyNamePLayer.textContent = `${namePlayerSecond} победитель! Поздравляем`;
+         round = 1;
+         getRecordSecondPLayer();
+      }
+   }
+   if (conditionGameSecond.classList.contains('condition__color')) {
       if (scoreSecond === 3) {
          happyName.classList.add('block-remove-opacity');
          happyNamePLayer.textContent = `${namePlayerSecond} победитель! Поздравляем`;
          round = 1;
-      }
-   }
-   if (conditionGameSecond.classList.contains('condition__color')) {
-      if (scoreSecond === 5) {
-         happyName.classList.add('block-remove-opacity');
-         happyNamePLayer.textContent = `${namePlayerSecond} победитель! Поздравляем`;
-         round = 1;
+         getRecordSecondPLayer();
       }
    }
 }
@@ -345,8 +347,6 @@ let arr = [];
 console.log(arr);
 console.log(array);
 
-
-
 function getRecordFirstPLayer() {
    ind = 0;
 
@@ -366,13 +366,13 @@ function getRecordFirstPLayer() {
    } else if (array.length === localArray.length && arr.length === 0 || array.length > localArray.length && arr.length === 0) {
       if (array[ind].name !== namePlayerFirst) {
          arr.push({ name: namePlayerFirst, num: score });
-         array.unshift(arr[0]);
+         array.push(arr[0]);
          if (array.length > 1) {
             array.sort((a, b) => b.num - a.num);
          }
          localStorage.clear();
          setLocalStorage();
-         removeElementInTableFirst();
+         removeElementInTable();
          getLocalStorage();
       } else {
          let number = ++array[ind].num;
@@ -386,21 +386,21 @@ function getRecordFirstPLayer() {
 
          localStorage.clear();
          setLocalStorage();
-         removeElementInTableFirst();
+         removeElementInTable();
          getLocalStorage();
       }
    } else {
       if (array[ind].name !== namePlayerFirst) {
          arr.push({ name: namePlayerFirst, num: score });
          arr.splice(0, 1);
-         array.unshift(arr[0]);
+         array.push(arr[0]);
          if (array.length > 1) {
             array.sort((a, b) => b.num - a.num);
          }
 
          localStorage.clear();
          setLocalStorage();
-         removeElementInTableFirst();
+         removeElementInTable();
          getLocalStorage();
       } else {
          let number = ++array[ind].num;
@@ -415,14 +415,89 @@ function getRecordFirstPLayer() {
 
          localStorage.clear();
          setLocalStorage();
-         removeElementInTableFirst();
+         removeElementInTable();
          getLocalStorage();
       }
 
    }
 }
 
-function removeElementInTableFirst() {
+function getRecordSecondPLayer() {
+   ind = 0;
+
+   array.forEach((arrayIs, index) => {
+      if (arrayIs.name == namePlayerSecond) {
+         console.log(index);
+         ind = index;
+      }
+   });
+
+   if (array.length === 0) {
+      arr.push({ name: namePlayerSecond, num: score });
+      array.push(arr[0]);
+      localStorage.clear();
+      setLocalStorage();
+      getLocalStorage();
+   } else if (array.length === localArray.length && arr.length === 0 || array.length > localArray.length && arr.length === 0) {
+      if (array[ind].name !== namePlayerSecond) {
+         arr.push({ name: namePlayerSecond, num: score });
+         array.push(arr[0]);
+         if (array.length > 1) {
+            array.sort((a, b) => b.num - a.num);
+         }
+         localStorage.clear();
+         setLocalStorage();
+         removeElementInTable();
+         getLocalStorage();
+      } else {
+         let number = ++array[ind].num;
+         const idNumberPlayer = document.getElementById(namePlayerSecond);
+         if (idNumberPlayer !== null) {
+            idNumberPlayer.textContent = number;
+         }
+         if (array.length > 1) {
+            array.sort((a, b) => b.num - a.num);
+         }
+
+         localStorage.clear();
+         setLocalStorage();
+         removeElementInTable();
+         getLocalStorage();
+      }
+   } else {
+      if (array[ind].name !== namePlayerSecond) {
+         arr.push({ name: namePlayerSecond, num: score });
+         arr.splice(0, 1);
+         array.push(arr[0]);
+         if (array.length > 1) {
+            array.sort((a, b) => b.num - a.num);
+         }
+
+         localStorage.clear();
+         setLocalStorage();
+         removeElementInTable();
+         getLocalStorage();
+      } else {
+         let number = ++array[ind].num;
+         const idNumberPlayer = document.getElementById(namePlayerSecond);
+         if (idNumberPlayer !== null) {
+            idNumberPlayer.textContent = number;
+         }
+         
+         if (array.length > 1) {
+            array.sort((a, b) => b.num - a.num);
+         }
+
+         localStorage.clear();
+         setLocalStorage();
+         removeElementInTable();
+         getLocalStorage();
+      }
+
+   }
+}
+
+function removeElementInTable() {
    const tablePlayerName = document.querySelectorAll('.table__player-name');
    tablePlayerName.forEach(tableName => {
       tableName.remove();
@@ -466,26 +541,28 @@ function getLocalStorage() {
 
 
 function parsLocalStorageInArray() {
-   const pars = localStorage.getItem('score');
-   localArray = JSON.parse(pars);
-   localArray.forEach(localArr => {
-      array.push(localArr);
-   });
-   let localSlice = localArray.slice(0, 10);
-   localSlice.forEach (localArr => {
-      const namePLayerRecord = document.querySelector('.table__name');
-      let namePLayerWinner = document.createElement('p');
-      namePLayerWinner.className = 'table__player-name';
-      namePLayerWinner.innerHTML = localArr.name;
-      namePLayerRecord.append(namePLayerWinner);
-
-      const numberPlayerRecord = document.querySelector('.table__number');
-      let numberPLayerWinner = document.createElement('p');
-      numberPLayerWinner.className = 'table__player-number';
-      numberPLayerWinner.id = localArr.name;
-      numberPLayerWinner.innerHTML = localArr.num;
-      numberPlayerRecord.append(numberPLayerWinner);
-   })
+   if (localArray !== null) {
+      const pars = localStorage.getItem('score');
+      localArray = JSON.parse(pars);
+      localArray.forEach(localArr => {
+         array.push(localArr);
+      });
+      let localSlice = localArray.slice(0, 10);
+      localSlice.forEach (localArr => {
+         const namePLayerRecord = document.querySelector('.table__name');
+         let namePLayerWinner = document.createElement('p');
+         namePLayerWinner.className = 'table__player-name';
+         namePLayerWinner.innerHTML = localArr.name;
+         namePLayerRecord.append(namePLayerWinner);
+   
+         const numberPlayerRecord = document.querySelector('.table__number');
+         let numberPLayerWinner = document.createElement('p');
+         numberPLayerWinner.className = 'table__player-number';
+         numberPLayerWinner.id = localArr.name;
+         numberPLayerWinner.innerHTML = localArr.num;
+         numberPlayerRecord.append(numberPLayerWinner);
+      })
+   }
 }
 window.addEventListener('pagehide', setLocalStorage);
 window.addEventListener('pageshow', parsLocalStorageInArray);
