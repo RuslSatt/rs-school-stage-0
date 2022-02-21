@@ -575,7 +575,7 @@ function parsLocalStorageInArray() {
       })
    }
 }
-window.addEventListener('pagehide', setLocalStorage);
+
 window.addEventListener('pageshow', parsLocalStorageInArray);
 
 // ---------------------------- history game ---------------------- //
@@ -591,10 +591,7 @@ function getFinishMathResultsFirst() {
       arrayHistory.unshift(arrHis);
       showElementInHistoryBlockFirst();
       removeWinnerGame();
-   } else if (arrayHistory.length === localArrayHistory.length && arrHis.length === 0 ||
-      arrayHistory.length > localArrayHistory.length && arrHis.length === 0 ||
-      arrayHistory.length < localArrayHistory.length && arrHis.length === 0
-   ) {
+   } else if (arrHis.length === 0) {
       arrHis.push(`${namePlayerFirst} vs ${namePlayerSecond}`)
       arrHis.push(`${namePlayerFirst} победитель`);
       arrayHistory.unshift(arrHis);
@@ -608,6 +605,7 @@ function getFinishMathResultsFirst() {
       showElementInHistoryBlockFirst();
       removeWinnerGame();
    }
+   setLocalStoragehistory();
 }
 
 function showElementInHistoryBlockFirst() {
@@ -636,10 +634,7 @@ function getFinishMathResultsSecond() {
       arrayHistory.unshift(arrHis);
       showElementInHistoryBlockSecond();
       removeWinnerGame();
-   } else if (arrayHistory.length === localArrayHistory.length && arrHis.length === 0 ||
-      arrayHistory.length > localArrayHistory.length && arrHis.length === 0 ||
-      arrayHistory.length < localArrayHistory.length && arrHis.length === 0
-   ) {
+   } else if (arrHis.length === 0) {
       arrHis.push(`${namePlayerFirst} vs ${namePlayerSecond}`)
       arrHis.push(`${namePlayerSecond} победитель`);
       arrayHistory.unshift(arrHis);
@@ -653,6 +648,7 @@ function getFinishMathResultsSecond() {
       showElementInHistoryBlockSecond();
       removeWinnerGame();
    }
+   setLocalStoragehistory();
 }
 
 function showElementInHistoryBlockSecond() {
@@ -719,7 +715,7 @@ function getLocalStorageHistory() {
 }
 
 
-window.addEventListener('pagehide', setLocalStoragehistory);
+
 window.addEventListener('pageshow', getLocalStorageHistory);
 
 window.addEventListener('click', function (e) {
