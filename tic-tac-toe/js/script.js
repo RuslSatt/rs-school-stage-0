@@ -76,7 +76,9 @@ const happyName = document.querySelector('.happy');
 const happyNamePLayer = document.querySelector('.happy__name');
 const happyButtonRepeat = document.querySelector('.happy__button-repeat');
 const happyButtonExit = document.querySelector('.happy__button-exit');
-
+const historyBtn = document.querySelector('.game__history');
+const historyBlockBtn = document.querySelector('.history__block-btn')
+const historyBlock = document.querySelector('.history');
 // ---------------------- Step ----------------------- //
 
 let click = 0;
@@ -96,6 +98,7 @@ function getClickOnBlock(e) {
       getWinCombination();
       if (click === 9) {
          offMuteBtnRestart();
+         round++;
       }
    }
 }
@@ -137,7 +140,8 @@ function getWinCombination() {
          offMuteBtnRestart();
          changeContentFirst();
          getNameWinner();
-         choiceWinnerOnConditionGameFirst()
+         choiceWinnerOnConditionGameFirst();
+
 
       } else if (
          blocks[arrValueBlocks[i][0]].querySelector('.game__img') &&
@@ -156,6 +160,7 @@ function getWinCombination() {
          changeContentSecond();
          getNameWinner();
          choiceWinnerOnConditionGameSecond();
+
       }
    }
 }
@@ -191,9 +196,15 @@ refreshBtn.addEventListener('click', function (e) {
 tableBtn.addEventListener('click', function (e) {
    scoreTable.classList.add('block-remove-opacity');
 })
+historyBtn.addEventListener('click', function (e) {
+   historyBlock.classList.add('block-remove-opacity');
+})
 
 scoreTableBtn.addEventListener('click', function (e) {
    scoreTable.classList.remove('block-remove-opacity');
+})
+historyBlockBtn.addEventListener('click', function (e) {
+   historyBlock.classList.remove('block-remove-opacity');
 })
 
 happyButtonRepeat.addEventListener('click', function (e) {
@@ -216,6 +227,7 @@ happyButtonExit.addEventListener('click', function (e) {
    zeroingScoreAndSteps();
    changeGameTitle();
    removeCondition();
+   removeNamePlayer();
 })
 
 // ! ----------------------- Functions ----------------------------- //
@@ -252,18 +264,19 @@ function choiceWinnerOnConditionGameFirst() {
    if (conditionGameFirst.classList.contains('condition__color')) {
       if (scoreFirst === 1) {
          happyName.classList.add('block-remove-opacity');
-         happyNamePLayer.textContent = `${namePlayerFirst} победитель! Поздравляем`;
+         happyNamePLayer.innerHTML = `<span>${namePlayerFirst}</span> Победитель! Поздравляем! Ходов ${click}`;
          round = 1;
          getRecordFirstPLayer();
-
+         getFinishMathResultsFirst();
       }
    }
    if (conditionGameSecond.classList.contains('condition__color')) {
       if (scoreFirst === 3) {
          happyName.classList.add('block-remove-opacity');
-         happyNamePLayer.textContent = `${namePlayerFirst} победитель! Поздравляем`;
+         happyNamePLayer.innerHTML = `<span>${namePlayerFirst}</span> Победитель! Поздравляем! Раундов ${round}`;
          round = 1;
          getRecordFirstPLayer();
+         getFinishMathResultsFirst();
       }
    }
 }
@@ -272,17 +285,19 @@ function choiceWinnerOnConditionGameSecond() {
    if (conditionGameFirst.classList.contains('condition__color')) {
       if (scoreSecond === 1) {
          happyName.classList.add('block-remove-opacity');
-         happyNamePLayer.textContent = `${namePlayerSecond} победитель! Поздравляем`;
+         happyNamePLayer.innerHTML = `<span>${namePlayerSecond}</span> Победитель! Поздравляем! Ходов ${click} `;
          round = 1;
          getRecordSecondPLayer();
+         getFinishMathResultsSecond();
       }
    }
    if (conditionGameSecond.classList.contains('condition__color')) {
       if (scoreSecond === 3) {
          happyName.classList.add('block-remove-opacity');
-         happyNamePLayer.textContent = `${namePlayerSecond} победитель! Поздравляем`;
+         happyNamePLayer.innerHTML = `<span>${namePlayerSecond}</span> Победитель! Поздравляем! Раундов ${round}`;
          round = 1;
          getRecordSecondPLayer();
+         getFinishMathResultsSecond();
       }
    }
 }
@@ -337,6 +352,7 @@ function changeClassMainAndHello() {
    helloPage.classList.remove('block-opacity');
    mainBlock.classList.remove('block-remove-opacity');
 }
+// ! ----------------------- Function ----------------------------- //
 // ------------------- score -------------------------- //
 let ind = 0;
 let array = [];
@@ -344,15 +360,13 @@ let array = [];
 let localArray = [];
 let arr = [];
 
-console.log(arr);
-console.log(array);
+
 
 function getRecordFirstPLayer() {
    ind = 0;
 
    array.forEach((arrayIs, index) => {
       if (arrayIs.name == namePlayerFirst) {
-         console.log(index);
          ind = index;
       }
    });
@@ -408,7 +422,7 @@ function getRecordFirstPLayer() {
          if (idNumberPlayer !== null) {
             idNumberPlayer.textContent = number;
          }
-         
+
          if (array.length > 1) {
             array.sort((a, b) => b.num - a.num);
          }
@@ -427,7 +441,6 @@ function getRecordSecondPLayer() {
 
    array.forEach((arrayIs, index) => {
       if (arrayIs.name == namePlayerSecond) {
-         console.log(index);
          ind = index;
       }
    });
@@ -483,7 +496,7 @@ function getRecordSecondPLayer() {
          if (idNumberPlayer !== null) {
             idNumberPlayer.textContent = number;
          }
-         
+
          if (array.length > 1) {
             array.sort((a, b) => b.num - a.num);
          }
@@ -508,7 +521,7 @@ function removeElementInTable() {
    })
 
 }
-// ! ----------------------- Function ----------------------------- //
+
 // ? ----------------------- Local Storage ------------------------ //
 
 function setLocalStorage() {
@@ -521,8 +534,6 @@ function getLocalStorage() {
    const pars = localStorage.getItem('score');
    localArray = JSON.parse(pars);
    let localSlice = localArray.slice(0, 10);
-   console.log(localArray);
-   console.log(localSlice);
    localSlice.forEach(localArr => {
       const namePLayerRecord = document.querySelector('.table__name');
       let namePLayerWinner = document.createElement('p');
@@ -541,20 +552,20 @@ function getLocalStorage() {
 
 
 function parsLocalStorageInArray() {
+   const pars = localStorage.getItem('score');
+   localArray = JSON.parse(pars);
    if (localArray !== null) {
-      const pars = localStorage.getItem('score');
-      localArray = JSON.parse(pars);
       localArray.forEach(localArr => {
          array.push(localArr);
       });
       let localSlice = localArray.slice(0, 10);
-      localSlice.forEach (localArr => {
+      localSlice.forEach(localArr => {
          const namePLayerRecord = document.querySelector('.table__name');
          let namePLayerWinner = document.createElement('p');
          namePLayerWinner.className = 'table__player-name';
          namePLayerWinner.innerHTML = localArr.name;
          namePLayerRecord.append(namePLayerWinner);
-   
+
          const numberPlayerRecord = document.querySelector('.table__number');
          let numberPLayerWinner = document.createElement('p');
          numberPLayerWinner.className = 'table__player-number';
@@ -566,3 +577,159 @@ function parsLocalStorageInArray() {
 }
 window.addEventListener('pagehide', setLocalStorage);
 window.addEventListener('pageshow', parsLocalStorageInArray);
+
+// ---------------------------- history game ---------------------- //
+
+let arrHis = [];
+let arrayHistory = [];
+let localArrayHistory = [];
+
+function getFinishMathResultsFirst() {
+   if (arrayHistory.length === 0) {
+      arrHis.push(`${namePlayerFirst} vs ${namePlayerSecond}`)
+      arrHis.push(`${namePlayerFirst} победитель`);
+      arrayHistory.unshift(arrHis);
+      showElementInHistoryBlockFirst();
+      removeWinnerGame();
+   } else if (arrayHistory.length === localArrayHistory.length && arrHis.length === 0 ||
+      arrayHistory.length > localArrayHistory.length && arrHis.length === 0 ||
+      arrayHistory.length < localArrayHistory.length && arrHis.length === 0
+   ) {
+      arrHis.push(`${namePlayerFirst} vs ${namePlayerSecond}`)
+      arrHis.push(`${namePlayerFirst} победитель`);
+      arrayHistory.unshift(arrHis);
+      showElementInHistoryBlockFirst();
+      removeWinnerGame();
+   } else {
+      arrHis.push(`${namePlayerFirst} vs ${namePlayerSecond}`)
+      arrHis.push(`${namePlayerFirst} победитель`);
+      const arrSplice = arrHis.splice(2, 2);
+      arrayHistory.unshift(arrSplice);
+      showElementInHistoryBlockFirst();
+      removeWinnerGame();
+   }
+}
+
+function showElementInHistoryBlockFirst() {
+   const nameHistoryGame = document.querySelector('.history__block-flex');
+   let nameGameWinner = document.createElement('div');
+   nameGameWinner.className = 'history__game';
+   nameHistoryGame.prepend(nameGameWinner);
+
+   const namePLayerHistoryWinner = document.querySelector('.history__game');
+
+   let nameWinnerGame = document.createElement('p');
+   nameWinnerGame.className = 'history__winner-title';
+   nameWinnerGame.innerHTML = `${namePlayerFirst} <span>vs</span> ${namePlayerSecond}`;
+   namePLayerHistoryWinner.prepend(nameWinnerGame);
+
+   let namePLayerWinner = document.createElement('p');
+   namePLayerWinner.className = 'history__winner';
+   namePLayerWinner.innerHTML = `<span>${namePlayerFirst}</span> победитель`;
+   namePLayerHistoryWinner.append(namePLayerWinner);
+}
+
+function getFinishMathResultsSecond() {
+   if (arrayHistory.length === 0) {
+      arrHis.push(`${namePlayerFirst} vs ${namePlayerSecond}`)
+      arrHis.push(`${namePlayerSecond} победитель`);
+      arrayHistory.unshift(arrHis);
+      showElementInHistoryBlockSecond();
+      removeWinnerGame();
+   } else if (arrayHistory.length === localArrayHistory.length && arrHis.length === 0 ||
+      arrayHistory.length > localArrayHistory.length && arrHis.length === 0 ||
+      arrayHistory.length < localArrayHistory.length && arrHis.length === 0
+   ) {
+      arrHis.push(`${namePlayerFirst} vs ${namePlayerSecond}`)
+      arrHis.push(`${namePlayerSecond} победитель`);
+      arrayHistory.unshift(arrHis);
+      showElementInHistoryBlockSecond();
+      removeWinnerGame();
+   } else {
+      arrHis.push(`${namePlayerFirst} vs ${namePlayerSecond}`)
+      arrHis.push(`${namePlayerSecond} победитель`);
+      const arrSplice = arrHis.splice(2, 2);
+      arrayHistory.unshift(arrSplice);
+      showElementInHistoryBlockSecond();
+      removeWinnerGame();
+   }
+}
+
+function showElementInHistoryBlockSecond() {
+   const nameHistoryGame = document.querySelector('.history__block-flex');
+   let nameGameWinner = document.createElement('div');
+   nameGameWinner.className = 'history__game';
+   nameHistoryGame.prepend(nameGameWinner);
+
+   const namePLayerHistoryWinner = document.querySelector('.history__game');
+
+   let nameWinnerGame = document.createElement('p');
+   nameWinnerGame.className = 'history__winner-title';
+   nameWinnerGame.innerHTML = `${namePlayerFirst} <span>vs</span> ${namePlayerSecond}`;
+   namePLayerHistoryWinner.prepend(nameWinnerGame);
+
+   let namePLayerWinner = document.createElement('p');
+   namePLayerWinner.className = 'history__winner';
+   namePLayerWinner.innerHTML = `<span>${namePlayerSecond}</span> победитель`;
+   namePLayerHistoryWinner.append(namePLayerWinner);
+}
+
+function removeWinnerGame() {
+   if (arrayHistory.length > 10) {
+      arrayHistory.splice(10, 1);
+      const firstElementHistory = document.querySelectorAll('.history__game');
+      firstElementHistory.forEach((firstElement, index) => {
+         if (index > 10) {
+            firstElement.remove();
+         }
+      })
+   }
+}
+
+
+// ! -------------- local history game ----------------------- //
+function setLocalStoragehistory() {
+   localStorage.setItem('history', JSON.stringify(arrayHistory));
+}
+function getLocalStorageHistory() {
+   const pars = localStorage.getItem('history');
+   localArrayHistory = JSON.parse(pars);
+   if (localArrayHistory !== null) {
+      let localSlice = localArrayHistory.slice(0, 10);
+      localSlice.forEach((localArr, index) => {
+         arrayHistory.push(localArr);
+         const nameHistoryGame = document.querySelector('.history__block-flex');
+         let nameGameWinner = document.createElement('div');
+         nameGameWinner.className = 'history__game';
+         nameHistoryGame.append(nameGameWinner);
+
+         const namePLayerHistoryWinner = document.querySelectorAll('.history__game');
+
+         let nameWinnerGame = document.createElement('p');
+         nameWinnerGame.className = 'history__winner-title';
+         nameWinnerGame.innerHTML = localArr[0];
+         namePLayerHistoryWinner[index].prepend(nameWinnerGame);
+
+         let namePLayerWinner = document.createElement('p');
+         namePLayerWinner.className = 'history__winner';
+         namePLayerWinner.innerHTML = localArr[1];
+         namePLayerHistoryWinner[index].append(namePLayerWinner);
+      })
+   }
+}
+
+
+window.addEventListener('pagehide', setLocalStoragehistory);
+window.addEventListener('pageshow', getLocalStorageHistory);
+
+window.addEventListener('click', function (e) {
+   const targetClick = e.target;
+   if (!targetClick.closest ('.game__table') && 
+   !targetClick.closest ('.game__history') && 
+   !targetClick.closest ('.history__block') && 
+   !targetClick.closest ('.table__score')
+   ) {
+      historyBlock.classList.remove('block-remove-opacity');
+      scoreTable.classList.remove('block-remove-opacity');
+   }
+})
