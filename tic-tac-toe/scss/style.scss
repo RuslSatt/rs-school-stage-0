@@ -261,12 +261,6 @@ body {
 }
 
 .footer {
-   @media (min-height: 533px) {
-      position: fixed;
-   }
-   bottom: 0;
-   right: 0;
-   width: 100%;
    z-index: 23;
    background-color: #7e7b7b;
    &__container {
@@ -286,8 +280,6 @@ body {
    justify-content: space-between;
    align-items: center;
 }
-
-
 
 .footer__git {
    transition: 0.3s ease;
