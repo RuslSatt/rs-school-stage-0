@@ -284,21 +284,6 @@ body {
             margin-bottom: 16px;
          }
       }
-      li:nth-child(3){
-         color: red;
-         animation: scale 1s ease-in infinite;
-      }
-      @keyframes scale {
-         0% {
-            transform: scale(1);
-         }
-         50% {
-            transform: scale(1.2);
-         }
-         100% {
-            transform: scale(1);
-         }
-      }
    }
 
    &__nav-link {
